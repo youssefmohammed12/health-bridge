@@ -537,6 +537,10 @@ document.addEventListener("DOMContentLoaded", function () {
   loadPageSpecificContent();
   translateStaticContent();
   initMap();
+  const langBtn = document.getElementById("lang-toggle-btn");
+  if (langBtn) {
+    langBtn.addEventListener("click", toggleLanguage);
+  }
 });
 
 // Language Functions
