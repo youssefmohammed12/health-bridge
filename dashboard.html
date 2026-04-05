@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!doctype html>
 <html lang="en" dir="ltr">
   <head>
@@ -181,3 +182,188 @@
     <script src="js/script.js"></script>
   </body>
 </html>
+=======
+<!doctype html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard - HealthBridge</title>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <nav class="navbar">
+      <div class="nav-container">
+        <a href="index.html" class="logo">
+          <div class="logo-icon">🏥</div>
+          <span>HealthBridge</span>
+        </a>
+
+        <ul class="nav-links">
+          <li><a href="dashboard.html" class="active">Dashboard</a></li>
+          <li><a href="appointments.html">Appointments</a></li>
+          <li><a href="doctors.html">Doctors</a></li>
+          <li><a href="records.html">Records</a></li>
+        </ul>
+
+        <div class="nav-actions">
+          <button class="lang-toggle" onclick="toggleLanguage()">AR/EN</button>
+          <div id="auth-links"></div>
+        </div>
+      </div>
+    </nav>
+
+    <div class="dashboard">
+      <!-- Sidebar -->
+      <aside class="sidebar">
+        <div style="text-align: center; margin-bottom: 2rem">
+          <div
+            style="
+              width: 80px;
+              height: 80px;
+              background: var(--secondary);
+              border-radius: 50%;
+              margin: 0 auto 1rem;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              font-size: 2.5rem;
+            "
+          >
+            👤
+          </div>
+          <div id="user-info">
+            <h3>Loading...</h3>
+          </div>
+        </div>
+
+        <ul class="sidebar-menu">
+          <li><a href="dashboard.html" class="active">📊 Dashboard</a></li>
+          <li><a href="appointments.html">📅 Appointments</a></li>
+          <li><a href="records.html">📋 Medical Records</a></li>
+          <li><a href="support.html">💬 Messages</a></li>
+          <li>
+            <a
+              href="#"
+              onclick="
+                showModal('<h2>Settings</h2><p>Settings page coming soon!</p>')
+              "
+              >⚙️ Settings</a
+            >
+          </li>
+        </ul>
+      </aside>
+
+      <!-- Main Content -->
+      <main class="main-content">
+        <h2>Dashboard Overview</h2>
+
+        <div class="stats-grid" style="margin-top: 2rem">
+          <div class="stat-card" style="background: var(--primary)">
+            <h4 id="total-appointments">0</h4>
+            <p>Total Appointments</p>
+          </div>
+          <div class="stat-card" style="background: var(--highlight)">
+            <h4 id="pending-records">3</h4>
+            <p>Pending Records</p>
+          </div>
+          <div
+            class="stat-card"
+            style="background: var(--secondary); color: var(--text-dark)"
+          >
+            <h4>⭐ 4.8</h4>
+            <p>Your Rating</p>
+          </div>
+        </div>
+
+        <section style="margin-top: 3rem">
+          <div
+            style="
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+              margin-bottom: 1.5rem;
+            "
+          >
+            <h3>Upcoming Appointments</h3>
+            <a href="appointments.html" class="btn btn-outline">View All</a>
+          </div>
+          <div id="upcoming-appointments">
+            <p class="text-center">Loading appointments...</p>
+          </div>
+        </section>
+
+        <section style="margin-top: 3rem">
+          <div
+            style="
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+              margin-bottom: 1.5rem;
+            "
+          >
+            <h3>Recent Medical Records</h3>
+            <a href="records.html" class="btn btn-outline">View All</a>
+          </div>
+          <div
+            class="card-grid"
+            style="grid-template-columns: repeat(auto-fit, minmax(250px, 1fr))"
+          >
+            <div class="card">
+              <span
+                class="btn btn-secondary"
+                style="padding: 0.25rem 0.5rem; font-size: 0.875rem"
+                >Lab Results</span
+              >
+              <h4 class="mt-1">Blood Test</h4>
+              <p class="text-gray-600">Dr. Ahmed Smith • 2024-03-15</p>
+              <span style="color: var(--primary)">Normal</span>
+            </div>
+            <div class="card">
+              <span
+                class="btn btn-secondary"
+                style="padding: 0.25rem 0.5rem; font-size: 0.875rem"
+                >Prescription</span
+              >
+              <h4 class="mt-1">Antibiotics</h4>
+              <p class="text-gray-600">Dr. Sara Johnson • 2024-03-10</p>
+              <span style="color: var(--highlight)">Active</span>
+            </div>
+          </div>
+        </section>
+
+        <section
+          style="
+            margin-top: 3rem;
+            background: linear-gradient(
+              135deg,
+              var(--secondary) 0%,
+              var(--white) 100%
+            );
+            padding: 2rem;
+            border-radius: var(--radius);
+          "
+        >
+          <div
+            style="
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+              flex-wrap: wrap;
+              gap: 1rem;
+            "
+          >
+            <div>
+              <h3>Need to see a doctor?</h3>
+              <p>Book an appointment with our top specialists today.</p>
+            </div>
+            <a href="appointments.html" class="btn btn-primary">Book Now</a>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script src="js/script.js"></script>
+  </body>
+</html>
+>>>>>>> 8a0265f8b302c4ac8d9b0cb0824a7184b48ded63

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!doctype html>
 <html lang="en" dir="ltr">
   <head>
@@ -135,3 +136,142 @@
     <script src="js/script.js"></script>
   </body>
 </html>
+=======
+<!doctype html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Emergency - HealthBridge</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <style>
+      .emergency-btn {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        background: var(--danger);
+        color: white;
+        border: none;
+        font-size: 1.5rem;
+        font-weight: 700;
+        cursor: pointer;
+        box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7);
+        animation: emergencyPulse 2s infinite;
+        margin: 2rem auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+
+      @keyframes emergencyPulse {
+        0% {
+          transform: scale(1);
+          box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7);
+        }
+        70% {
+          transform: scale(1.05);
+          box-shadow: 0 0 0 20px rgba(239, 68, 68, 0);
+        }
+        100% {
+          transform: scale(1);
+          box-shadow: 0 0 0 0 rgba(239, 68, 68, 0);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar">
+      <div class="nav-container">
+        <a href="index.html" class="logo">
+          <div class="logo-icon">🏥</div>
+          <span>HealthBridge</span>
+        </a>
+        <a href="index.html" class="btn btn-outline">Back to Home</a>
+      </div>
+    </nav>
+
+    <div class="emergency-hero">
+      <h1>🚨 Emergency Services</h1>
+      <p style="font-size: 1.25rem; margin-top: 1rem">
+        If you are experiencing a life-threatening emergency, call immediately
+      </p>
+
+      <button class="emergency-btn" id="emergency-call">
+        <span style="font-size: 2.5rem">📞</span>
+        <span>CALL 911</span>
+      </button>
+    </div>
+
+    <div style="max-width: 1200px; margin: 3rem auto; padding: 0 2rem">
+      <div class="emergency-actions">
+        <div class="emergency-card">
+          <div class="icon">🏥</div>
+          <h3>Nearest Hospital</h3>
+          <p style="margin: 1rem 0">
+            <strong>City General Hospital</strong><br />123 Medical Center Dr<br />0.5
+            miles away
+          </p>
+          <a href="#" class="btn btn-primary">Get Directions</a>
+        </div>
+
+        <div class="emergency-card">
+          <div class="icon">🚑</div>
+          <h3>Ambulance</h3>
+          <p style="margin: 1rem 0">
+            <strong>Emergency Line</strong><br />+1 (555) 911-0000<br />Avg
+            response: 5 min
+          </p>
+          <a href="tel:+15559110000" class="btn btn-danger">Call Ambulance</a>
+        </div>
+
+        <div class="emergency-card">
+          <div class="icon">💊</div>
+          <h3>Poison Control</h3>
+          <p style="margin: 1rem 0">
+            <strong>24/7 Hotline</strong><br />1-800-222-1222<br />For poisoning
+            emergencies
+          </p>
+          <a href="tel:18002221222" class="btn btn-secondary">Call Now</a>
+        </div>
+      </div>
+
+      <section style="margin-top: 4rem">
+        <h2 class="text-center">First Aid Instructions</h2>
+        <div class="card-grid" style="margin-top: 2rem">
+          <div class="card">
+            <h4>🫀 CPR</h4>
+            <p style="margin-top: 0.5rem">
+              1. Check responsiveness<br />2. Call 911<br />3. Push hard and
+              fast in center of chest<br />4. Use AED if available
+            </p>
+          </div>
+          <div class="card">
+            <h4>🔥 Burns</h4>
+            <p style="margin-top: 0.5rem">
+              1. Cool with running water<br />2. Cover with sterile dressing<br />3.
+              Do not apply ice<br />4. Seek medical attention
+            </p>
+          </div>
+          <div class="card">
+            <h4>🩸 Bleeding</h4>
+            <p style="margin-top: 0.5rem">
+              1. Apply direct pressure<br />2. Elevate the wound<br />3. Use
+              clean cloth/bandage<br />4. Call 911 if severe
+            </p>
+          </div>
+          <div class="card">
+            <h4>😤 Choking</h4>
+            <p style="margin-top: 0.5rem">
+              1. Encourage coughing<br />2. Perform Heimlich maneuver<br />3.
+              Call 911 if unable to breathe<br />4. Continue until help arrives
+            </p>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <script src="js/script.js"></script>
+  </body>
+</html>
+>>>>>>> 8a0265f8b302c4ac8d9b0cb0824a7184b48ded63

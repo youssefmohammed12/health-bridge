@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!doctype html>
 <html lang="en" dir="ltr">
   <head>
@@ -255,3 +256,262 @@
     <script src="js/script.js"></script>
   </body>
 </html>
+=======
+<!doctype html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HealthBridge - Your Health Companion</title>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <!-- Navigation -->
+    <nav class="navbar">
+      <div class="nav-container">
+        <a href="index.html" class="logo">
+          <div class="logo-icon">🏥</div>
+          <span>HealthBridge</span>
+        </a>
+
+        <ul class="nav-links">
+          <li>
+            <a href="index.html" class="active" data-translate="home">Home</a>
+          </li>
+          <li><a href="doctors.html" data-translate="doctors">Doctors</a></li>
+          <li><a href="about.html" data-translate="aboutUs">About Us</a></li>
+          <li>
+            <a href="contact.html" data-translate="contactUs">Contact Us</a>
+          </li>
+          <li><a href="support.html" data-translate="support">Support</a></li>
+        </ul>
+
+        <div class="nav-actions">
+          <button class="lang-toggle" onclick="toggleLanguage()">AR/EN</button>
+          <div id="auth-links">
+            <a href="login.html" class="btn btn-outline" data-translate="login"
+              >Login</a
+            >
+            <a
+              href="login.html#signup"
+              class="btn btn-primary"
+              data-translate="signup"
+              >Sign Up</a
+            >
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="hero-content">
+        <h1 data-translate="welcome">Welcome to HealthBridge</h1>
+        <p data-translate="subtitle">
+          Your health, our priority. Book appointments and access your medical
+          records easily.
+        </p>
+
+        <div class="search-bar">
+          <input
+            type="text"
+            id="search-input"
+            data-translate-placeholder="searchPlaceholder"
+            placeholder="Search doctors or departments..."
+          />
+          <button onclick="window.location.href = 'doctors.html'">
+            Search
+          </button>
+        </div>
+
+        <div style="margin-top: 2rem">
+          <a
+            href="emergency.html"
+            class="btn btn-emergency"
+            data-translate="emergency"
+            >🚨 Emergency</a
+          >
+        </div>
+      </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section
+      id="stats"
+      class="stats-grid"
+      style="
+        max-width: 1200px;
+        margin: -3rem auto 3rem;
+        padding: 0 2rem;
+        position: relative;
+        z-index: 2;
+      "
+    >
+      <!-- Stats loaded by JS -->
+    </section>
+
+    <!-- Services Section -->
+    <section style="padding: 4rem 2rem">
+      <h2 class="text-center mb-2" data-translate="services">Our Services</h2>
+      <div class="card-grid">
+        <div class="card">
+          <div class="card-icon">📅</div>
+          <h3>Online Booking</h3>
+          <p>
+            Book appointments with top doctors instantly through our easy-to-use
+            platform.
+          </p>
+        </div>
+        <div class="card">
+          <div class="card-icon">📋</div>
+          <h3>Medical Records</h3>
+          <p>
+            Access your complete medical history, lab results, and prescriptions
+            anytime.
+          </p>
+        </div>
+        <div class="card">
+          <div class="card-icon">💬</div>
+          <h3>24/7 Support</h3>
+          <p>
+            Get assistance anytime with our dedicated support team and live
+            chat.
+          </p>
+        </div>
+        <div class="card">
+          <div class="card-icon">🚑</div>
+          <h3>Emergency Care</h3>
+          <p>
+            Quick access to emergency services and nearest hospital locations.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section style="background: var(--white); padding: 4rem 2rem">
+      <h2 class="text-center mb-2">What Patients Say</h2>
+      <div class="card-grid">
+        <div class="card">
+          <p>
+            "HealthBridge made it so easy to book my appointment. The interface
+            is clean and intuitive!"
+          </p>
+          <p style="margin-top: 1rem; font-weight: 600; color: var(--primary)">
+            - Sarah M.
+          </p>
+        </div>
+        <div class="card">
+          <p>
+            "I love being able to access my medical records instantly. Best
+            healthcare app I've used."
+          </p>
+          <p style="margin-top: 1rem; font-weight: 600; color: var(--primary)">
+            - Ahmed K.
+          </p>
+        </div>
+        <div class="card">
+          <p>
+            "The emergency feature gave me peace of mind. Highly recommended for
+            everyone."
+          </p>
+          <p style="margin-top: 1rem; font-weight: 600; color: var(--primary)">
+            - Fatima R.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section
+      style="
+        background: linear-gradient(135deg, var(--primary) 0%, #16a34a 100%);
+        color: var(--white);
+        padding: 4rem 2rem;
+        text-align: center;
+      "
+    >
+      <h2>Ready to Take Control of Your Health?</h2>
+      <p style="margin: 1rem 0 2rem">
+        Join thousands of patients who trust HealthBridge
+      </p>
+      <a
+        href="login.html#signup"
+        class="btn"
+        style="background: var(--white); color: var(--primary)"
+        >Get Started Today</a
+      >
+    </section>
+
+    <!-- Footer -->
+    <footer
+      style="
+        background: var(--text-dark);
+        color: var(--white);
+        padding: 3rem 2rem 1rem;
+      "
+    >
+      <div
+        style="
+          max-width: 1200px;
+          margin: 0 auto;
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+          gap: 2rem;
+        "
+      >
+        <div>
+          <h3>HealthBridge</h3>
+          <p>Connecting patients with quality healthcare services.</p>
+        </div>
+        <div>
+          <h4 data-translate="quickLinks">Quick Links</h4>
+          <ul style="list-style: none; margin-top: 1rem">
+            <li>
+              <a
+                href="doctors.html"
+                style="color: var(--accent); text-decoration: none"
+                >Find a Doctor</a
+              >
+            </li>
+            <li>
+              <a
+                href="appointments.html"
+                style="color: var(--accent); text-decoration: none"
+                >Book Appointment</a
+              >
+            </li>
+            <li>
+              <a
+                href="emergency.html"
+                style="color: var(--accent); text-decoration: none"
+                >Emergency</a
+              >
+            </li>
+          </ul>
+        </div>
+        <div>
+          <h4 data-translate="contactUs">Contact Us</h4>
+          <p>
+            📞 +1 (555) 123-4567<br />
+            📧 support@healthbridge.com<br />
+            📍 123 Medical Center Dr, City
+          </p>
+        </div>
+      </div>
+      <div
+        style="
+          text-align: center;
+          margin-top: 2rem;
+          padding-top: 2rem;
+          border-top: 1px solid var(--accent);
+        "
+      >
+        <p>&copy; 2024 HealthBridge. All rights reserved.</p>
+      </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+  </body>
+</html>
+>>>>>>> 8a0265f8b302c4ac8d9b0cb0824a7184b48ded63

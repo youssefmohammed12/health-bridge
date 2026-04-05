@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!doctype html>
 <html lang="en" dir="ltr">
   <head>
@@ -106,3 +107,113 @@
     <script src="js/script.js"></script>
   </body>
 </html>
+=======
+<!doctype html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Medical Records - HealthBridge</title>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <nav class="navbar">
+      <div class="nav-container">
+        <a href="index.html" class="logo">
+          <div class="logo-icon">🏥</div>
+          <span>HealthBridge</span>
+        </a>
+
+        <ul class="nav-links">
+          <li><a href="dashboard.html">Dashboard</a></li>
+          <li><a href="appointments.html">Appointments</a></li>
+          <li><a href="doctors.html">Doctors</a></li>
+          <li><a href="records.html" class="active">Records</a></li>
+        </ul>
+
+        <div class="nav-actions">
+          <button class="lang-toggle" onclick="toggleLanguage()">AR/EN</button>
+          <div id="auth-links"></div>
+        </div>
+      </div>
+    </nav>
+
+    <div class="dashboard">
+      <aside class="sidebar">
+        <div style="text-align: center; margin-bottom: 2rem">
+          <div
+            style="
+              width: 80px;
+              height: 80px;
+              background: var(--secondary);
+              border-radius: 50%;
+              margin: 0 auto 1rem;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              font-size: 2.5rem;
+            "
+          >
+            👤
+          </div>
+          <h3>Patient</h3>
+        </div>
+        <ul class="sidebar-menu">
+          <li><a href="dashboard.html">📊 Dashboard</a></li>
+          <li><a href="appointments.html">📅 Appointments</a></li>
+          <li><a href="records.html" class="active">📋 Medical Records</a></li>
+          <li><a href="support.html">💬 Messages</a></li>
+          <li><a href="#">⚙️ Settings</a></li>
+        </ul>
+      </aside>
+
+      <main class="main-content">
+        <div
+          style="
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+          "
+        >
+          <h2>Medical Records</h2>
+          <div style="display: flex; gap: 0.5rem">
+            <button
+              class="btn btn-outline"
+              onclick="showToast('Filter coming soon!')"
+            >
+              Filter
+            </button>
+            <button
+              class="btn btn-secondary"
+              onclick="showToast('Exporting records...')"
+            >
+              Export All
+            </button>
+          </div>
+        </div>
+
+        <div
+          style="display: flex; gap: 1rem; margin-bottom: 2rem; flex-wrap: wrap"
+        >
+          <button class="btn btn-primary">All Records</button>
+          <button class="btn btn-outline">Lab Results</button>
+          <button class="btn btn-outline">Prescriptions</button>
+          <button class="btn btn-outline">Diagnoses</button>
+          <button class="btn btn-outline">Imaging</button>
+        </div>
+
+        <div
+          id="records-list"
+          class="card-grid"
+          style="grid-template-columns: 1fr"
+        >
+          <!-- Records loaded by JavaScript -->
+        </div>
+      </main>
+    </div>
+
+    <script src="js/script.js"></script>
+  </body>
+</html>
+>>>>>>> 8a0265f8b302c4ac8d9b0cb0824a7184b48ded63
