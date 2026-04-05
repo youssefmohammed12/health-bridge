@@ -15,10 +15,18 @@
         </a>
 
         <ul class="nav-links">
-          <li><a href="dashboard.html" class="active">Dashboard</a></li>
-          <li><a href="appointments.html">Appointments</a></li>
-          <li><a href="doctors.html">Doctors</a></li>
-          <li><a href="records.html">Records</a></li>
+          <li>
+            <a href="dashboard.html" class="active" data-translate="dashboard"
+              >Dashboard</a
+            >
+          </li>
+          <li>
+            <a href="appointments.html" data-translate="appointments"
+              >Appointments</a
+            >
+          </li>
+          <li><a href="doctors.html" data-translate="doctors">Doctors</a></li>
+          <li><a href="records.html" data-translate="records">Records</a></li>
         </ul>
 
         <div class="nav-actions">
@@ -48,22 +56,39 @@
             👤
           </div>
           <div id="user-info">
-            <h3>Loading...</h3>
+            <h3 data-translate="loading">Loading...</h3>
           </div>
         </div>
 
         <ul class="sidebar-menu">
-          <li><a href="dashboard.html" class="active">📊 Dashboard</a></li>
-          <li><a href="appointments.html">📅 Appointments</a></li>
-          <li><a href="records.html">📋 Medical Records</a></li>
-          <li><a href="support.html">💬 Messages</a></li>
+          <li>
+            <a href="dashboard.html" class="active"
+              >📊 <span data-translate="dashboard">Dashboard</span></a
+            >
+          </li>
+          <li>
+            <a href="appointments.html"
+              >📅 <span data-translate="appointments">Appointments</span></a
+            >
+          </li>
+          <li>
+            <a href="records.html"
+              >📋
+              <span data-translate="medicalRecords">Medical Records</span></a
+            >
+          </li>
+          <li>
+            <a href="support.html"
+              >💬 <span data-translate="support">Support</span></a
+            >
+          </li>
           <li>
             <a
               href="#"
               onclick="
                 showModal('<h2>Settings</h2><p>Settings page coming soon!</p>')
               "
-              >⚙️ Settings</a
+              >⚙️ <span data-translate="settings">Settings</span></a
             >
           </li>
         </ul>
@@ -71,23 +96,27 @@
 
       <!-- Main Content -->
       <main class="main-content">
-        <h2>Dashboard Overview</h2>
+        <h2 data-translate="dashboardOverview">Dashboard Overview</h2>
 
         <div class="stats-grid" style="margin-top: 2rem">
           <div class="stat-card" style="background: var(--primary)">
             <h4 id="total-appointments">0</h4>
-            <p>Total Appointments</p>
+            <p class="stat-label" data-translate="totalAppointments">
+              Total Appointments
+            </p>
           </div>
           <div class="stat-card" style="background: var(--highlight)">
             <h4 id="pending-records">3</h4>
-            <p>Pending Records</p>
+            <p class="stat-label" data-translate="pendingRecords">
+              Pending Records
+            </p>
           </div>
           <div
             class="stat-card"
             style="background: var(--secondary); color: var(--text-dark)"
           >
             <h4>⭐ 4.8</h4>
-            <p>Your Rating</p>
+            <p class="stat-label" data-translate="yourRating">Your Rating</p>
           </div>
         </div>
 
@@ -100,11 +129,20 @@
               margin-bottom: 1.5rem;
             "
           >
-            <h3>Upcoming Appointments</h3>
-            <a href="appointments.html" class="btn btn-outline">View All</a>
+            <h3 id="upcoming-header" data-translate="upcoming">
+              Upcoming Appointments
+            </h3>
+            <a
+              href="appointments.html"
+              class="btn btn-outline view-all-btn"
+              data-translate="viewAll"
+              >View All</a
+            >
           </div>
           <div id="upcoming-appointments">
-            <p class="text-center">Loading appointments...</p>
+            <p class="text-center" data-translate="noAppointments">
+              No upcoming appointments
+            </p>
           </div>
         </section>
 
@@ -117,8 +155,15 @@
               margin-bottom: 1.5rem;
             "
           >
-            <h3>Recent Medical Records</h3>
-            <a href="records.html" class="btn btn-outline">View All</a>
+            <h3 id="recent-records-header" data-translate="medicalRecords">
+              Recent Medical Records
+            </h3>
+            <a
+              href="records.html"
+              class="btn btn-outline view-all-btn"
+              data-translate="viewAll"
+              >View All</a
+            >
           </div>
           <div
             class="card-grid"
@@ -128,21 +173,27 @@
               <span
                 class="btn btn-secondary"
                 style="padding: 0.25rem 0.5rem; font-size: 0.875rem"
+                data-translate="labResults"
                 >Lab Results</span
               >
               <h4 class="mt-1">Blood Test</h4>
-              <p class="text-gray-600">Dr. Ahmed Smith • 2024-03-15</p>
-              <span style="color: var(--primary)">Normal</span>
+              <p class="text-gray-600">Dr. Ahmed Hassan • 2024-03-15</p>
+              <span style="color: var(--primary)" data-translate="normal"
+                >Normal</span
+              >
             </div>
             <div class="card">
               <span
                 class="btn btn-secondary"
                 style="padding: 0.25rem 0.5rem; font-size: 0.875rem"
+                data-translate="prescriptions"
                 >Prescription</span
               >
               <h4 class="mt-1">Antibiotics</h4>
-              <p class="text-gray-600">Dr. Sara Johnson • 2024-03-10</p>
-              <span style="color: var(--highlight)">Active</span>
+              <p class="text-gray-600">Dr. Sarah Johnson • 2024-03-10</p>
+              <span style="color: var(--highlight)" data-translate="active"
+                >Active</span
+              >
             </div>
           </div>
         </section>
@@ -169,10 +220,23 @@
             "
           >
             <div>
-              <h3>Need to see a doctor?</h3>
-              <p>Book an appointment with our top specialists today.</p>
+              <h3 id="need-doctor-text" data-translate="needToSeeDoctor">
+                Need to see a doctor?
+              </h3>
+              <p
+                id="book-specialists-text"
+                data-translate="bookWithSpecialists"
+              >
+                Book an appointment with our top specialists today.
+              </p>
             </div>
-            <a href="appointments.html" class="btn btn-primary">Book Now</a>
+            <a
+              href="appointments.html"
+              class="btn btn-primary"
+              id="book-now-btn"
+              data-translate="bookNow"
+              >Book Now</a
+            >
           </div>
         </section>
       </main>

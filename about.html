@@ -15,10 +15,14 @@
         </a>
 
         <ul class="nav-links">
-          <li><a href="index.html">Home</a></li>
-          <li><a href="doctors.html">Doctors</a></li>
-          <li><a href="about.html" class="active">About Us</a></li>
-          <li><a href="contact.html">Contact</a></li>
+          <li><a href="index.html" data-translate="home">Home</a></li>
+          <li><a href="doctors.html" data-translate="doctors">Doctors</a></li>
+          <li>
+            <a href="about.html" class="active" data-translate="aboutUs"
+              >About Us</a
+            >
+          </li>
+          <li><a href="contact.html" data-translate="contactUs">Contact</a></li>
         </ul>
 
         <div class="nav-actions">
@@ -39,9 +43,10 @@
         text-align: center;
       "
     >
-      <h1>About HealthBridge</h1>
+      <h1 data-translate="aboutUs">About HealthBridge</h1>
       <p
         style="max-width: 600px; margin: 1rem auto 0; color: var(--text-light)"
+        data-translate="connectingPatients"
       >
         Bridging the gap between patients and quality healthcare
       </p>
@@ -58,11 +63,12 @@
         "
       >
         <div>
-          <h2>Our Story</h2>
+          <h2 data-translate="ourStory">Our Story</h2>
           <p
             style="margin-top: 1rem; color: var(--text-light); line-height: 1.8"
+            data-translate="ourStoryP1"
           >
-            Founded in 2024, HealthBridge was born from a simple idea:
+            Founded in 2026, HealthBridge was born from a simple idea:
             healthcare should be accessible, transparent, and patient-centered.
             We started with a small team of healthcare professionals and
             technologists who believed that the patient experience could be
@@ -70,6 +76,7 @@
           </p>
           <p
             style="margin-top: 1rem; color: var(--text-light); line-height: 1.8"
+            data-translate="ourStoryP2"
           >
             Today, we serve thousands of patients, connecting them with top-tier
             medical professionals and providing tools to manage their health
@@ -92,18 +99,18 @@
       </div>
 
       <div style="text-align: center; margin-bottom: 4rem">
-        <h2>Mission & Vision</h2>
+        <h2 data-translate="missionVision">Mission & Vision</h2>
         <div class="card-grid" style="margin-top: 2rem">
           <div class="card" style="border-top: 4px solid var(--primary)">
-            <h3>🎯 Our Mission</h3>
-            <p style="margin-top: 1rem">
+            <h3 data-translate="ourMission">🎯 Our Mission</h3>
+            <p style="margin-top: 1rem" data-translate="ourMission">
               To empower patients with easy access to healthcare services and
               information, improving health outcomes through technology.
             </p>
           </div>
           <div class="card" style="border-top: 4px solid var(--highlight)">
-            <h3>👁️ Our Vision</h3>
-            <p style="margin-top: 1rem">
+            <h3 data-translate="ourVision">👁️ Our Vision</h3>
+            <p style="margin-top: 1rem" data-translate="ourVision">
               A world where everyone has access to quality healthcare,
               regardless of location or circumstances.
             </p>
@@ -111,7 +118,13 @@
         </div>
       </div>
 
-      <h2 class="text-center" style="margin-bottom: 2rem">Our Team</h2>
+      <h2
+        class="text-center"
+        style="margin-bottom: 2rem"
+        data-translate="ourTeam"
+      >
+        Our Team
+      </h2>
       <div class="card-grid">
         <div class="card text-center">
           <div

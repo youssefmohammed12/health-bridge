@@ -15,10 +15,14 @@
         </a>
 
         <ul class="nav-links">
-          <li><a href="index.html">Home</a></li>
-          <li><a href="doctors.html">Doctors</a></li>
-          <li><a href="about.html">About Us</a></li>
-          <li><a href="contact.html" class="active">Contact</a></li>
+          <li><a href="index.html" data-translate="home">Home</a></li>
+          <li><a href="doctors.html" data-translate="doctors">Doctors</a></li>
+          <li><a href="about.html" data-translate="aboutUs">About Us</a></li>
+          <li>
+            <a href="contact.html" class="active" data-translate="contactUs"
+              >Contact</a
+            >
+          </li>
         </ul>
 
         <div class="nav-actions">
@@ -31,8 +35,11 @@
     <div style="max-width: 1200px; margin: 3rem auto; padding: 0 2rem">
       <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 4rem">
         <div>
-          <h2>Get in Touch</h2>
-          <p style="color: var(--text-light); margin: 1rem 0 2rem">
+          <h2 data-translate="getInTouch">Get in Touch</h2>
+          <p
+            style="color: var(--text-light); margin: 1rem 0 2rem"
+            data-translate="weLoveToHear"
+          >
             We'd love to hear from you. Send us a message and we'll respond as
             soon as possible.
           </p>
@@ -42,12 +49,22 @@
               style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem"
             >
               <div class="form-group">
-                <label>First Name</label>
-                <input type="text" required />
+                <label data-translate="firstName">First Name</label>
+                <input
+                  type="text"
+                  required
+                  data-translate-placeholder="enterFirstName"
+                  placeholder="Enter your first name"
+                />
               </div>
               <div class="form-group">
-                <label>Last Name</label>
-                <input type="text" required />
+                <label data-translate="lastName">Last Name</label>
+                <input
+                  type="text"
+                  required
+                  data-translate-placeholder="enterLastName"
+                  placeholder="Enter your last name"
+                />
               </div>
             </div>
             <div class="form-group">
@@ -55,28 +72,41 @@
               <input type="email" required />
             </div>
             <div class="form-group">
-              <label>Phone</label>
+              <label data-translate="phoneNumber">Phone</label>
               <input type="tel" />
             </div>
             <div class="form-group">
-              <label>Subject</label>
+              <label data-translate="subject">Subject</label>
               <select required>
-                <option value="">Select a subject</option>
-                <option value="general">General Inquiry</option>
-                <option value="appointment">Appointment Issue</option>
-                <option value="technical">Technical Support</option>
-                <option value="feedback">Feedback</option>
+                <option value="" data-translate="generalInquiry">
+                  General Inquiry
+                </option>
+                <option value="appointment" data-translate="appointmentIssue">
+                  Appointment Issue
+                </option>
+                <option value="technical" data-translate="technicalSupport">
+                  Technical Support
+                </option>
+                <option value="feedback" data-translate="feedback">
+                  Feedback
+                </option>
               </select>
             </div>
             <div class="form-group">
-              <label>Message</label>
+              <label data-translate="message">Message</label>
               <textarea
                 rows="5"
                 required
+                data-translate-placeholder="howCanWeHelp"
                 placeholder="How can we help you?"
               ></textarea>
             </div>
-            <button type="submit" class="btn btn-primary" style="width: 100%">
+            <button
+              type="submit"
+              class="btn btn-primary"
+              style="width: 100%"
+              data-translate="sendMessage"
+            >
               Send Message
             </button>
           </form>
@@ -84,31 +114,36 @@
 
         <div>
           <div class="card" style="margin-bottom: 2rem">
-            <h3>📍 Visit Us</h3>
+            <h3 data-translate="visitUs">📍 Visit Us</h3>
             <p style="margin-top: 1rem">
-              HealthBridge Medical Center<br />
-              123 Healthcare Avenue<br />
-              Medical District, City 12345<br />
-              Country
+              <strong>HealthBridge Medical Center</strong><br />
+              <span data-translate="hospitalAddress"
+                >123 Healthcare Avenue, Medical District, City 12345</span
+              >
             </p>
           </div>
 
           <div class="card" style="margin-bottom: 2rem">
-            <h3>📞 Call Us</h3>
+            <h3 data-translate="callUs">📞 Call Us</h3>
             <p style="margin-top: 1rem">
-              <strong>Main:</strong> +1 (555) 123-4567<br />
-              <strong>Emergency:</strong> 911<br />
-              <strong>Appointments:</strong> +1 (555) 123-4568
+              <strong data-translate="main">Main</strong>: +1 (555) 123-4567<br />
+              <strong data-translate="emergency">Emergency</strong>: 911<br />
+              <strong data-translate="appointments">Appointments</strong>: +1
+              (555) 123-4568
             </p>
           </div>
 
           <div class="card" style="margin-bottom: 2rem">
-            <h3>🕐 Working Hours</h3>
+            <h3 data-translate="workingHours">🕐 Working Hours</h3>
             <p style="margin-top: 1rem">
-              <strong>Mon - Fri:</strong> 8:00 AM - 8:00 PM<br />
-              <strong>Saturday:</strong> 9:00 AM - 5:00 PM<br />
-              <strong>Sunday:</strong> Emergency Only<br />
-              <strong>Emergency:</strong> 24/7
+              <strong data-translate="monFri">Mon - Fri</strong>: 8:00 AM - 8:00
+              PM<br />
+              <strong data-translate="saturday">Saturday</strong>: 9:00 AM -
+              5:00 PM<br />
+              <strong data-translate="sunday">Sunday</strong>:
+              <span data-translate="emergencyOnly">Emergency Only</span><br />
+              <strong data-translate="emergency">Emergency</strong>:
+              <span data-translate="twentyFourSeven">24/7</span>
             </p>
           </div>
 
@@ -130,14 +165,5 @@
     </div>
 
     <script src="js/script.js"></script>
-    <script>
-      document
-        .getElementById("contact-form")
-        .addEventListener("submit", function (e) {
-          e.preventDefault();
-          showToast("Thank you! Your message has been sent successfully.");
-          this.reset();
-        });
-    </script>
   </body>
 </html>

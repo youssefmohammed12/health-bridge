@@ -15,10 +15,20 @@
         </a>
 
         <ul class="nav-links">
-          <li><a href="dashboard.html">Dashboard</a></li>
-          <li><a href="appointments.html">Appointments</a></li>
-          <li><a href="doctors.html">Doctors</a></li>
-          <li><a href="records.html" class="active">Records</a></li>
+          <li>
+            <a href="dashboard.html" data-translate="dashboard">Dashboard</a>
+          </li>
+          <li>
+            <a href="appointments.html" data-translate="appointments"
+              >Appointments</a
+            >
+          </li>
+          <li><a href="doctors.html" data-translate="doctors">Doctors</a></li>
+          <li>
+            <a href="records.html" class="active" data-translate="records"
+              >Records</a
+            >
+          </li>
         </ul>
 
         <div class="nav-actions">
@@ -46,14 +56,33 @@
           >
             👤
           </div>
-          <h3>Patient</h3>
+          <h3 data-translate="patient">Patient</h3>
         </div>
         <ul class="sidebar-menu">
-          <li><a href="dashboard.html">📊 Dashboard</a></li>
-          <li><a href="appointments.html">📅 Appointments</a></li>
-          <li><a href="records.html" class="active">📋 Medical Records</a></li>
-          <li><a href="support.html">💬 Messages</a></li>
-          <li><a href="#">⚙️ Settings</a></li>
+          <li>
+            <a href="dashboard.html"
+              >📊 <span data-translate="dashboard">Dashboard</span></a
+            >
+          </li>
+          <li>
+            <a href="appointments.html"
+              >📅 <span data-translate="appointments">Appointments</span></a
+            >
+          </li>
+          <li>
+            <a href="records.html" class="active"
+              >📋
+              <span data-translate="medicalRecords">Medical Records</span></a
+            >
+          </li>
+          <li>
+            <a href="support.html"
+              >💬 <span data-translate="support">Support</span></a
+            >
+          </li>
+          <li>
+            <a href="#">⚙️ <span data-translate="settings">Settings</span></a>
+          </li>
         </ul>
       </aside>
 
@@ -66,17 +95,21 @@
             margin-bottom: 2rem;
           "
         >
-          <h2>Medical Records</h2>
+          <h2 data-translate="medicalRecords">Medical Records</h2>
           <div style="display: flex; gap: 0.5rem">
             <button
               class="btn btn-outline"
+              id="filter-btn"
               onclick="showToast('Filter coming soon!')"
+              data-translate="filter"
             >
               Filter
             </button>
             <button
               class="btn btn-secondary"
+              id="export-btn"
               onclick="showToast('Exporting records...')"
+              data-translate="exportAll"
             >
               Export All
             </button>
@@ -86,11 +119,30 @@
         <div
           style="display: flex; gap: 1rem; margin-bottom: 2rem; flex-wrap: wrap"
         >
-          <button class="btn btn-primary">All Records</button>
-          <button class="btn btn-outline">Lab Results</button>
-          <button class="btn btn-outline">Prescriptions</button>
-          <button class="btn btn-outline">Diagnoses</button>
-          <button class="btn btn-outline">Imaging</button>
+          <button
+            class="btn btn-primary filter-btn"
+            data-translate="allRecords"
+          >
+            All Records
+          </button>
+          <button
+            class="btn btn-outline filter-btn"
+            data-translate="labResults"
+          >
+            Lab Results
+          </button>
+          <button
+            class="btn btn-outline filter-btn"
+            data-translate="prescriptions"
+          >
+            Prescriptions
+          </button>
+          <button class="btn btn-outline filter-btn" data-translate="diagnoses">
+            Diagnoses
+          </button>
+          <button class="btn btn-outline filter-btn" data-translate="imaging">
+            Imaging
+          </button>
         </div>
 
         <div

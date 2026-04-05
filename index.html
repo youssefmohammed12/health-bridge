@@ -36,7 +36,7 @@
             <a
               href="login.html#signup"
               class="btn btn-primary"
-              data-translate="signup"
+              data-translate="signUp"
               >Sign Up</a
             >
           </div>
@@ -60,7 +60,10 @@
             data-translate-placeholder="searchPlaceholder"
             placeholder="Search doctors or departments..."
           />
-          <button onclick="window.location.href = 'doctors.html'">
+          <button
+            onclick="window.location.href = 'doctors.html'"
+            data-translate="searchDoctors"
+          >
             Search
           </button>
         </div>
@@ -97,32 +100,40 @@
       <div class="card-grid">
         <div class="card">
           <div class="card-icon">📅</div>
-          <h3>Online Booking</h3>
-          <p>
+          <h3 class="service-title" data-translate="onlineBooking">
+            Online Booking
+          </h3>
+          <p class="service-desc" data-translate="onlineBookingDesc">
             Book appointments with top doctors instantly through our easy-to-use
             platform.
           </p>
         </div>
         <div class="card">
           <div class="card-icon">📋</div>
-          <h3>Medical Records</h3>
-          <p>
+          <h3 class="service-title" data-translate="medicalRecords">
+            Medical Records
+          </h3>
+          <p class="service-desc" data-translate="medicalRecordsDesc">
             Access your complete medical history, lab results, and prescriptions
             anytime.
           </p>
         </div>
         <div class="card">
           <div class="card-icon">💬</div>
-          <h3>24/7 Support</h3>
-          <p>
+          <h3 class="service-title" data-translate="twentyFourSevenSupport">
+            24/7 Support
+          </h3>
+          <p class="service-desc" data-translate="supportDesc">
             Get assistance anytime with our dedicated support team and live
             chat.
           </p>
         </div>
         <div class="card">
           <div class="card-icon">🚑</div>
-          <h3>Emergency Care</h3>
-          <p>
+          <h3 class="service-title" data-translate="emergencyCare">
+            Emergency Care
+          </h3>
+          <p class="service-desc" data-translate="emergencyCareDesc">
             Quick access to emergency services and nearest hospital locations.
           </p>
         </div>
@@ -131,10 +142,12 @@
 
     <!-- Testimonials -->
     <section style="background: var(--white); padding: 4rem 2rem">
-      <h2 class="text-center mb-2">What Patients Say</h2>
+      <h2 class="text-center mb-2" data-translate="whatPatientsSay">
+        What Patients Say
+      </h2>
       <div class="card-grid">
         <div class="card">
-          <p>
+          <p data-translate="testimonial1">
             "HealthBridge made it so easy to book my appointment. The interface
             is clean and intuitive!"
           </p>
@@ -143,7 +156,7 @@
           </p>
         </div>
         <div class="card">
-          <p>
+          <p data-translate="testimonial2">
             "I love being able to access my medical records instantly. Best
             healthcare app I've used."
           </p>
@@ -152,7 +165,7 @@
           </p>
         </div>
         <div class="card">
-          <p>
+          <p data-translate="testimonial3">
             "The emergency feature gave me peace of mind. Highly recommended for
             everyone."
           </p>
@@ -172,14 +185,17 @@
         text-align: center;
       "
     >
-      <h2>Ready to Take Control of Your Health?</h2>
-      <p style="margin: 1rem 0 2rem">
+      <h2 data-translate="readyToStart">
+        Ready to Take Control of Your Health?
+      </h2>
+      <p style="margin: 1rem 0 2rem" data-translate="joinThousands">
         Join thousands of patients who trust HealthBridge
       </p>
       <a
         href="login.html#signup"
         class="btn"
         style="background: var(--white); color: var(--primary)"
+        data-translate="getStartedToday"
         >Get Started Today</a
       >
     </section>
@@ -203,7 +219,9 @@
       >
         <div>
           <h3>HealthBridge</h3>
-          <p>Connecting patients with quality healthcare services.</p>
+          <p data-translate="connectingPatients">
+            Connecting patients with quality healthcare services.
+          </p>
         </div>
         <div>
           <h4 data-translate="quickLinks">Quick Links</h4>
@@ -212,6 +230,7 @@
               <a
                 href="doctors.html"
                 style="color: var(--accent); text-decoration: none"
+                data-translate="findDoctor"
                 >Find a Doctor</a
               >
             </li>
@@ -219,6 +238,7 @@
               <a
                 href="appointments.html"
                 style="color: var(--accent); text-decoration: none"
+                data-translate="bookAppointment"
                 >Book Appointment</a
               >
             </li>
@@ -226,6 +246,7 @@
               <a
                 href="emergency.html"
                 style="color: var(--accent); text-decoration: none"
+                data-translate="emergency"
                 >Emergency</a
               >
             </li>
@@ -234,9 +255,11 @@
         <div>
           <h4 data-translate="contactUs">Contact Us</h4>
           <p>
-            📞 +1 (555) 123-4567<br />
-            📧 support@healthbridge.com<br />
-            📍 123 Medical Center Dr, City
+            <span data-translate="phone">📞 Phone</span>: +1 (555) 123-4567<br />
+            <span data-translate="email">📧 Email</span>:
+            support@healthbridge.com<br />
+            <span data-translate="address">📍 Address</span>: 123 Medical Center
+            Dr, City
           </p>
         </div>
       </div>
@@ -248,7 +271,9 @@
           border-top: 1px solid var(--accent);
         "
       >
-        <p>&copy; 2026 HealthBridge. All rights reserved.</p>
+        <p data-translate="copyright">
+          &copy; 2026 HealthBridge. All rights reserved.
+        </p>
       </div>
     </footer>
 

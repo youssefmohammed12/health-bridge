@@ -15,10 +15,14 @@
         </a>
 
         <ul class="nav-links">
-          <li><a href="index.html">Home</a></li>
-          <li><a href="doctors.html" class="active">Doctors</a></li>
-          <li><a href="about.html">About Us</a></li>
-          <li><a href="contact.html">Contact</a></li>
+          <li><a href="index.html" data-translate="home">Home</a></li>
+          <li>
+            <a href="doctors.html" class="active" data-translate="doctors"
+              >Doctors</a
+            >
+          </li>
+          <li><a href="about.html" data-translate="aboutUs">About Us</a></li>
+          <li><a href="contact.html" data-translate="contactUs">Contact</a></li>
         </ul>
 
         <div class="nav-actions">
@@ -30,8 +34,11 @@
 
     <section style="padding: 3rem 2rem; max-width: 1200px; margin: 0 auto">
       <div style="text-align: center; margin-bottom: 3rem">
-        <h1>Our Medical Specialists</h1>
-        <p style="color: var(--text-light); margin-top: 0.5rem">
+        <h1 data-translate="doctors">Our Medical Specialists</h1>
+        <p
+          style="color: var(--text-light); margin-top: 0.5rem"
+          data-translate="findDoctor"
+        >
           Find the right doctor for your needs
         </p>
       </div>
@@ -42,6 +49,7 @@
         <input
           type="text"
           id="search-input"
+          data-translate-placeholder="searchDoctors"
           placeholder="Search doctors..."
           style="
             flex: 1;
@@ -61,7 +69,9 @@
             min-width: 150px;
           "
         >
-          <option value="all">All Specialties</option>
+          <option value="all" data-translate="allSpecialties">
+            All Specialties
+          </option>
           <option value="Cardiology">Cardiology</option>
           <option value="Dermatology">Dermatology</option>
           <option value="Neurology">Neurology</option>
@@ -76,10 +86,14 @@
             border-radius: var(--radius-sm);
           "
         >
-          <option value="all">Availability</option>
-          <option value="available">Available Now</option>
-          <option value="today">Today</option>
-          <option value="week">This Week</option>
+          <option value="all" data-translate="availability">
+            Availability
+          </option>
+          <option value="available" data-translate="availableNow">
+            Available Now
+          </option>
+          <option value="today" data-translate="today">Today</option>
+          <option value="week" data-translate="thisWeek">This Week</option>
         </select>
       </div>
 
