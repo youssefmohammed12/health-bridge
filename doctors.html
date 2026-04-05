@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Our Doctors - HealthBridge</title>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <nav class="navbar">
+      <div class="nav-container">
+        <a href="index.html" class="logo">
+          <div class="logo-icon">🏥</div>
+          <span>HealthBridge</span>
+        </a>
+
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="doctors.html" class="active">Doctors</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+
+        <div class="nav-actions">
+          <button class="lang-toggle" onclick="toggleLanguage()">AR/EN</button>
+          <div id="auth-links"></div>
+        </div>
+      </div>
+    </nav>
+
+    <section style="padding: 3rem 2rem; max-width: 1200px; margin: 0 auto">
+      <div style="text-align: center; margin-bottom: 3rem">
+        <h1>Our Medical Specialists</h1>
+        <p style="color: var(--text-light); margin-top: 0.5rem">
+          Find the right doctor for your needs
+        </p>
+      </div>
+
+      <div
+        style="display: flex; gap: 1rem; margin-bottom: 2rem; flex-wrap: wrap"
+      >
+        <input
+          type="text"
+          id="search-input"
+          placeholder="Search doctors..."
+          style="
+            flex: 1;
+            min-width: 200px;
+            padding: 0.75rem;
+            border: 2px solid var(--accent);
+            border-radius: var(--radius-sm);
+          "
+        />
+
+        <select
+          id="specialty-filter"
+          style="
+            padding: 0.75rem;
+            border: 2px solid var(--accent);
+            border-radius: var(--radius-sm);
+            min-width: 150px;
+          "
+        >
+          <option value="all">All Specialties</option>
+          <option value="Cardiology">Cardiology</option>
+          <option value="Dermatology">Dermatology</option>
+          <option value="Neurology">Neurology</option>
+          <option value="Pediatrics">Pediatrics</option>
+          <option value="Orthopedics">Orthopedics</option>
+        </select>
+
+        <select
+          style="
+            padding: 0.75rem;
+            border: 2px solid var(--accent);
+            border-radius: var(--radius-sm);
+          "
+        >
+          <option value="all">Availability</option>
+          <option value="available">Available Now</option>
+          <option value="today">Today</option>
+          <option value="week">This Week</option>
+        </select>
+      </div>
+
+      <div id="doctors-list" class="doctor-grid">
+        <!-- Doctors loaded by JavaScript -->
+      </div>
+    </section>
+
+    <script src="js/script.js"></script>
+  </body>
+</html>
