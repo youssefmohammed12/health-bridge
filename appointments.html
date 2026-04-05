@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Appointments - HealthBridge</title>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <nav class="navbar">
+      <div class="nav-container">
+        <a href="index.html" class="logo">
+          <div class="logo-icon">🏥</div>
+          <span>HealthBridge</span>
+        </a>
+
+        <ul class="nav-links">
+          <li><a href="dashboard.html">Dashboard</a></li>
+          <li><a href="appointments.html" class="active">Appointments</a></li>
+          <li><a href="doctors.html">Doctors</a></li>
+          <li><a href="records.html">Records</a></li>
+        </ul>
+
+        <div class="nav-actions">
+          <button class="lang-toggle" onclick="toggleLanguage()">AR/EN</button>
+          <div id="auth-links"></div>
+        </div>
+      </div>
+    </nav>
+
+    <div class="dashboard">
+      <aside class="sidebar">
+        <div style="text-align: center; margin-bottom: 2rem">
+          <div
+            style="
+              width: 80px;
+              height: 80px;
+              background: var(--secondary);
+              border-radius: 50%;
+              margin: 0 auto 1rem;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              font-size: 2.5rem;
+            "
+          >
+            👤
+          </div>
+          <h3>Patient</h3>
+        </div>
+        <ul class="sidebar-menu">
+          <li><a href="dashboard.html">📊 Dashboard</a></li>
+          <li>
+            <a href="appointments.html" class="active">📅 Appointments</a>
+          </li>
+          <li><a href="records.html">📋 Medical Records</a></li>
+          <li><a href="support.html">💬 Messages</a></li>
+          <li><a href="#">⚙️ Settings</a></li>
+        </ul>
+      </aside>
+
+      <main class="main-content">
+        <h2>Book an Appointment</h2>
+
+        <form id="booking-form" style="margin-top: 2rem; max-width: 600px">
+          <div class="form-group">
+            <label>Select Department</label>
+            <select name="department" required>
+              <option value="">Choose Department</option>
+              <option value="Cardiology">Cardiology</option>
+              <option value="Dermatology">Dermatology</option>
+              <option value="Neurology">Neurology</option>
+              <option value="Pediatrics">Pediatrics</option>
+              <option value="Orthopedics">Orthopedics</option>
+              <option value="General">General Medicine</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label>Select Doctor</label>
+            <select name="doctor" id="doctor-select" required>
+              <option value="">Choose Doctor</option>
+            </select>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem">
+            <div class="form-group">
+              <label>Preferred Date</label>
+              <input type="date" name="date" required min="" />
+            </div>
+            <div class="form-group">
+              <label>Preferred Time</label>
+              <select name="time" required>
+                <option value="">Select Time</option>
+                <option value="09:00 AM">09:00 AM</option>
+                <option value="10:00 AM">10:00 AM</option>
+                <option value="11:00 AM">11:00 AM</option>
+                <option value="02:00 PM">02:00 PM</option>
+                <option value="03:00 PM">03:00 PM</option>
+                <option value="04:00 PM">04:00 PM</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Patient Name</label>
+            <input
+              type="text"
+              name="patientName"
+              required
+              placeholder="Enter your full name"
+            />
+          </div>
+
+          <div class="form-group">
+            <label>Additional Notes (Optional)</label>
+            <textarea
+              name="notes"
+              rows="3"
+              placeholder="Describe your symptoms or concerns"
+            ></textarea>
+          </div>
+
+          <button type="submit" class="btn btn-primary" style="width: 100%">
+            Confirm Booking
+          </button>
+        </form>
+
+        <section style="margin-top: 4rem">
+          <h3>Appointment History</h3>
+          <div class="table-container" style="margin-top: 1.5rem">
+            <table>
+              <thead>
+                <tr>
+                  <th>Doctor</th>
+                  <th>Department</th>
+                  <th>Date</th>
+                  <th>Time</th>
+                  <th>Status</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="appointment-history">
+                <tr>
+                  <td colspan="6" style="text-align: center">
+                    No appointments found
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script src="js/script.js"></script>
+    <script>
+      // Set min date to today
+      document.querySelector('input[type="date"]').min = new Date()
+        .toISOString()
+        .split("T")[0];
+    </script>
+  </body>
+</html>
