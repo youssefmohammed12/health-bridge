@@ -5,6 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Contact Us - HealthBridge</title>
     <link rel="stylesheet" href="css/style.css" />
+    <!-- Leaflet Map CSS (External Library) -->
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    />
   </head>
   <body>
     <nav class="navbar">
@@ -156,23 +161,15 @@
             </p>
           </div>
 
-          <div
-            style="
-              background: var(--secondary);
-              height: 200px;
-              border-radius: var(--radius);
-              display: flex;
-              align-items: center;
-              justify-content: center;
-              color: var(--text-light);
-            "
-          >
-            [Map Placeholder]
-          </div>
+          <!-- Map Container -->
+          <div id="map" class="map-container"></div>
         </div>
       </div>
     </div>
 
+    <!-- Leaflet JS (External Library) -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <!-- Your External JS -->
     <script src="js/script.js"></script>
   </body>
 </html>

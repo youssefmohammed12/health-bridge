@@ -713,3 +713,16 @@ tr:hover {
 .gap-2 {
   gap: 1rem;
 }
+#map {
+  height: 200px;
+  width: 100%;
+  border-radius: var(--radius);
+  z-index: 1;
+  background: var(--secondary);
+}
+
+.map-container {
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+}

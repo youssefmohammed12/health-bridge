@@ -536,6 +536,7 @@ document.addEventListener("DOMContentLoaded", function () {
   setupEventListeners();
   loadPageSpecificContent();
   translateStaticContent();
+  initMap();
 });
 
 // Language Functions
@@ -1244,6 +1245,36 @@ function showModal(content) {
   modal.addEventListener("click", (e) => {
     if (e.target === modal) modal.remove();
   });
+}
+// Map Initialization
+function initMap() {
+  const mapContainer = document.getElementById("map");
+  if (!mapContainer) return; // Only run on pages with a map
+
+  // Hospital coordinates - CHANGE THESE to your location
+  // Find coordinates at https://www.latlong.net
+  const hospitalLat = 29.312139; // Example: Cairo
+  const hospitalLng = 30.856225;
+
+  // Create map
+  const map = L.map("map").setView([hospitalLat, hospitalLng], 15);
+
+  // Add OpenStreetMap tiles (Free, no API key needed)
+  L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+    attribution:
+      '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+  }).addTo(map);
+
+  // Add marker with popup
+  const popupContent =
+    state.language === "ar"
+      ? "<b>مركز HealthBridge الطبي</b><br>١٢٣ شارع الرعاية الصحية"
+      : "<b>HealthBridge Medical Center</b><br>123 Healthcare Avenue";
+
+  L.marker([hospitalLat, hospitalLng])
+    .addTo(map)
+    .bindPopup(popupContent)
+    .openPopup();
 }
 
 // Export functions for global access
