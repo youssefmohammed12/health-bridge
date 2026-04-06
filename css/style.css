@@ -50,10 +50,12 @@ body {
 .nav-container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 2rem;
+  padding: 1rem 2rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
 }
 
 .logo {
@@ -643,6 +645,20 @@ tr:hover {
 }
 
 /* Responsive */
+@media (max-width: 900px) {
+  .nav-container {
+    justify-content: center;
+    padding: 1rem;
+  }
+  .nav-links {
+    order: 3;
+    width: 100%;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+}
+
 @media (max-width: 768px) {
   .dashboard {
     grid-template-columns: 1fr;
@@ -658,6 +674,12 @@ tr:hover {
 
   .nav-links {
     display: none;
+  }
+
+  .nav-actions {
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
   }
 
   .mobile-menu {
