@@ -1,17 +1,36 @@
 // HealthBridge - Main JavaScript File
-const APP_VERSION = "2"; // Increment this when you change doctors
+const APP_VERSION = "3"; // Change this when updating doctors
 
 function checkVersion() {
   const savedVersion = localStorage.getItem("appVersion");
-  if (savedVersion !== APP_VERSION) {
-    // Clear all data when version changes
-    localStorage.removeItem("doctors");
-    localStorage.removeItem("appointments");
-    localStorage.removeItem("records");
+
+  if (!savedVersion) {
+    // First visit ever
     localStorage.setItem("appVersion", APP_VERSION);
-    console.log("App updated: Regenerating data...");
+    return;
+  }
+
+  if (savedVersion !== APP_VERSION) {
+    // Version changed - ask user (or auto-reset for new doctors)
+    const shouldReset = confirm(
+      "New version detected!\n\n" +
+        "Click OK to refresh with latest doctors.\n" +
+        "Click Cancel to keep your current data.",
+    );
+
+    if (shouldReset) {
+      localStorage.removeItem("doctors");
+      // Keep appointments and records (user data)
+    }
+
+    localStorage.setItem("appVersion", APP_VERSION);
+
+    if (shouldReset) {
+      location.reload();
+    }
   }
 }
+
 // Global State
 const state = {
   currentUser: JSON.parse(localStorage.getItem("currentUser")) || null,
