@@ -18,6 +18,9 @@ function generateMockDoctors() {
     "Pediatrics",
     "Orthopedics",
     "General Medicine",
+    "Gynecology",
+    "Ophthalmology",
+    "Dentistry",
   ];
   const names = [
     "Dr. Ahmed Hassan",
@@ -305,6 +308,15 @@ const translations = {
     lastName: "Last Name",
     enterFirstName: "Enter your first name",
     enterLastName: "Enter your last name",
+    bookAppointment: "Book an Appointment",
+    neurology: "Neurology",
+    cardiology: "Cardiology",
+    dermatology: "Dermatology",
+    pediatrics: "Pediatrics",
+    orthopedics: "Orthopedics",
+    dentistry: "Dentistry",
+    ophthalmology: "Ophthalmology",
+    gynecology: "Gynecology",
   },
 
   ar: {
@@ -525,6 +537,15 @@ const translations = {
     lastName: "الاسم الأخير",
     enterFirstName: "أدخل اسمك الأول",
     enterLastName: "أدخل اسمك الأخير",
+    bookAppointment: "حجز موعد",
+    neurology: "مخ و أعصاب",
+    cardiology: "قلب",
+    dermatology: "طب الجلد",
+    pediatrics: "طب الأطفال",
+    orthopedics: "طب الجراحة العظمية",
+    dentistry: "طب الأسنان",
+    ophthalmology: "طب العيون",
+    gynecology: "نساء وتوليد",
   },
 };
 

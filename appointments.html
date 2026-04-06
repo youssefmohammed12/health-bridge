@@ -15,10 +15,19 @@
         </a>
 
         <ul class="nav-links">
-          <li><a href="dashboard.html">Dashboard</a></li>
-          <li><a href="appointments.html" class="active">Appointments</a></li>
-          <li><a href="doctors.html">Doctors</a></li>
-          <li><a href="records.html">Records</a></li>
+          <li>
+            <a href="dashboard.html" data-translate="dashboard">Dashboard</a>
+          </li>
+          <li>
+            <a
+              href="appointments.html"
+              class="active"
+              data-translate="appointments"
+              >Appointments</a
+            >
+          </li>
+          <li><a href="doctors.html" data-translate="doctors">Doctors</a></li>
+          <li><a href="records.html" data-translate="records">Records</a></li>
         </ul>
 
         <div class="nav-actions">
@@ -49,18 +58,41 @@
           <h3>Patient</h3>
         </div>
         <ul class="sidebar-menu">
-          <li><a href="dashboard.html">📊 Dashboard</a></li>
           <li>
-            <a href="appointments.html" class="active">📅 Appointments</a>
+            <a href="dashboard.html"
+              >📊 <span data-translate="dashboard">Dashboard</span></a
+            >
           </li>
-          <li><a href="records.html">📋 Medical Records</a></li>
-          <li><a href="support.html">💬 Messages</a></li>
-          <li><a href="#">⚙️ Settings</a></li>
+          <li>
+            <a href="appointments.html" class="active"
+              >📅 <span data-translate="appointments">Appointments</span></a
+            >
+          </li>
+          <li>
+            <a href="records.html"
+              >📋
+              <span data-translate="medicalRecords">Medical Records</span></a
+            >
+          </li>
+          <li>
+            <a href="support.html"
+              >💬 <span data-translate="support">Support</span></a
+            >
+          </li>
+          <li>
+            <a
+              href="#"
+              onclick="
+                showModal('<h2>Settings</h2><p>Settings page coming soon!</p>')
+              "
+              >⚙️ <span data-translate="settings">Settings</span></a
+            >
+          </li>
         </ul>
       </aside>
 
       <main class="main-content">
-        <h2>Book an Appointment</h2>
+        <h2 data-translate="bookAppointment">Book an Appointment</h2>
 
         <form id="booking-form" style="margin-top: 2rem; max-width: 600px">
           <div class="form-group">
