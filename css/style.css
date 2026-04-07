@@ -54,8 +54,6 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  flex-wrap: wrap;
-  gap: 1rem;
 }
 
 .logo {
@@ -77,6 +75,12 @@ body {
   align-items: center;
   justify-content: center;
   font-size: 1.5rem;
+}
+
+.nav-menu {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
 }
 
 .nav-links {
@@ -116,6 +120,12 @@ body {
 }
 
 .nav-actions {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+#auth-links {
   display: flex;
   gap: 1rem;
   align-items: center;
@@ -647,22 +657,38 @@ tr:hover {
 /* Responsive */
 @media (max-width: 900px) {
   .nav-container {
-    padding: 1rem;
+    padding: 1rem 2rem;
+  }
+  .nav-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: var(--white);
+    flex-direction: column;
+    padding: 1.5rem;
+    box-shadow: var(--shadow-md);
+    border-top: 1px solid var(--accent);
+    gap: 1.5rem;
+  }
+  .nav-menu.active {
+    display: flex;
   }
   .nav-links {
-    display: none;
     flex-direction: column;
-    order: 3;
     width: 100%;
     text-align: center;
-    background: var(--white);
-    padding: 1rem 0;
-    margin-top: 1rem;
-    border-top: 1px solid var(--accent);
-    gap: 1rem;
+    gap: 1.5rem;
   }
-  .nav-links.active {
-    display: flex;
+  .nav-actions {
+    flex-direction: column;
+    width: 100%;
+    justify-content: center;
+  }
+  #auth-links {
+    flex-direction: column;
+    width: 100%;
   }
   .mobile-menu {
     display: block;
@@ -680,12 +706,6 @@ tr:hover {
 
   .hero h1 {
     font-size: 2rem;
-  }
-
-  .nav-actions {
-    flex-wrap: wrap;
-    justify-content: center;
-    width: 100%;
   }
 }
 

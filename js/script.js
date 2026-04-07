@@ -673,7 +673,8 @@ function setupNavigation() {
   const mobileMenuBtn = document.getElementById("mobile-menu-btn");
   if (mobileMenuBtn) {
     mobileMenuBtn.addEventListener("click", () => {
-      document.querySelector(".nav-links").classList.toggle("active");
+      const navMenu = document.querySelector("#nav-menu");
+      if (navMenu) navMenu.classList.toggle("active");
     });
   }
 
