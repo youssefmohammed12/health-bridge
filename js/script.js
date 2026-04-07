@@ -153,9 +153,9 @@ const translations = {
     bookAppointment: "Book Appointment",
     connectingPatients:
       "Connecting patients with quality healthcare services. Your health journey starts here.",
-    phone: "📞 Phone",
-    email: "📧 Email",
-    address: "📍 Address",
+    phone: "Phone",
+    email: "Email",
+    address: "Address",
     copyright: "© 2026 HealthBridge. All rights reserved.",
 
     // Dashboard
@@ -220,9 +220,9 @@ const translations = {
     appointmentIssue: "Appointment Issue",
     technicalSupport: "Technical Support",
     feedback: "Feedback",
-    visitUs: "📍 Visit Us",
-    callUs: "📞 Call Us",
-    workingHours: "🕐 Working Hours",
+    visitUs: "Visit Us",
+    callUs: "Call Us",
+    workingHours: "Working Hours",
     monFri: "Mon - Fri",
     saturday: "Saturday",
     sunday: "Sunday",
@@ -346,6 +346,12 @@ const translations = {
     cancel: "Cancel",
     delete: "Delete",
     edit: "Edit",
+
+    expertDoctors: "Expert Doctors",
+    patientsServed: "Patients Served",
+    emergencyCare24_7: "Emergency Care 24/7",
+    supportIntro:
+      "We're here to help. Find answers or chat with our support team",
   },
 
   ar: {
@@ -403,9 +409,9 @@ const translations = {
     bookAppointment: "حجز موعد",
     connectingPatients:
       "ربط المرضى بخدمات الرعاية الصحية عالية الجودة. رحلتك الصحية تبدأ هنا.",
-    phone: "📞 الهاتف",
-    email: "📧 البريد الإلكتروني",
-    address: "📍 العنوان",
+    phone: "الهاتف",
+    email: "البريد الإلكتروني",
+    address: "العنوان",
     copyright: "© 2026 HealthBridge. جميع الحقوق محفوظة.",
 
     // Dashboard
@@ -470,9 +476,9 @@ const translations = {
     appointmentIssue: "مشكلة في الموعد",
     technicalSupport: "دعم تقني",
     feedback: "ملاحظات",
-    visitUs: "📍 زورنا",
-    callUs: "📞 اتصل بنا",
-    workingHours: "🕐 ساعات العمل",
+    visitUs: "زورنا",
+    callUs: "اتصل بنا",
+    workingHours: "ساعات العمل",
     monFri: "الإثنين - الجمعة",
     saturday: "السبت",
     sunday: "الأحد",
@@ -595,6 +601,12 @@ const translations = {
     cancel: "إلغاء",
     delete: "حذف",
     edit: "تعديل",
+
+    expertDoctors: "أطباء خبراء",
+    patientsServed: "المرضى الذين تم خدمتهم",
+    emergencyCare24_7: "رعاية الطوارئ 24/7",
+    supportIntro:
+      "نحن هنا للمساعدة. ابحث عن إجابات أو تحدث مع فريق الدعم الخاص بنا",
   },
 };
 
@@ -862,15 +874,15 @@ function loadHomePage() {
     statsContainer.innerHTML = `
       <div class="stat-card">
         <h4>50+</h4>
-        <p>${t("expertDoctors") || "Expert Doctors"}</p>
+        <p data-translate="expertDoctors">${t("expertDoctors") || "Expert Doctors"}</p>
       </div>
       <div class="stat-card" style="background: linear-gradient(135deg, var(--secondary) 0%, #0284c7 100%);">
         <h4>10k+</h4>
-        <p>${t("patientsServed") || "Patients Served"}</p>
+        <p data-translate="patientsServed">${t("patientsServed") || "Patients Served"}</p>
       </div>
       <div class="stat-card" style="background: linear-gradient(135deg, var(--accent) 0%, #d97706 100%);">
         <h4>24/7</h4>
-        <p>${t("emergencyCare24_7") || "Emergency Care"}</p>
+        <p data-translate="emergencyCare24_7">${t("emergencyCare24_7") || "Emergency Care"}</p>
       </div>
     `;
   }
