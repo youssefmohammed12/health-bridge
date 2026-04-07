@@ -1,5 +1,9 @@
-// HealthBridge - Main JavaScript File
-// Global State
+// HealthBridge - Enhanced JavaScript
+// Modern healthcare platform with smooth animations and bilingual support
+
+// ========================
+// GLOBAL STATE
+// ========================
 const state = {
   currentUser: JSON.parse(localStorage.getItem("currentUser")) || null,
   language: localStorage.getItem("language") || "en",
@@ -8,7 +12,9 @@ const state = {
   records: JSON.parse(localStorage.getItem("records")) || generateMockRecords(),
 };
 
-// Mock Data Generators
+// ========================
+// MOCK DATA GENERATORS
+// ========================
 function generateMockDoctors() {
   const specialties = [
     "Cardiology",
@@ -31,18 +37,17 @@ function generateMockDoctors() {
     "Dr. Karim Fayed",
     "Dr. Noura Saeed",
   ];
-  const doctors = [];
-  for (let i = 0; i < 8; i++) {
-    doctors.push({
-      id: i + 1,
-      name: names[i],
-      specialty: specialties[i % specialties.length],
-      experience: Math.floor(Math.random() * 15) + 5,
-      rating: (Math.random() * 1.5 + 3.5).toFixed(1),
-      available: Math.random() > 0.2,
-      image: `https://api.dicebear.com/7.x/avataaars/svg?seed=${i}`,
-    });
-  }
+
+  const doctors = names.map((name, i) => ({
+    id: i + 1,
+    name: name,
+    specialty: specialties[i % specialties.length],
+    experience: Math.floor(Math.random() * 15) + 5,
+    rating: (Math.random() * 1.5 + 3.5).toFixed(1),
+    available: Math.random() > 0.2,
+    image: `https://api.dicebear.com/7.x/avataaars/svg?seed=${i}`,
+  }));
+
   localStorage.setItem("doctors", JSON.stringify(doctors));
   return doctors;
 }
@@ -84,7 +89,9 @@ function generateMockRecords() {
   ];
 }
 
-// Complete Translations Object
+// ========================
+// TRANSLATIONS
+// ========================
 const translations = {
   en: {
     // Navigation
@@ -98,38 +105,154 @@ const translations = {
     login: "Login",
     signUp: "Sign Up",
     logout: "Logout",
+
+    // Hero
     welcome: "Welcome to HealthBridge",
     subtitle:
       "Your health, our priority. Book appointments and access your medical records easily.",
     searchPlaceholder: "Search doctors or departments...",
     searchDoctors: "Search doctors...",
     emergency: "Emergency",
-    bookAppointment: "Book Appointment",
-    specialties: "Our Specialties",
-    upcoming: "Upcoming Appointments",
-    noAppointments: "No upcoming appointments",
-    profile: "Profile",
-    settings: "Settings",
-    language: "Language",
-    save: "Save Changes",
-    cancel: "Cancel",
-    confirm: "Confirm",
-    delete: "Delete",
-    edit: "Edit",
-    view: "View",
-    download: "Download PDF",
-    send: "Send",
-    typeMessage: "Type your message...",
+
+    // Services
+    services: "Our Services",
+    servicesSubtitle:
+      "Comprehensive healthcare solutions designed for your convenience",
+    onlineBooking: "Online Booking",
+    onlineBookingDesc:
+      "Book appointments with top doctors instantly through our easy-to-use platform.",
+    medicalRecords: "Medical Records",
+    medicalRecordsDesc:
+      "Access your complete medical history, lab results, and prescriptions anytime.",
+    twentyFourSevenSupport: "24/7 Support",
+    supportDesc:
+      "Get assistance anytime with our dedicated support team and live chat.",
+    emergencyCare: "Emergency Care",
+    emergencyCareDesc:
+      "Quick access to emergency services and nearest hospital locations.",
+
+    // Testimonials
+    whatPatientsSay: "What Patients Say",
+    testimonialsSubtitle:
+      "Hear from our satisfied patients about their experience",
+    testimonial1:
+      '"HealthBridge made it so easy to book my appointment. The interface is clean and intuitive!"',
+    testimonial2:
+      '"I love being able to access my medical records instantly. Best healthcare app I\'ve used."',
+    testimonial3:
+      '"The emergency feature gave me peace of mind. Highly recommended for everyone."',
+
+    // CTA
+    readyToStart: "Ready to Take Control of Your Health?",
+    joinThousands: "Join thousands of patients who trust HealthBridge",
+    getStartedToday: "Get Started Today",
+
+    // Footer
     quickLinks: "Quick Links",
     findDoctor: "Find a Doctor",
-    departments: "Departments",
-    services: "Our Services",
+    bookAppointment: "Book Appointment",
+    connectingPatients:
+      "Connecting patients with quality healthcare services. Your health journey starts here.",
+    phone: "📞 Phone",
+    email: "📧 Email",
+    address: "📍 Address",
+    copyright: "© 2026 HealthBridge. All rights reserved.",
+
+    // Dashboard
     dashboard: "Dashboard",
+    dashboardOverview: "Dashboard Overview",
     totalAppointments: "Total Appointments",
     pendingRecords: "Pending Records",
     yourRating: "Your Rating",
+    upcoming: "Upcoming Appointments",
+    noAppointments: "No upcoming appointments",
     viewAll: "View All",
-    appointmentHistory: "Appointment History",
+    needToSeeDoctor: "Need to see a doctor?",
+    bookWithSpecialists: "Book an appointment with our top specialists today.",
+    bookNow: "Book Now",
+
+    // Doctors
+    findDoctor: "Find the right doctor for your needs",
+    allSpecialties: "All Specialties",
+    availability: "Availability",
+    availableNow: "Available Now",
+    today: "Today",
+    thisWeek: "This Week",
+    chooseDepartment: "Choose Department",
+    chooseDoctor: "Choose Doctor",
+    yearsExp: "years exp",
+    available: "Available",
+    notAvailable: "Not Available",
+    cardiology: "Cardiology",
+    dermatology: "Dermatology",
+    neurology: "Neurology",
+    pediatrics: "Pediatrics",
+    orthopedics: "Orthopedics",
+    dentistry: "Dentistry",
+    ophthalmology: "Ophthalmology",
+    gynecology: "Gynecology",
+
+    // About
+    ourStory: "Our Story",
+    ourMission: "Our Mission",
+    ourVision: "Our Vision",
+    missionVision: "Mission & Vision",
+    ourTeam: "Our Team",
+    ourStoryP1:
+      "Founded in 2026, HealthBridge was born from a simple idea: healthcare should be accessible, transparent, and patient-centered. We started with a small team of healthcare professionals and technologists who believed that the patient experience could be better.",
+    ourStoryP2:
+      "Today, we serve thousands of patients, connecting them with top-tier medical professionals and providing tools to manage their health journey.",
+
+    // Contact
+    getInTouch: "Get in Touch",
+    weLoveToHear:
+      "We'd love to hear from you. Send us a message and we'll respond as soon as possible.",
+    firstName: "First Name",
+    lastName: "Last Name",
+    enterFirstName: "Enter your first name",
+    enterLastName: "Enter your last name",
+    phoneNumber: "Phone Number",
+    enterPhone: "Enter your phone number",
+    subject: "Subject",
+    message: "Message",
+    sendMessage: "Send Message",
+    generalInquiry: "General Inquiry",
+    appointmentIssue: "Appointment Issue",
+    technicalSupport: "Technical Support",
+    feedback: "Feedback",
+    visitUs: "📍 Visit Us",
+    callUs: "📞 Call Us",
+    workingHours: "🕐 Working Hours",
+    monFri: "Mon - Fri",
+    saturday: "Saturday",
+    sunday: "Sunday",
+    emergencyOnly: "Emergency Only",
+    twentyFourSeven: "24/7",
+    hospitalAddress: "123 Healthcare Avenue, Medical District, City 12345",
+
+    // Auth
+    welcomeBack: "Welcome Back",
+    signInToAccess: "Sign in to access your health dashboard",
+    emailPhone: "Email / Phone",
+    enterEmail: "Enter your email or phone",
+    password: "Password",
+    enterPassword: "Enter your password",
+    rememberMe: "Remember me",
+    forgotPassword: "Forgot Password?",
+    signIn: "Sign In",
+    fullName: "Full Name",
+    enterFullName: "Enter your full name",
+    userType: "User Type",
+    patient: "Patient",
+    doctor: "Doctor",
+    confirmPassword: "Confirm Password",
+    confirmYourPassword: "Confirm your password",
+    createAccount: "Create Account",
+    orContinueWith: "Or continue with",
+    google: "Google",
+
+    // Appointments
+    bookAppointment: "Book an Appointment",
     selectDepartment: "Select Department",
     selectDoctor: "Select Doctor",
     preferredDate: "Preferred Date",
@@ -137,16 +260,27 @@ const translations = {
     patientName: "Patient Name",
     additionalNotes: "Additional Notes (Optional)",
     confirmBooking: "Confirm Booking",
-    chooseDepartment: "Choose Department",
-    chooseDoctor: "Choose Doctor",
-    allSpecialties: "All Specialties",
-    availability: "Availability",
-    availableNow: "Available Now",
-    today: "Today",
-    thisWeek: "This Week",
-    yearsExp: "years exp",
-    available: "Available",
-    notAvailable: "Not Available",
+    appointmentHistory: "Appointment History",
+    noAppointmentsFound: "No appointments found",
+    status: "Status",
+    actions: "Actions",
+    departments: "Departments",
+
+    // Records
+    allRecords: "All Records",
+    labResults: "Lab Results",
+    prescriptions: "Prescriptions",
+    diagnoses: "Diagnoses",
+    imaging: "Imaging",
+    filter: "Filter",
+    exportAll: "Export All",
+    view: "View",
+    download: "Download PDF",
+    normal: "Normal",
+    active: "Active",
+    completed: "Completed",
+
+    // Emergency
     backToHome: "Back to Home",
     nearestHospital: "Nearest Hospital",
     ambulance: "Ambulance",
@@ -160,38 +294,15 @@ const translations = {
     getDirections: "Get Directions",
     callAmbulance: "Call Ambulance",
     callNow: "Call Now",
-    ourStory: "Our Story",
-    missionVision: "Mission & Vision",
-    ourMission: "Our Mission",
-    ourVision: "Our Vision",
-    ourTeam: "Our Team",
-    getInTouch: "Get in Touch",
-    sendMessage: "Send Message",
-    visitUs: "Visit Us",
-    callUs: "Call Us",
-    workingHours: "Working Hours",
-    monFri: "Mon - Fri",
-    saturday: "Saturday",
-    sunday: "Sunday",
-    emergencyOnly: "Emergency Only",
-    twentyFourSeven: "24/7",
-    subject: "Subject",
-    message: "Message",
-    generalInquiry: "General Inquiry",
-    appointmentIssue: "Appointment Issue",
-    technicalSupport: "Technical Support",
-    feedback: "Feedback",
-    howCanWeHelp: "How can we help you?",
-    contactInfo: "Contact Information",
-    phone: "Phone",
-    email: "Email",
-    address: "Address",
-    hospitalAddress: "123 Healthcare Avenue, Medical District, City 12345",
-    main: "Main",
+    hospitalName: "City General Hospital",
+    distance: "0.5 miles away",
+    address: "123 Medical Center Dr",
     emergencyLine: "Emergency Line",
     avgResponse: "Avg response",
     poisonHotline: "24/7 Hotline",
     forPoisoning: "For poisoning emergencies",
+    whatToDoEmergency:
+      "If you are experiencing a life-threatening emergency, call immediately",
     checkResponsiveness: "1. Check responsiveness",
     call911First: "2. Call 911",
     pushHard: "3. Push hard and fast in center of chest",
@@ -208,59 +319,8 @@ const translations = {
     heimlich: "2. Perform Heimlich maneuver",
     callUnable: "3. Call 911 if unable to breathe",
     continueHelp: "4. Continue until help arrives",
-    readyToStart: "Ready to Take Control of Your Health?",
-    joinThousands: "Join thousands of patients who trust HealthBridge",
-    getStartedToday: "Get Started Today",
-    whatPatientsSay: "What Patients Say",
-    onlineBooking: "Online Booking",
-    onlineBookingDesc:
-      "Book appointments with top doctors instantly through our easy-to-use platform.",
-    medicalRecords: "Medical Records",
-    medicalRecordsDesc:
-      "Access your complete medical history, lab results, and prescriptions anytime.",
-    twentyFourSevenSupport: "24/7 Support",
-    supportDesc:
-      "Get assistance anytime with our dedicated support team and live chat.",
-    emergencyCare: "Emergency Care",
-    emergencyCareDesc:
-      "Quick access to emergency services and nearest hospital locations.",
-    welcomeBack: "Welcome Back",
-    signInToAccess: "Sign in to access your health dashboard",
-    emailPhone: "Email / Phone",
-    enterEmail: "Enter your email or phone",
-    password: "Password",
-    enterPassword: "Enter your password",
-    rememberMe: "Remember me",
-    forgotPassword: "Forgot Password?",
-    signIn: "Sign In",
-    fullName: "Full Name",
-    enterFullName: "Enter your full name",
-    phoneNumber: "Phone Number",
-    enterPhone: "Enter your phone number",
-    userType: "User Type",
-    patient: "Patient",
-    doctor: "Doctor",
-    confirmPassword: "Confirm Password",
-    confirmYourPassword: "Confirm your password",
-    createAccount: "Create Account",
-    orContinueWith: "Or continue with",
-    google: "Google",
-    dashboardOverview: "Dashboard Overview",
-    needToSeeDoctor: "Need to see a doctor?",
-    bookWithSpecialists: "Book an appointment with our top specialists today.",
-    bookNow: "Book Now",
-    loading: "Loading...",
-    status: "Status",
-    actions: "Actions",
-    noAppointmentsFound: "No appointments found",
-    allRecords: "All Records",
-    prescriptions: "Prescriptions",
-    diagnoses: "Diagnoses",
-    imaging: "Imaging",
-    labResults: "Lab Results",
-    normal: "Normal",
-    active: "Active",
-    completed: "Completed",
+
+    // Support
     faq: "Frequently Asked Questions",
     howToBook: "How do I book an appointment?",
     bookAppointmentAnswer:
@@ -271,51 +331,21 @@ const translations = {
     dataSecure: "Is my data secure?",
     dataSecureAnswer:
       "Absolutely. We use industry-standard encryption and security measures to protect your personal health information.",
-    whatToDoEmergency: "What should I do in case of emergency?",
     emergencyAnswer:
       "For emergencies, please use the Emergency button on the homepage or call 911 immediately.",
     liveChat: "Live Chat Support",
     healthbridgeSupport: "HealthBridge Support",
     helloHowCanHelp: "Hello! How can I help you today?",
-    startByGiving: "Start by giving access to your health dashboard",
-    createAccountToday: "Create an account today",
-    copyright: "© 2026 HealthBridge. All rights reserved.",
-    connectingPatients: "Connecting patients with quality healthcare services.",
-    expertDoctors: "Expert Doctors",
-    patientsServed: "Patients Served",
-    emergencyCare24_7: "Emergency Care",
-    hospitalName: "City General Hospital",
-    distance: "0.5 miles away",
-    specialization: "Specialization",
-    experience: "Experience",
-    rating: "Rating",
-    filter: "Filter",
-    exportAll: "Export All",
-    ourStoryP1:
-      "Founded in 2026, HealthBridge was born from a simple idea: healthcare should be accessible, transparent, and patient-centered. We started with a small team of healthcare professionals and technologists who believed that the patient experience could be better.",
-    ourStoryP2:
-      "Today, we serve thousands of patients, connecting them with top-tier medical professionals and providing tools to manage their health journey.",
-    testimonial1:
-      '"HealthBridge made it so easy to book my appointment. The interface is clean and intuitive!"',
-    testimonial2:
-      '"I love being able to access my medical records instantly. Best healthcare app I\'ve used."',
-    testimonial3:
-      '"The emergency feature gave me peace of mind. Highly recommended for everyone."',
-    weLoveToHear:
-      "We'd love to hear from you. Send us a message and we'll respond as soon as possible.",
-    firstName: "First Name",
-    lastName: "Last Name",
-    enterFirstName: "Enter your first name",
-    enterLastName: "Enter your last name",
-    bookAppointment: "Book an Appointment",
-    neurology: "Neurology",
-    cardiology: "Cardiology",
-    dermatology: "Dermatology",
-    pediatrics: "Pediatrics",
-    orthopedics: "Orthopedics",
-    dentistry: "Dentistry",
-    ophthalmology: "Ophthalmology",
-    gynecology: "Gynecology",
+    typeMessage: "Type your message...",
+    send: "Send",
+    contactInfo: "Contact Information",
+
+    // Misc
+    loading: "Loading...",
+    settings: "Settings",
+    cancel: "Cancel",
+    delete: "Delete",
+    edit: "Edit",
   },
 
   ar: {
@@ -330,37 +360,149 @@ const translations = {
     login: "تسجيل الدخول",
     signUp: "إنشاء حساب",
     logout: "تسجيل الخروج",
+
+    // Hero
     welcome: "مرحباً بك في HealthBridge",
     subtitle: "صحتك، أولويتنا. احجز مواعيدك واطلع على سجلاتك الطبية بسهولة.",
     searchPlaceholder: "ابحث عن طبيب أو قسم...",
     searchDoctors: "ابحث عن أطباء...",
     emergency: "طوارئ",
-    bookAppointment: "حجز موعد",
-    specialties: "تخصصاتنا",
-    upcoming: "المواعيد القادمة",
-    noAppointments: "لا توجد مواعيد قادمة",
-    profile: "الملف الشخصي",
-    settings: "الإعدادات",
-    language: "اللغة",
-    save: "حفظ التغييرات",
-    cancel: "إلغاء",
-    confirm: "تأكيد",
-    delete: "حذف",
-    edit: "تعديل",
-    view: "عرض",
-    download: "تحميل PDF",
-    send: "إرسال",
-    typeMessage: "اكتب رسالتك...",
+
+    // Services
+    services: "خدماتنا",
+    servicesSubtitle: "حلول رعاية صحية شاملة مصممة لراحتك",
+    onlineBooking: "الحجز الإلكتروني",
+    onlineBookingDesc:
+      "احجز مواعيد مع أفضل الأطباء فوراً من خلال منصتنا السهلة الاستخدام.",
+    medicalRecords: "السجلات الطبية",
+    medicalRecordsDesc:
+      "اطلع على تاريخك الطبي الكامل، نتائج المختبر، والوصفات الطبية في أي وقت.",
+    twentyFourSevenSupport: "دعم 24/7",
+    supportDesc:
+      "احصل على المساعدة في أي وقت مع فريق الدعم المخصص لدينا والدردشة المباشرة.",
+    emergencyCare: "رعاية الطوارئ",
+    emergencyCareDesc: "وصول سريع إلى خدمات الطوارئ ومواقع أقرب المستشفيات.",
+
+    // Testimonials
+    whatPatientsSay: "ماذا يقول المرضى",
+    testimonialsSubtitle: "استمع إلى مرضانا الراضين عن تجربتهم",
+    testimonial1:
+      '"جعلتني HealthBridge أحجز موعدي بسهولة. الواجهة نظيفة وبديهية!"',
+    testimonial2:
+      '"أحب أن أستطيع الوصول إلى سجلاتي الطبية فوراً. أفضل تطبيق رعاية صحية استخدمته."',
+    testimonial3: '"منحني ميزة الطوارئ راحة البال. أنصح به بشدة للجميع."',
+
+    // CTA
+    readyToStart: "هل أنت مستعد للتحكم في صحتك؟",
+    joinThousands: "انضم إلى آلاف المرضى الذين يثقون بـ HealthBridge",
+    getStartedToday: "ابدأ اليوم",
+
+    // Footer
     quickLinks: "روابط سريعة",
     findDoctor: "ابحث عن طبيب",
-    departments: "الأقسام",
-    services: "خدماتنا",
+    bookAppointment: "حجز موعد",
+    connectingPatients:
+      "ربط المرضى بخدمات الرعاية الصحية عالية الجودة. رحلتك الصحية تبدأ هنا.",
+    phone: "📞 الهاتف",
+    email: "📧 البريد الإلكتروني",
+    address: "📍 العنوان",
+    copyright: "© 2026 HealthBridge. جميع الحقوق محفوظة.",
+
+    // Dashboard
     dashboard: "لوحة التحكم",
+    dashboardOverview: "نظرة عامة على لوحة التحكم",
     totalAppointments: "إجمالي المواعيد",
     pendingRecords: "السجلات المعلقة",
     yourRating: "تقييمك",
+    upcoming: "المواعيد القادمة",
+    noAppointments: "لا توجد مواعيد قادمة",
     viewAll: "عرض الكل",
-    appointmentHistory: "تاريخ المواعيد",
+    needToSeeDoctor: "تحتاج لزيارة طبيب؟",
+    bookWithSpecialists: "احجز موعداً مع أفضل المتخصصين لدينا اليوم.",
+    bookNow: "احجز الآن",
+
+    // Doctors
+    findDoctor: "ابحث عن الطبيب المناسب لاحتياجاتك",
+    allSpecialties: "جميع التخصصات",
+    availability: "التوفر",
+    availableNow: "متاح الآن",
+    today: "اليوم",
+    thisWeek: "هذا الأسبوع",
+    chooseDepartment: "اختر القسم",
+    chooseDoctor: "اختر الطبيب",
+    yearsExp: "سنوات خبرة",
+    available: "متاح",
+    notAvailable: "غير متاح",
+    cardiology: "قلب",
+    dermatology: "طب الجلد",
+    neurology: "مخ وأعصاب",
+    pediatrics: "طب الأطفال",
+    orthopedics: "طب الجراحة العظمية",
+    dentistry: "طب الأسنان",
+    ophthalmology: "طب العيون",
+    gynecology: "نساء وتوليد",
+
+    // About
+    ourStory: "قصتنا",
+    ourMission: "رسالتنا",
+    ourVision: "رؤيتنا",
+    missionVision: "الرسالة والرؤية",
+    ourTeam: "فريقنا",
+    ourStoryP1:
+      "تأسست HealthBridge عام 2026، وولدت من فكرة بسيطة: أن تكون الرعاية الصحية متاحة وشفافة وموجهة نحو المريض. بدأنا بفريق صغير من المتخصصين في الرعاية الصحية وتقنية المعلومات الذين آمنوا بإمكانية تحسين تجربة المريض.",
+    ourStoryP2:
+      "اليوم، نخدم آلاف المرضى، ونربطهم بأفضل المتخصصين الطبيين ونوفر لهم أدوات لإدارة رحلتهم الصحية.",
+
+    // Contact
+    getInTouch: "تواصل معنا",
+    weLoveToHear:
+      "نحن نحب أن نسمع منك. أرسل لنا رسالة وسنرد عليك في أقرب وقت ممكن.",
+    firstName: "الاسم الأول",
+    lastName: "الاسم الأخير",
+    enterFirstName: "أدخل اسمك الأول",
+    enterLastName: "أدخل اسمك الأخير",
+    phoneNumber: "رقم الهاتف",
+    enterPhone: "أدخل رقم هاتفك",
+    subject: "الموضوع",
+    message: "الرسالة",
+    sendMessage: "إرسال رسالة",
+    generalInquiry: "استفسار عام",
+    appointmentIssue: "مشكلة في الموعد",
+    technicalSupport: "دعم تقني",
+    feedback: "ملاحظات",
+    visitUs: "📍 زورنا",
+    callUs: "📞 اتصل بنا",
+    workingHours: "🕐 ساعات العمل",
+    monFri: "الإثنين - الجمعة",
+    saturday: "السبت",
+    sunday: "الأحد",
+    emergencyOnly: "طوارئ فقط",
+    twentyFourSeven: "24/7",
+    hospitalAddress: "123 شارع الرعاية الصحية، حي طبي، المدينة 12345",
+
+    // Auth
+    welcomeBack: "مرحباً بعودتك",
+    signInToAccess: "سجل الدخول للوصول إلى لوحة التحكم الصحية",
+    emailPhone: "البريد الإلكتروني / الهاتف",
+    enterEmail: "أدخل بريدك الإلكتروني أو هاتفك",
+    password: "كلمة المرور",
+    enterPassword: "أدخل كلمة المرور",
+    rememberMe: "تذكرني",
+    forgotPassword: "نسيت كلمة المرور؟",
+    signIn: "تسجيل الدخول",
+    fullName: "الاسم الكامل",
+    enterFullName: "أدخل اسمك الكامل",
+    userType: "نوع المستخدم",
+    patient: "مريض",
+    doctor: "طبيب",
+    confirmPassword: "تأكيد كلمة المرور",
+    confirmYourPassword: "أكد كلمة المرور",
+    createAccount: "إنشاء حساب",
+    orContinueWith: "أو استمر مع",
+    google: "جوجل",
+
+    // Appointments
+    bookAppointment: "حجز موعد",
     selectDepartment: "اختر القسم",
     selectDoctor: "اختر الطبيب",
     preferredDate: "التاريخ المفضل",
@@ -368,16 +510,27 @@ const translations = {
     patientName: "اسم المريض",
     additionalNotes: "ملاحظات إضافية (اختياري)",
     confirmBooking: "تأكيد الحجز",
-    chooseDepartment: "اختر القسم",
-    chooseDoctor: "اختر الطبيب",
-    allSpecialties: "جميع التخصصات",
-    availability: "التوفر",
-    availableNow: "متاح الآن",
-    today: "اليوم",
-    thisWeek: "هذا الأسبوع",
-    yearsExp: "سنوات خبرة",
-    available: "متاح",
-    notAvailable: "غير متاح",
+    appointmentHistory: "تاريخ المواعيد",
+    noAppointmentsFound: "لم يتم العثور على مواعيد",
+    status: "الحالة",
+    actions: "الإجراءات",
+    departments: "الأقسام",
+
+    // Records
+    allRecords: "جميع السجلات",
+    labResults: "نتائج المختبر",
+    prescriptions: "الوصفات الطبية",
+    diagnoses: "التشخيصات",
+    imaging: "الأشعة",
+    filter: "تصفية",
+    exportAll: "تصدير الكل",
+    view: "عرض",
+    download: "تحميل PDF",
+    normal: "طبيعي",
+    active: "نشط",
+    completed: "مكتمل",
+
+    // Emergency
     backToHome: "العودة للرئيسية",
     nearestHospital: "أقرب مستشفى",
     ambulance: "سيارة إسعاف",
@@ -391,38 +544,14 @@ const translations = {
     getDirections: "الحصول على الاتجاهات",
     callAmbulance: "استدعاء إسعاف",
     callNow: "اتصل الآن",
-    ourStory: "قصتنا",
-    missionVision: "الرسالة والرؤية",
-    ourMission: "رسالتنا",
-    ourVision: "رؤيتنا",
-    ourTeam: "فريقنا",
-    getInTouch: "تواصل معنا",
-    sendMessage: "إرسال رسالة",
-    visitUs: "زورنا",
-    callUs: "اتصل بنا",
-    workingHours: "ساعات العمل",
-    monFri: "الإثنين - الجمعة",
-    saturday: "السبت",
-    sunday: "الأحد",
-    emergencyOnly: "طوارئ فقط",
-    twentyFourSeven: "24/7",
-    subject: "الموضوع",
-    message: "الرسالة",
-    generalInquiry: "استفسار عام",
-    appointmentIssue: "مشكلة في الموعد",
-    technicalSupport: "دعم تقني",
-    feedback: "ملاحظات",
-    howCanWeHelp: "كيف يمكننا مساعدتك؟",
-    contactInfo: "معلومات الاتصال",
-    phone: "الهاتف",
-    email: "البريد الإلكتروني",
-    address: "العنوان",
-    hospitalAddress: "123 شارع الرعاية الصحية، حي طبي، المدينة 12345",
-    main: "الرئيسي",
+    hospitalName: "مستشفى المدينة العام",
+    distance: "0.5 ميل",
+    address: "123 شارع المستشفى",
     emergencyLine: "خط الطوارئ",
     avgResponse: "متوسط الاستجابة",
     poisonHotline: "خط المساعدة 24/7",
     forPoisoning: "لحالات التسمم الطارئة",
+    whatToDoEmergency: "إذا كنت تواجه حالة طوارئ تهدد الحياة، اتصل فوراً",
     checkResponsiveness: "1. تحقق من الاستجابة",
     call911First: "2. اتصل بـ 911",
     pushHard: "3. اضغط بقوة وسرعة على وسط الصدر",
@@ -439,58 +568,8 @@ const translations = {
     heimlich: "2. قم بمناورة هايمليك",
     callUnable: "3. اتصل بـ 911 إذا كان غير قادر على التنفس",
     continueHelp: "4. استمر حتى وصول المساعدة",
-    readyToStart: "هل أنت مستعد للتحكم في صحتك؟",
-    joinThousands: "انضم إلى آلاف المرضى الذين يثقون بـ HealthBridge",
-    getStartedToday: "ابدأ اليوم",
-    whatPatientsSay: "ماذا يقول المرضى",
-    onlineBooking: "الحجز الإلكتروني",
-    onlineBookingDesc:
-      "احجز مواعيد مع أفضل الأطباء فوراً من خلال منصتنا السهلة الاستخدام.",
-    medicalRecords: "السجلات الطبية",
-    medicalRecordsDesc:
-      "اطلع على تاريخك الطبي الكامل، نتائج المختبر، والوصفات الطبية في أي وقت.",
-    twentyFourSevenSupport: "دعم 24/7",
-    supportDesc:
-      "احصل على المساعدة في أي وقت مع فريق الدعم المخصص لدينا والدردشة المباشرة.",
-    emergencyCare: "رعاية الطوارئ",
-    emergencyCareDesc: "وصول سريع إلى خدمات الطوارئ ومواقع أقرب المستشفيات.",
-    welcomeBack: "مرحباً بعودتك",
-    signInToAccess: "سجل الدخول للوصول إلى لوحة التحكم الصحية",
-    emailPhone: "البريد الإلكتروني / الهاتف",
-    enterEmail: "أدخل بريدك الإلكتروني أو هاتفك",
-    password: "كلمة المرور",
-    enterPassword: "أدخل كلمة المرور",
-    rememberMe: "تذكرني",
-    forgotPassword: "نسيت كلمة المرور؟",
-    signIn: "تسجيل الدخول",
-    fullName: "الاسم الكامل",
-    enterFullName: "أدخل اسمك الكامل",
-    phoneNumber: "رقم الهاتف",
-    enterPhone: "أدخل رقم هاتفك",
-    userType: "نوع المستخدم",
-    patient: "مريض",
-    doctor: "طبيب",
-    confirmPassword: "تأكيد كلمة المرور",
-    confirmYourPassword: "أكد كلمة المرور",
-    createAccount: "إنشاء حساب",
-    orContinueWith: "أو استمر مع",
-    google: "جوجل",
-    dashboardOverview: "نظرة عامة على لوحة التحكم",
-    needToSeeDoctor: "تحتاج لزيارة طبيب؟",
-    bookWithSpecialists: "احجز موعداً مع أفضل المتخصصين لدينا اليوم.",
-    bookNow: "احجز الآن",
-    loading: "جاري التحميل...",
-    status: "الحالة",
-    actions: "الإجراءات",
-    noAppointmentsFound: "لم يتم العثور على مواعيد",
-    allRecords: "جميع السجلات",
-    prescriptions: "الوصفات الطبية",
-    diagnoses: "التشخيصات",
-    imaging: "الأشعة",
-    labResults: "نتائج المختبر",
-    normal: "طبيعي",
-    active: "نشط",
-    completed: "مكتمل",
+
+    // Support
     faq: "الأسئلة الشائعة",
     howToBook: "كيف أحجز موعداً؟",
     bookAppointmentAnswer:
@@ -501,54 +580,27 @@ const translations = {
     dataSecure: "هل بياناتي آمنة؟",
     dataSecureAnswer:
       "بالتأكيد. نحن نستخدم تشفيراً وإجراءات أمان على مستوى الصناعة لحماية معلوماتك الصحية الشخصية.",
-    whatToDoEmergency: "ماذا أفعل في حالة الطوارئ؟",
     emergencyAnswer:
       "للحالات الطارئة، يرجى استخدام زر الطوارئ في الصفحة الرئيسية أو الاتصال بـ 911 فوراً.",
     liveChat: "الدردشة المباشرة",
     healthbridgeSupport: "دعم HealthBridge",
     helloHowCanHelp: "مرحباً! كيف يمكنني مساعدتك اليوم؟",
-    startByGiving: "ابدأ بالوصول إلى لوحة التحكم الصحية",
-    createAccountToday: "أنشئ حساباً اليوم",
-    copyright: "© 2026 HealthBridge. جميع الحقوق محفوظة.",
-    connectingPatients: "ربط المرضى بخدمات الرعاية الصحية عالية الجودة.",
-    expertDoctors: "أطباء خبراء",
-    patientsServed: "مريض تم خدمتهم",
-    emergencyCare24_7: "رعاية طوارئ 24/7",
-    hospitalName: "مستشفى المدينة العام",
-    distance: "0.5 ميل",
-    specialization: "التخصص",
-    experience: "الخبرة",
-    rating: "التقييم",
-    filter: "تصفية",
-    exportAll: "تصدير الكل",
-    ourStoryP1:
-      "تأسست HealthBridge عام 2026، وولدت من فكرة بسيطة: أن تكون الرعاية الصحية متاحة وشفافة وموجهة نحو المريض. بدأنا بفريق صغير من المتخصصين في الرعاية الصحية وتقنية المعلومات الذين آمنوا بإمكانية تحسين تجربة المريض.",
-    ourStoryP2:
-      "اليوم، نخدم آلاف المرضى، ونربطهم بأفضل المتخصصين الطبيين ونوفر لهم أدوات لإدارة رحلتهم الصحية.",
-    testimonial1:
-      '"جعلتني HealthBridge أحجز موعدي بسهولة. الواجهة نظيفة وبديهية!"',
-    testimonial2:
-      '"أحب أن أستطيع الوصول إلى سجلاتي الطبية فوراً. أفضل تطبيق رعاية صحية استخدمته."',
-    testimonial3: '"منحني ميزة الطوارئ راحة البال. أنصح به بشدة للجميع."',
-    weLoveToHear:
-      "نحن نحب أن نسمع منك. أرسل لنا رسالة وسنرد عليك في أقرب وقت ممكن.",
-    firstName: "الاسم الأول",
-    lastName: "الاسم الأخير",
-    enterFirstName: "أدخل اسمك الأول",
-    enterLastName: "أدخل اسمك الأخير",
-    bookAppointment: "حجز موعد",
-    neurology: "مخ و أعصاب",
-    cardiology: "قلب",
-    dermatology: "طب الجلد",
-    pediatrics: "طب الأطفال",
-    orthopedics: "طب الجراحة العظمية",
-    dentistry: "طب الأسنان",
-    ophthalmology: "طب العيون",
-    gynecology: "نساء وتوليد",
+    typeMessage: "اكتب رسالتك...",
+    send: "إرسال",
+    contactInfo: "معلومات الاتصال",
+
+    // Misc
+    loading: "جاري التحميل...",
+    settings: "الإعدادات",
+    cancel: "إلغاء",
+    delete: "حذف",
+    edit: "تعديل",
   },
 };
 
-// Initialize App
+// ========================
+// INITIALIZATION
+// ========================
 document.addEventListener("DOMContentLoaded", function () {
   initLanguage();
   checkAuth();
@@ -557,9 +609,12 @@ document.addEventListener("DOMContentLoaded", function () {
   loadPageSpecificContent();
   translateStaticContent();
   initMap();
+  setupScrollEffects();
 });
 
-// Language Functions
+// ========================
+// LANGUAGE FUNCTIONS
+// ========================
 function initLanguage() {
   document.documentElement.lang = state.language;
   document.documentElement.dir = state.language === "ar" ? "rtl" : "ltr";
@@ -571,7 +626,7 @@ function toggleLanguage() {
   initLanguage();
   translateStaticContent();
   updateUIForAuth();
-  loadPageSpecificContent(); // Reload dynamic content with new language
+  loadPageSpecificContent();
   showToast(state.language === "ar" ? "تم تغيير اللغة" : "Language changed");
 }
 
@@ -579,7 +634,6 @@ function t(key) {
   return translations[state.language][key] || key;
 }
 
-// Translate all static content
 function translateStaticContent() {
   // Translate elements with data-translate
   document.querySelectorAll("[data-translate]").forEach((el) => {
@@ -606,7 +660,9 @@ function translateStaticContent() {
   });
 }
 
-// Authentication Functions
+// ========================
+// AUTHENTICATION
+// ========================
 function checkAuth() {
   const protectedPages = ["dashboard", "appointments", "records"];
   const currentPage = window.location.pathname
@@ -668,66 +724,48 @@ function logout() {
   window.location.href = "index.html";
 }
 
-// Navigation
+// ========================
+// NAVIGATION
+// ========================
 function setupNavigation() {
   const mobileMenuBtn = document.getElementById("mobile-menu-btn");
   const navMenu = document.getElementById("nav-menu");
-
-  console.log("Mobile button:", mobileMenuBtn); // Debug line
-  console.log("Nav menu:", navMenu); // Debug line
+  const navbar = document.getElementById("navbar");
 
   if (mobileMenuBtn && navMenu) {
-    // Remove any existing listeners to avoid duplicates
-    mobileMenuBtn.replaceWith(mobileMenuBtn.cloneNode(true));
-    const newBtn = document.getElementById("mobile-menu-btn");
-
-    // Toggle function
-    function toggleMenu(e) {
+    // Toggle menu
+    mobileMenuBtn.addEventListener("click", function (e) {
       e.preventDefault();
       e.stopPropagation();
 
       navMenu.classList.toggle("active");
 
-      // Toggle icon between hamburger (☰) and X (✕)
+      // Toggle icon
       if (navMenu.classList.contains("active")) {
-        newBtn.innerHTML = "&#10005;";
-        newBtn.style.fontSize = "1.5rem";
-        newBtn.setAttribute("aria-expanded", "true");
+        mobileMenuBtn.innerHTML = "&#10005;";
+        mobileMenuBtn.setAttribute("aria-expanded", "true");
       } else {
-        newBtn.innerHTML = "&#9776;";
-        newBtn.style.fontSize = "1.75rem";
-        newBtn.setAttribute("aria-expanded", "false");
+        mobileMenuBtn.innerHTML = "&#9776;";
+        mobileMenuBtn.setAttribute("aria-expanded", "false");
       }
-
-      console.log("Menu toggled:", navMenu.classList.contains("active")); // Debug
-    }
-
-    // Add click handler
-    newBtn.addEventListener("click", toggleMenu);
-
-    // Also add touchstart for better mobile response
-    newBtn.addEventListener("touchstart", function (e) {
-      e.preventDefault(); // Prevent mouse event emulation
-      toggleMenu(e);
     });
 
-    // Close menu when clicking on a link
-    const navLinks = navMenu.querySelectorAll("a");
-    navLinks.forEach((link) => {
+    // Close menu when clicking a link
+    navMenu.querySelectorAll("a").forEach((link) => {
       link.addEventListener("click", () => {
         navMenu.classList.remove("active");
-        newBtn.innerHTML = "&#9776;";
-        newBtn.setAttribute("aria-expanded", "false");
+        mobileMenuBtn.innerHTML = "&#9776;";
+        mobileMenuBtn.setAttribute("aria-expanded", "false");
       });
     });
 
     // Close menu when clicking outside
     document.addEventListener("click", (e) => {
-      if (!navMenu.contains(e.target) && !newBtn.contains(e.target)) {
+      if (!navMenu.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
         if (navMenu.classList.contains("active")) {
           navMenu.classList.remove("active");
-          newBtn.innerHTML = "&#9776;";
-          newBtn.setAttribute("aria-expanded", "false");
+          mobileMenuBtn.innerHTML = "&#9776;";
+          mobileMenuBtn.setAttribute("aria-expanded", "false");
         }
       }
     });
@@ -736,12 +774,10 @@ function setupNavigation() {
     document.addEventListener("keydown", (e) => {
       if (e.key === "Escape" && navMenu.classList.contains("active")) {
         navMenu.classList.remove("active");
-        newBtn.innerHTML = "&#9776;";
-        newBtn.setAttribute("aria-expanded", "false");
+        mobileMenuBtn.innerHTML = "&#9776;";
+        mobileMenuBtn.setAttribute("aria-expanded", "false");
       }
     });
-  } else {
-    console.error("Mobile menu elements not found!");
   }
 
   // Highlight current page
@@ -752,19 +788,50 @@ function setupNavigation() {
       link.classList.add("active");
     }
   });
-}
-// Ensure this is called on DOMContentLoaded
-document.addEventListener("DOMContentLoaded", function () {
-  initLanguage();
-  checkAuth();
-  setupNavigation(); // This will now work properly
-  setupEventListeners();
-  loadPageSpecificContent();
-  translateStaticContent();
-  initMap();
-});
 
-// Page Specific Content
+  // Navbar scroll effect
+  if (navbar) {
+    window.addEventListener("scroll", () => {
+      if (window.scrollY > 10) {
+        navbar.classList.add("scrolled");
+      } else {
+        navbar.classList.remove("scrolled");
+      }
+    });
+  }
+}
+
+// ========================
+// SCROLL EFFECTS
+// ========================
+function setupScrollEffects() {
+  // Intersection Observer for fade-in animations
+  const observerOptions = {
+    threshold: 0.1,
+    rootMargin: "0px 0px -50px 0px",
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = "1";
+        entry.target.style.transform = "translateY(0)";
+      }
+    });
+  }, observerOptions);
+
+  // Observe cards
+  document.querySelectorAll(".card").forEach((card) => {
+    card.style.opacity = "0";
+    card.style.transform = "translateY(20px)";
+    card.style.transition = "opacity 0.5s ease, transform 0.5s ease";
+    observer.observe(card);
+  });
+}
+
+// ========================
+// PAGE SPECIFIC CONTENT
+// ========================
 function loadPageSpecificContent() {
   const page = window.location.pathname.split("/").pop();
 
@@ -795,21 +862,23 @@ function loadHomePage() {
     statsContainer.innerHTML = `
       <div class="stat-card">
         <h4>50+</h4>
-        <p>${t("expertDoctors")}</p>
+        <p>${t("expertDoctors") || "Expert Doctors"}</p>
       </div>
-      <div class="stat-card">
+      <div class="stat-card" style="background: linear-gradient(135deg, var(--secondary) 0%, #0284c7 100%);">
         <h4>10k+</h4>
-        <p>${t("patientsServed")}</p>
+        <p>${t("patientsServed") || "Patients Served"}</p>
       </div>
-      <div class="stat-card">
+      <div class="stat-card" style="background: linear-gradient(135deg, var(--accent) 0%, #d97706 100%);">
         <h4>24/7</h4>
-        <p>${t("emergencyCare24_7")}</p>
+        <p>${t("emergencyCare24_7") || "Emergency Care"}</p>
       </div>
     `;
   }
 
-  // Update service cards if they exist
+  // Update service cards
   const serviceTitles = document.querySelectorAll(".service-title");
+  const serviceDescs = document.querySelectorAll(".service-desc");
+
   if (serviceTitles.length >= 4) {
     serviceTitles[0].textContent = t("onlineBooking");
     serviceTitles[1].textContent = t("medicalRecords");
@@ -817,7 +886,6 @@ function loadHomePage() {
     serviceTitles[3].textContent = t("emergencyCare");
   }
 
-  const serviceDescs = document.querySelectorAll(".service-desc");
   if (serviceDescs.length >= 4) {
     serviceDescs[0].textContent = t("onlineBookingDesc");
     serviceDescs[1].textContent = t("medicalRecordsDesc");
@@ -834,10 +902,6 @@ function loadDoctorsPage() {
 
   const specialtyFilter = document.getElementById("specialty-filter");
   if (specialtyFilter) {
-    // Update filter options text
-    const options = specialtyFilter.querySelectorAll("option");
-    if (options.length > 0) options[0].textContent = t("allSpecialties");
-
     specialtyFilter.addEventListener("change", (e) => {
       const filtered =
         e.target.value === "all"
@@ -861,10 +925,10 @@ function renderDoctors(doctors) {
         <h3>${doctor.name}</h3>
         <p class="specialty">${t(doctor.specialty.toLowerCase()) || doctor.specialty}</p>
         <div class="rating">⭐ ${doctor.rating} (${doctor.experience} ${t("yearsExp")})</div>
-        <p style="color: ${doctor.available ? "var(--primary)" : "var(--danger)"}">
+        <p style="color: ${doctor.available ? "var(--success)" : "var(--danger)"}; font-weight: 500; margin-bottom: 1rem;">
           ${doctor.available ? `● ${t("available")}` : `● ${t("notAvailable")}`}
         </p>
-        <button class="btn btn-primary" style="width: 100%; margin-top: 1rem;" 
+        <button class="btn btn-primary" style="width: 100%; margin-top: auto;" 
                 onclick="bookDoctor(${doctor.id})" ${!doctor.available ? "disabled" : ""}>
           ${t("bookAppointment")}
         </button>
@@ -881,8 +945,8 @@ function loadDashboard() {
   const userInfo = document.getElementById("user-info");
   if (userInfo) {
     userInfo.innerHTML = `
-      <h2>${state.language === "ar" ? "مرحباً، " : "Welcome, "}${state.currentUser.name}</h2>
-      <p>${state.currentUser.email}</p>
+      <h2 style="font-size: 1.25rem;">${state.language === "ar" ? "مرحباً، " : "Welcome, "}${state.currentUser.name}</h2>
+      <p style="color: var(--text-muted); font-size: 0.9rem;">${state.currentUser.email}</p>
     `;
   }
 
@@ -900,18 +964,18 @@ function loadDashboard() {
       (a) => new Date(a.date) > new Date(),
     );
     if (upcoming.length === 0) {
-      upcomingContainer.innerHTML = `<p class="text-center">${t("noAppointments")}</p>`;
+      upcomingContainer.innerHTML = `<p class="text-center" style="color: var(--text-muted); padding: 2rem;">${t("noAppointments")}</p>`;
     } else {
       upcomingContainer.innerHTML = upcoming
         .map(
           (appt) => `
-        <div class="card">
-          <div class="flex justify-between items-center">
+        <div class="card" style="margin-bottom: 1rem;">
+          <div class="flex justify-between items-center" style="display: flex; justify-content: space-between; align-items: center;">
             <div>
-              <h4>${appt.doctorName}</h4>
-              <p>${appt.department} - ${appt.date}</p>
+              <h4 style="font-weight: 600;">${appt.doctorName}</h4>
+              <p style="color: var(--text-muted); font-size: 0.9rem;">${appt.department} - ${appt.date}</p>
             </div>
-            <span class="btn btn-secondary">${appt.time}</span>
+            <span class="btn btn-secondary" style="padding: 0.25rem 0.75rem; font-size: 0.875rem;">${appt.time}</span>
           </div>
         </div>
       `,
@@ -945,34 +1009,7 @@ function loadDashboard() {
 function loadAppointments() {
   const form = document.getElementById("booking-form");
   if (form) {
-    // Update form labels
-    const labels = form.querySelectorAll("label");
-    if (labels.length >= 6) {
-      labels[0].textContent = t("selectDepartment");
-      labels[1].textContent = t("selectDoctor");
-      labels[2].textContent = t("preferredDate");
-      labels[3].textContent = t("preferredTime");
-      labels[4].textContent = t("patientName");
-      labels[5].textContent = t("additionalNotes");
-    }
-
-    // Update placeholders
-    const patientNameInput = form.querySelector('input[name="patientName"]');
-    if (patientNameInput) patientNameInput.placeholder = t("enterFullName");
-
-    const notesTextarea = form.querySelector('textarea[name="notes"]');
-    if (notesTextarea)
-      notesTextarea.placeholder =
-        state.language === "ar"
-          ? "صف أعراضك أو مخاوفك"
-          : "Describe your symptoms or concerns";
-
-    // Update select options
-    const deptSelect = form.querySelector('select[name="department"]');
-    if (deptSelect && deptSelect.options.length > 0) {
-      deptSelect.options[0].textContent = t("chooseDepartment");
-    }
-
+    // Populate doctor select
     const doctorSelect = document.getElementById("doctor-select");
     if (doctorSelect) {
       doctorSelect.innerHTML =
@@ -983,11 +1020,6 @@ function loadAppointments() {
               `<option value="${d.id}">${d.name} - ${t(d.specialty.toLowerCase()) || d.specialty}</option>`,
           )
           .join("");
-    }
-
-    const timeSelect = form.querySelector('select[name="time"]');
-    if (timeSelect && timeSelect.options.length > 0) {
-      timeSelect.options[0].textContent = t("preferredTime");
     }
 
     form.addEventListener("submit", (e) => {
@@ -1026,7 +1058,7 @@ function loadAppointments() {
     if (state.appointments.length === 0) {
       historyContainer.innerHTML = `
         <tr>
-          <td colspan="6" style="text-align: center;">${t("noAppointmentsFound")}</td>
+          <td colspan="6" style="text-align: center; padding: 2rem; color: var(--text-muted);">${t("noAppointmentsFound")}</td>
         </tr>
       `;
     } else {
@@ -1038,9 +1070,9 @@ function loadAppointments() {
           <td>${appt.department}</td>
           <td>${appt.date}</td>
           <td>${appt.time}</td>
-          <td><span class="btn btn-secondary" style="padding: 0.25rem 0.5rem;">${appt.status}</span></td>
+          <td><span class="btn btn-secondary" style="padding: 0.25rem 0.5rem; font-size: 0.8rem;">${appt.status}</span></td>
           <td>
-            <button class="btn btn-danger" onclick="cancelAppointment(${appt.id})">${t("cancel")}</button>
+            <button class="btn btn-danger" style="padding: 0.25rem 0.5rem; font-size: 0.8rem;" onclick="cancelAppointment(${appt.id})">${t("cancel")}</button>
           </td>
         </tr>
       `,
@@ -1059,9 +1091,6 @@ function loadAppointments() {
     ths[4].textContent = t("status");
     ths[5].textContent = t("actions");
   }
-
-  const submitBtn = form ? form.querySelector('button[type="submit"]') : null;
-  if (submitBtn) submitBtn.textContent = t("confirmBooking");
 }
 
 function loadRecords() {
@@ -1099,19 +1128,19 @@ function loadRecords() {
 
       return `
       <div class="card">
-        <div class="flex justify-between items-start">
+        <div class="flex justify-between items-start" style="display: flex; justify-content: space-between; align-items: flex-start;">
           <div>
-            <span class="btn btn-secondary" style="padding: 0.25rem 0.5rem; font-size: 0.875rem;">${t(typeKey) || record.type}</span>
-            <h3 class="mt-1">${record.title}</h3>
-            <p class="text-gray-600">${record.doctor} • ${record.date}</p>
+            <span class="btn btn-secondary" style="padding: 0.25rem 0.75rem; font-size: 0.875rem; display: inline-block; margin-bottom: 0.5rem;">${t(typeKey) || record.type}</span>
+            <h3 style="margin-top: 0.5rem;">${record.title}</h3>
+            <p style="color: var(--text-muted); font-size: 0.9rem;">${record.doctor} • ${record.date}</p>
           </div>
-          <span style="color: ${record.status === "Normal" ? "var(--primary)" : "var(--highlight)"}">
+          <span style="color: ${record.status === "Normal" ? "var(--success)" : "var(--secondary)"}; font-weight: 600;">
             ${t(statusKey) || record.status}
           </span>
         </div>
-        <div class="mt-2 flex gap-1">
-          <button class="btn btn-outline" onclick="viewRecord(${record.id})">${t("view")}</button>
-          <button class="btn btn-secondary" onclick="downloadRecord(${record.id})">${t("download")}</button>
+        <div style="margin-top: 1rem; display: flex; gap: 0.5rem;">
+          <button class="btn btn-outline" style="padding: 0.375rem 0.75rem; font-size: 0.875rem;" onclick="viewRecord(${record.id})">${t("view")}</button>
+          <button class="btn btn-secondary" style="padding: 0.375rem 0.75rem; font-size: 0.875rem;" onclick="downloadRecord(${record.id})">${t("download")}</button>
         </div>
       </div>
     `;
@@ -1119,7 +1148,9 @@ function loadRecords() {
     .join("");
 }
 
-// Actions
+// ========================
+// ACTIONS
+// ========================
 function bookDoctor(doctorId) {
   if (!state.currentUser) {
     showToast(t("login"));
@@ -1161,11 +1192,11 @@ function viewRecord(id) {
         : "Carefully examined. Results are within normal range.";
 
     showModal(`
-      <h2>${record.title}</h2>
-      <p><strong>${typeLabel}:</strong> ${record.type}</p>
-      <p><strong>${doctorLabel}:</strong> ${record.doctor}</p>
-      <p><strong>${dateLabel}:</strong> ${record.date}</p>
-      <p><strong>${statusLabel}:</strong> ${record.status}</p>
+      <h2 style="margin-bottom: 1rem;">${record.title}</h2>
+      <p style="margin-bottom: 0.5rem;"><strong>${typeLabel}:</strong> ${record.type}</p>
+      <p style="margin-bottom: 0.5rem;"><strong>${doctorLabel}:</strong> ${record.doctor}</p>
+      <p style="margin-bottom: 0.5rem;"><strong>${dateLabel}:</strong> ${record.date}</p>
+      <p style="margin-bottom: 0.5rem;"><strong>${statusLabel}:</strong> ${record.status}</p>
       <p><strong>${detailsLabel}:</strong> ${details}</p>
     `);
   }
@@ -1184,7 +1215,9 @@ function downloadRecord(id) {
   );
 }
 
-// Event Listeners
+// ========================
+// EVENT LISTENERS
+// ========================
 function setupEventListeners() {
   // Login form
   const loginForm = document.getElementById("login-form");
@@ -1248,7 +1281,7 @@ function setupEventListeners() {
   if (chatForm) {
     chatForm.addEventListener("submit", (e) => {
       e.preventDefault();
-      const input = document.getElementById("chat-input");
+      const input = document.getElementById("chat-input-field");
       const message = input.value.trim();
       if (message) {
         addChatMessage(message, "sent");
@@ -1308,19 +1341,23 @@ function addChatMessage(text, type, sender = "") {
   container.scrollTop = container.scrollHeight;
 }
 
-// Utility Functions
+// ========================
+// UTILITY FUNCTIONS
+// ========================
 function showToast(message, type = "success") {
   const existing = document.querySelector(".toast");
   if (existing) existing.remove();
 
   const toast = document.createElement("div");
-  toast.className = "toast";
+  toast.className = `toast ${type}`;
   toast.textContent = message;
-  toast.style.background =
-    type === "error" ? "var(--danger)" : "var(--text-dark)";
   document.body.appendChild(toast);
 
-  setTimeout(() => toast.classList.add("show"), 100);
+  // Trigger animation
+  requestAnimationFrame(() => {
+    toast.classList.add("show");
+  });
+
   setTimeout(() => {
     toast.classList.remove("show");
     setTimeout(() => toast.remove(), 300);
@@ -1345,26 +1382,24 @@ function showModal(content) {
     if (e.target === modal) modal.remove();
   });
 }
-// Map Initialization
+
+// ========================
+// MAP INITIALIZATION
+// ========================
 function initMap() {
   const mapContainer = document.getElementById("map");
-  if (!mapContainer) return; // Only run on pages with a map
+  if (!mapContainer || typeof L === "undefined") return;
 
-  // Hospital coordinates - CHANGE THESE to your location
-  // Find coordinates at https://www.latlong.net
-  const hospitalLat = 29.312139; // Example: Cairo
+  const hospitalLat = 29.312139;
   const hospitalLng = 30.856225;
 
-  // Create map
   const map = L.map("map").setView([hospitalLat, hospitalLng], 15);
 
-  // Add OpenStreetMap tiles (Free, no API key needed)
   L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
     attribution:
       '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
   }).addTo(map);
 
-  // Add marker with popup
   const popupContent =
     state.language === "ar"
       ? "<b>مركز HealthBridge الطبي</b><br>١٢٣ شارع الرعاية الصحية"
@@ -1376,7 +1411,9 @@ function initMap() {
     .openPopup();
 }
 
-// Export functions for global access
+// ========================
+// EXPORT FUNCTIONS
+// ========================
 window.toggleLanguage = toggleLanguage;
 window.logout = logout;
 window.bookDoctor = bookDoctor;

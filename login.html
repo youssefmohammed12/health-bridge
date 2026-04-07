@@ -3,6 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Login to HealthBridge to access your health dashboard."
+    />
     <title>Login - HealthBridge</title>
     <link rel="stylesheet" href="css/style.css" />
     <style>
@@ -10,17 +14,22 @@
         display: flex;
         gap: 1rem;
         margin-bottom: 2rem;
-        border-bottom: 2px solid var(--accent);
+        border-bottom: 2px solid #e2e8f0;
       }
       .tab-btn {
         background: none;
         border: none;
-        padding: 1rem;
+        padding: 1rem 1.5rem;
         cursor: pointer;
         font-weight: 600;
-        color: var(--text-light);
+        color: var(--text-muted);
         border-bottom: 2px solid transparent;
         margin-bottom: -2px;
+        transition: all 0.25s;
+        font-size: 1rem;
+      }
+      .tab-btn:hover {
+        color: var(--text-secondary);
       }
       .tab-btn.active {
         color: var(--primary);
@@ -29,23 +38,29 @@
       .social-login {
         margin-top: 1.5rem;
         padding-top: 1.5rem;
-        border-top: 1px solid var(--accent);
+        border-top: 1px solid #e2e8f0;
         text-align: center;
       }
       .google-btn {
         width: 100%;
-        background: var(--white);
-        border: 2px solid var(--accent);
-        color: var(--text-dark);
+        background: var(--surface);
+        border: 2px solid #e2e8f0;
+        color: var(--text-primary);
         display: flex;
         align-items: center;
         justify-content: center;
         gap: 0.5rem;
+        transition: all 0.25s;
+      }
+      .google-btn:hover {
+        border-color: var(--primary);
+        background: var(--background);
       }
     </style>
   </head>
   <body>
-    <nav class="navbar">
+    <!-- Simple Navbar -->
+    <nav class="navbar" id="navbar">
       <div class="nav-container">
         <a href="index.html" class="logo">
           <div class="logo-icon">🏥</div>
@@ -55,9 +70,20 @@
       </div>
     </nav>
 
-    <div class="auth-container" style="margin-top: 3rem">
+    <!-- Auth Container -->
+    <div class="auth-container" style="margin-top: 3rem; margin-bottom: 3rem">
       <div class="auth-header">
-        <div class="logo-icon" style="margin: 0 auto 1rem">🏥</div>
+        <div
+          class="logo-icon"
+          style="
+            margin: 0 auto 1rem;
+            width: 64px;
+            height: 64px;
+            font-size: 2rem;
+          "
+        >
+          🏥
+        </div>
         <h2 data-translate="welcomeBack">Welcome Back</h2>
         <p data-translate="signInToAccess">
           Sign in to access your health dashboard
@@ -109,14 +135,20 @@
               align-items: center;
               gap: 0.5rem;
               font-weight: normal;
+              color: var(--text-secondary);
+              cursor: pointer;
             "
           >
-            <input type="checkbox" />
+            <input type="checkbox" style="width: auto" />
             <span data-translate="rememberMe">Remember me</span>
           </label>
           <a
             href="#"
-            style="color: var(--primary); text-decoration: none"
+            style="
+              color: var(--primary);
+              text-decoration: none;
+              font-weight: 500;
+            "
             data-translate="forgotPassword"
             >Forgot Password?</a
           >
@@ -170,8 +202,10 @@
             style="
               width: 100%;
               padding: 0.75rem;
-              border: 2px solid var(--accent);
-              border-radius: var(--radius-sm);
+              border: 2px solid #e2e8f0;
+              border-radius: var(--radius-md);
+              font-size: 1rem;
+              background: var(--surface);
             "
           >
             <option value="patient" data-translate="patient">Patient</option>
@@ -209,7 +243,7 @@
 
       <div class="social-login">
         <p
-          style="margin-bottom: 1rem; color: var(--text-light)"
+          style="margin-bottom: 1rem; color: var(--text-muted)"
           data-translate="orContinueWith"
         >
           Or continue with

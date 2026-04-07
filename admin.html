@@ -3,31 +3,39 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Admin panel for managing doctors at HealthBridge."
+    />
     <title>Admin - Manage Doctors | HealthBridge</title>
     <link rel="stylesheet" href="css/style.css" />
     <style>
       .admin-container {
-        max-width: 1000px;
+        max-width: 1200px;
         margin: 2rem auto;
         padding: 0 2rem;
       }
       .admin-grid {
         display: grid;
-        grid-template-columns: 1fr 2fr;
+        grid-template-columns: 320px 1fr;
         gap: 2rem;
       }
       .doctor-card-admin {
         background: white;
         padding: 1.5rem;
-        border-radius: 12px;
+        border-radius: var(--radius-lg);
         margin-bottom: 1rem;
         box-shadow: var(--shadow-sm);
-        border: 1px solid var(--accent);
+        border: 1px solid rgba(226, 232, 240, 0.6);
+        transition: all 0.25s;
+      }
+      .doctor-card-admin:hover {
+        box-shadow: var(--shadow-md);
       }
       .doctor-header {
         display: flex;
         justify-content: space-between;
-        align-items: center;
+        align-items: flex-start;
         margin-bottom: 1rem;
       }
       .doctor-info-grid {
@@ -38,18 +46,20 @@
       }
       .info-item {
         background: var(--background);
-        padding: 0.5rem;
-        border-radius: 8px;
+        padding: 0.75rem;
+        border-radius: var(--radius-md);
         text-align: center;
       }
       .info-label {
         font-size: 0.75rem;
-        color: var(--text-light);
+        color: var(--text-muted);
         text-transform: uppercase;
+        letter-spacing: 0.05em;
       }
       .info-value {
         font-weight: 600;
-        color: var(--text-dark);
+        color: var(--text-primary);
+        margin-top: 0.25rem;
       }
       .doctor-actions {
         display: flex;
@@ -63,7 +73,7 @@
         display: none;
         margin-top: 1rem;
         padding-top: 1rem;
-        border-top: 1px solid var(--accent);
+        border-top: 1px solid #e2e8f0;
       }
       .edit-form.active {
         display: block;
@@ -76,35 +86,46 @@
       }
       .stats-bar {
         background: white;
-        padding: 1.5rem;
-        border-radius: 12px;
+        padding: 1.5rem 2rem;
+        border-radius: var(--radius-lg);
         margin-bottom: 2rem;
         display: flex;
-        gap: 2rem;
+        gap: 3rem;
         justify-content: center;
+        box-shadow: var(--shadow-sm);
+        border: 1px solid rgba(226, 232, 240, 0.6);
       }
       .stat-item {
         text-align: center;
       }
       .stat-number {
-        font-size: 2rem;
-        font-weight: 700;
-        color: var(--primary);
+        font-size: 2.5rem;
+        font-weight: 800;
+        background: linear-gradient(
+          135deg,
+          var(--primary) 0%,
+          var(--primary-dark) 100%
+        );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
       }
       .empty-state {
         text-align: center;
-        padding: 3rem;
-        color: var(--text-light);
+        padding: 4rem 2rem;
+        color: var(--text-muted);
+        background: var(--background);
+        border-radius: var(--radius-lg);
       }
       .specialty-badge {
         display: inline-block;
-        padding: 0.25rem 0.75rem;
-        border-radius: 20px;
+        padding: 0.375rem 0.875rem;
+        border-radius: var(--radius-full);
         font-size: 0.875rem;
         font-weight: 600;
       }
       .available-badge {
-        background: var(--secondary);
+        background: var(--primary-subtle);
         color: var(--primary);
       }
       .unavailable-badge {
@@ -112,17 +133,21 @@
         color: var(--danger);
       }
       @media (max-width: 768px) {
-        .admin-grid, .doctor-info-grid, .form-row {
+        .admin-grid,
+        .doctor-info-grid,
+        .form-row {
           grid-template-columns: 1fr;
         }
         .stats-bar {
           flex-direction: column;
+          gap: 1.5rem;
         }
       }
     </style>
   </head>
   <body>
-    <nav class="navbar">
+    <!-- Admin Navbar -->
+    <nav class="navbar" id="navbar">
       <div class="nav-container">
         <a href="index.html" class="logo">
           <div class="logo-icon">🏥</div>
@@ -136,8 +161,10 @@
     </nav>
 
     <div class="admin-container">
-      <h1 style="margin-bottom: 0.5rem">👨‍⚕️ Doctor Management</h1>
-      <p style="color: var(--text-light); margin-bottom: 2rem">
+      <h1 style="margin-bottom: 0.5rem; font-size: 2rem">
+        👨‍⚕️ Doctor Management
+      </h1>
+      <p style="color: var(--text-muted); margin-bottom: 2rem">
         Add, edit, or remove doctors from the system. Changes are saved locally
         in your browser.
       </p>
@@ -146,22 +173,30 @@
       <div class="stats-bar">
         <div class="stat-item">
           <div class="stat-number" id="total-doctors">0</div>
-          <div>Total Doctors</div>
+          <div style="color: var(--text-secondary); margin-top: 0.25rem">
+            Total Doctors
+          </div>
         </div>
         <div class="stat-item">
           <div class="stat-number" id="available-doctors">0</div>
-          <div>Available</div>
+          <div style="color: var(--text-secondary); margin-top: 0.25rem">
+            Available
+          </div>
         </div>
         <div class="stat-item">
           <div class="stat-number" id="specialties-count">0</div>
-          <div>Specialties</div>
+          <div style="color: var(--text-secondary); margin-top: 0.25rem">
+            Specialties
+          </div>
         </div>
       </div>
 
       <div class="admin-grid">
         <!-- Add New Doctor Form -->
         <div class="card" style="height: fit-content">
-          <h3 style="margin-bottom: 1.5rem">➕ Add New Doctor</h3>
+          <h3 style="margin-bottom: 1.5rem; font-size: 1.25rem">
+            ➕ Add New Doctor
+          </h3>
           <form id="add-doctor-form">
             <div class="form-group">
               <label>Full Name</label>
@@ -216,9 +251,21 @@
             </div>
 
             <div class="form-group">
-              <label>
-                <input type="checkbox" id="new-available" checked /> Available
-                for Booking
+              <label
+                style="
+                  display: flex;
+                  align-items: center;
+                  gap: 0.5rem;
+                  cursor: pointer;
+                "
+              >
+                <input
+                  type="checkbox"
+                  id="new-available"
+                  checked
+                  style="width: auto"
+                />
+                <span>Available for Booking</span>
               </label>
             </div>
 
@@ -228,14 +275,12 @@
           </form>
 
           <hr
-            style="
-              margin: 2rem 0;
-              border: none;
-              border-top: 1px solid var(--accent);
-            "
+            style="margin: 2rem 0; border: none; border-top: 1px solid #e2e8f0"
           />
 
-          <h4 style="margin-bottom: 1rem">⚠️ Danger Zone</h4>
+          <h4 style="margin-bottom: 1rem; color: var(--danger)">
+            ⚠️ Danger Zone
+          </h4>
           <button
             onclick="resetAllDoctors()"
             class="btn btn-danger"
@@ -246,7 +291,7 @@
           <p
             style="
               font-size: 0.875rem;
-              color: var(--text-light);
+              color: var(--text-muted);
               margin-top: 0.5rem;
             "
           >
@@ -263,6 +308,8 @@
               justify-content: space-between;
               align-items: center;
               margin-bottom: 1.5rem;
+              flex-wrap: wrap;
+              gap: 1rem;
             "
           >
             <h3>Current Doctors</h3>
@@ -271,19 +318,36 @@
               id="search-doctors"
               placeholder="Search doctors..."
               style="
-                padding: 0.5rem 1rem;
-                border: 1px solid var(--accent);
-                border-radius: 8px;
+                padding: 0.625rem 1rem;
+                border: 1px solid #e2e8f0;
+                border-radius: var(--radius-md);
+                min-width: 200px;
               "
             />
           </div>
 
           <div id="doctors-list-admin">
-            <div class="empty-state">Loading doctors...</div>
+            <div class="empty-state">
+              <div style="font-size: 3rem; margin-bottom: 1rem">⏳</div>
+              <h3>Loading doctors...</h3>
+            </div>
           </div>
         </div>
       </div>
     </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="footer-content">
+        <div>
+          <h3>🏥 HealthBridge Admin</h3>
+          <p style="margin-top: 1rem">Doctor management system.</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 HealthBridge. All rights reserved.</p>
+      </div>
+    </footer>
 
     <script src="js/script.js"></script>
     <script>
@@ -314,84 +378,85 @@
 
         if (doctors.length === 0) {
           container.innerHTML = `
-          <div class="empty-state">
-            <div style="font-size: 3rem; margin-bottom: 1rem;">👨‍⚕️</div>
-            <h3>No doctors found</h3>
-            <p>Add your first doctor using the form on the left.</p>
-          </div>
-        `;
+            <div class="empty-state">
+              <div style="font-size: 3rem; margin-bottom: 1rem;">👨‍⚕️</div>
+              <h3>No doctors found</h3>
+              <p>Add your first doctor using the form on the left.</p>
+            </div>
+          `;
           return;
         }
 
         container.innerHTML = doctors
           .map(
             (doc) => `
-        <div class="doctor-card-admin" data-id="${doc.id}">
-          <div class="doctor-header">
-            <div>
-              <h4 style="margin-bottom: 0.25rem;">${doc.name}</h4>
-              <span class="specialty-badge ${doc.available ? "available-badge" : "unavailable-badge"}">
-                ${doc.specialty} ${doc.available ? "● Available" : "● Unavailable"}
-              </span>
+          <div class="doctor-card-admin" data-id="${doc.id}">
+            <div class="doctor-header">
+              <div>
+                <h4 style="margin-bottom: 0.25rem; font-size: 1.1rem;">${doc.name}</h4>
+                <span class="specialty-badge ${doc.available ? "available-badge" : "unavailable-badge"}">
+                  ${doc.specialty} ${doc.available ? "● Available" : "● Unavailable"}
+                </span>
+              </div>
+              <div class="doctor-actions">
+                <button onclick="toggleEditForm(${doc.id})" class="btn btn-secondary btn-small">Edit</button>
+                <button onclick="deleteDoctor(${doc.id})" class="btn btn-danger btn-small">Delete</button>
+              </div>
             </div>
-            <div class="doctor-actions">
-              <button onclick="toggleEditForm(${doc.id})" class="btn btn-secondary btn-small">Edit</button>
-              <button onclick="deleteDoctor(${doc.id})" class="btn btn-danger btn-small">Delete</button>
+            
+            <div class="doctor-info-grid">
+              <div class="info-item">
+                <div class="info-label">Experience</div>
+                <div class="info-value">${doc.experience} years</div>
+              </div>
+              <div class="info-item">
+                <div class="info-label">Rating</div>
+                <div class="info-value">⭐ ${doc.rating}</div>
+              </div>
+              <div class="info-item">
+                <div class="info-label">ID</div>
+                <div class="info-value">#${doc.id}</div>
+              </div>
+            </div>
+            
+            <!-- Edit Form (Hidden by default) -->
+            <div class="edit-form" id="edit-form-${doc.id}">
+              <h5 style="margin-bottom: 1rem;">Edit Doctor</h5>
+              <div class="form-row">
+                <div class="form-group">
+                  <label>Name</label>
+                  <input type="text" id="edit-name-${doc.id}" value="${doc.name}">
+                </div>
+                <div class="form-group">
+                  <label>Specialty</label>
+                  <select id="edit-specialty-${doc.id}">
+                    ${getSpecialtyOptions(doc.specialty)}
+                  </select>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label>Experience</label>
+                  <input type="number" id="edit-exp-${doc.id}" value="${doc.experience}" min="1" max="50">
+                </div>
+                <div class="form-group">
+                  <label>Rating</label>
+                  <input type="number" id="edit-rating-${doc.id}" value="${doc.rating}" min="1" max="5" step="0.1">
+                </div>
+              </div>
+              <div class="form-group">
+                <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
+                  <input type="checkbox" id="edit-available-${doc.id}" ${doc.available ? "checked" : ""} style="width: auto;">
+                  <span>Available</span>
+                </label>
+              </div>
+              <div style="display: flex; gap: 0.5rem;">
+                <button onclick="saveDoctorEdit(${doc.id})" class="btn btn-primary btn-small">Save Changes</button>
+                <button onclick="toggleEditForm(${doc.id})" class="btn btn-outline btn-small">Cancel</button>
+              </div>
             </div>
           </div>
-          
-          <div class="doctor-info-grid">
-            <div class="info-item">
-              <div class="info-label">Experience</div>
-              <div class="info-value">${doc.experience} years</div>
-            </div>
-            <div class="info-item">
-              <div class="info-label">Rating</div>
-              <div class="info-value">⭐ ${doc.rating}</div>
-            </div>
-            <div class="info-item">
-              <div class="info-label">ID</div>
-              <div class="info-value">#${doc.id}</div>
-            </div>
-          </div>
-          
-          <!-- Edit Form (Hidden by default) -->
-          <div class="edit-form" id="edit-form-${doc.id}">
-            <h5 style="margin-bottom: 1rem;">Edit Doctor</h5>
-            <div class="form-row">
-              <div class="form-group">
-                <label>Name</label>
-                <input type="text" id="edit-name-${doc.id}" value="${doc.name}">
-              </div>
-              <div class="form-group">
-                <label>Specialty</label>
-                <select id="edit-specialty-${doc.id}">
-                  ${getSpecialtyOptions(doc.specialty)}
-                </select>
-              </div>
-            </div>
-            <div class="form-row">
-              <div class="form-group">
-                <label>Experience</label>
-                <input type="number" id="edit-exp-${doc.id}" value="${doc.experience}" min="1" max="50">
-              </div>
-              <div class="form-group">
-                <label>Rating</label>
-                <input type="number" id="edit-rating-${doc.id}" value="${doc.rating}" min="1" max="5" step="0.1">
-              </div>
-            </div>
-            <div class="form-group">
-              <label>
-                <input type="checkbox" id="edit-available-${doc.id}" ${doc.available ? "checked" : ""}> Available
-              </label>
-            </div>
-            <div style="display: flex; gap: 0.5rem;">
-              <button onclick="saveDoctorEdit(${doc.id})" class="btn btn-primary btn-small">Save Changes</button>
-              <button onclick="toggleEditForm(${doc.id})" class="btn btn-outline btn-small">Cancel</button>
-            </div>
-          </div>
-        </div>
-      `,
+        `,
           )
           .join("");
       }
@@ -459,7 +524,6 @@
           return;
 
         localStorage.removeItem("doctors");
-        // This will trigger generateMockDoctors() on next load
         location.reload();
       }
 

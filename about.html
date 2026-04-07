@@ -3,12 +3,16 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Learn about HealthBridge's mission to provide accessible healthcare."
+    />
     <title>About Us - HealthBridge</title>
     <link rel="stylesheet" href="css/style.css" />
   </head>
   <body>
     <!-- Navigation -->
-    <nav class="navbar">
+    <nav class="navbar" id="navbar">
       <div class="nav-container">
         <a href="index.html" class="logo">
           <div class="logo-icon">🏥</div>
@@ -18,7 +22,11 @@
           <ul class="nav-links">
             <li><a href="index.html" data-translate="home">Home</a></li>
             <li><a href="doctors.html" data-translate="doctors">Doctors</a></li>
-            <li><a href="about.html" data-translate="aboutUs">About Us</a></li>
+            <li>
+              <a href="about.html" data-translate="aboutUs" class="active"
+                >About Us</a
+              >
+            </li>
             <li>
               <a href="contact.html" data-translate="contactUs">Contact Us</a>
             </li>
@@ -54,33 +62,37 @@
         </button>
       </div>
     </nav>
-    <section
-      style="
-        background: linear-gradient(
-          135deg,
-          var(--secondary) 0%,
-          var(--white) 100%
-        );
-        padding: 4rem 2rem;
-        text-align: center;
-      "
-    >
-      <h1 data-translate="aboutUs">About HealthBridge</h1>
-      <p
-        style="max-width: 600px; margin: 1rem auto 0; color: var(--text-light)"
-        data-translate="connectingPatients"
-      >
-        Bridging the gap between patients and quality healthcare
-      </p>
+
+    <!-- Hero Section -->
+    <section class="hero" style="min-height: 40vh; padding: 5rem 2rem">
+      <div class="hero-content">
+        <h1 data-translate="aboutUs">About HealthBridge</h1>
+        <p
+          data-translate="connectingPatients"
+          style="color: var(--text-secondary)"
+        >
+          Bridging the gap between patients and quality healthcare
+        </p>
+      </div>
     </section>
 
-    <div style="max-width: 1000px; margin: 0 auto; padding: 4rem 2rem">
-      <div class="grid-2" style="align-items: center; margin-bottom: 4rem">
+    <!-- Story Section -->
+    <div style="max-width: 1000px; margin: 0 auto; padding: 5rem 2rem">
+      <div class="grid-2" style="align-items: center; margin-bottom: 5rem">
         <div>
-          <h2 data-translate="ourStory">Our Story</h2>
+          <h2
+            data-translate="ourStory"
+            style="font-size: 2rem; margin-bottom: 1.5rem"
+          >
+            Our Story
+          </h2>
           <p
-            style="margin-top: 1rem; color: var(--text-light); line-height: 1.8"
             data-translate="ourStoryP1"
+            style="
+              color: var(--text-secondary);
+              line-height: 1.8;
+              margin-bottom: 1rem;
+            "
           >
             Founded in 2026, HealthBridge was born from a simple idea:
             healthcare should be accessible, transparent, and patient-centered.
@@ -89,8 +101,8 @@
             better.
           </p>
           <p
-            style="margin-top: 1rem; color: var(--text-light); line-height: 1.8"
             data-translate="ourStoryP2"
+            style="color: var(--text-secondary); line-height: 1.8"
           >
             Today, we serve thousands of patients, connecting them with top-tier
             medical professionals and providing tools to manage their health
@@ -99,32 +111,61 @@
         </div>
         <div
           style="
-            background: var(--secondary);
-            height: 300px;
-            border-radius: var(--radius);
+            background: linear-gradient(
+              135deg,
+              var(--primary-subtle) 0%,
+              var(--secondary-subtle) 100%
+            );
+            height: 320px;
+            border-radius: var(--radius-lg);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 5rem;
+            font-size: 6rem;
+            box-shadow: var(--shadow-lg);
           "
         >
           🏥
         </div>
       </div>
 
-      <div style="text-align: center; margin-bottom: 4rem">
-        <h2 data-translate="missionVision">Mission & Vision</h2>
+      <!-- Mission & Vision -->
+      <div style="text-align: center; margin-bottom: 5rem">
+        <h2
+          data-translate="missionVision"
+          style="font-size: 2rem; margin-bottom: 2rem"
+        >
+          Mission & Vision
+        </h2>
         <div class="card-grid" style="margin-top: 2rem">
           <div class="card" style="border-top: 4px solid var(--primary)">
-            <h3 data-translate="ourMission">🎯 Our Mission</h3>
-            <p style="margin-top: 1rem" data-translate="ourMission">
+            <div style="font-size: 3rem; margin-bottom: 1rem">🎯</div>
+            <h3 data-translate="ourMission" style="font-size: 1.5rem">
+              Our Mission
+            </h3>
+            <p
+              style="
+                margin-top: 1rem;
+                color: var(--text-secondary);
+                line-height: 1.7;
+              "
+            >
               To empower patients with easy access to healthcare services and
               information, improving health outcomes through technology.
             </p>
           </div>
-          <div class="card" style="border-top: 4px solid var(--highlight)">
-            <h3 data-translate="ourVision">👁️ Our Vision</h3>
-            <p style="margin-top: 1rem" data-translate="ourVision">
+          <div class="card" style="border-top: 4px solid var(--secondary)">
+            <div style="font-size: 3rem; margin-bottom: 1rem">👁️</div>
+            <h3 data-translate="ourVision" style="font-size: 1.5rem">
+              Our Vision
+            </h3>
+            <p
+              style="
+                margin-top: 1rem;
+                color: var(--text-secondary);
+                line-height: 1.7;
+              "
+            >
               A world where everyone has access to quality healthcare,
               regardless of location or circumstances.
             </p>
@@ -132,9 +173,10 @@
         </div>
       </div>
 
+      <!-- Team Section -->
       <h2
         class="text-center"
-        style="margin-bottom: 2rem"
+        style="margin-bottom: 2.5rem; font-size: 2rem"
         data-translate="ourTeam"
       >
         Our Team
@@ -143,93 +185,160 @@
         <div class="card text-center">
           <div
             style="
-              width: 80px;
-              height: 80px;
-              background: var(--secondary);
+              width: 90px;
+              height: 90px;
+              background: linear-gradient(
+                135deg,
+                var(--primary-subtle) 0%,
+                var(--secondary-subtle) 100%
+              );
               border-radius: 50%;
-              margin: 0 auto 1rem;
+              margin: 0 auto 1.5rem;
               display: flex;
               align-items: center;
               justify-content: center;
-              font-size: 2rem;
+              font-size: 2.5rem;
             "
           >
             👨‍⚕️
           </div>
-          <h4>Dr. Ahmed Hassan</h4>
-          <p style="color: var(--primary)">Founder & CEO</p>
-          <p style="color: var(--text-light); font-size: 0.9rem">
+          <h4 style="font-size: 1.25rem">Dr. Ahmed Hassan</h4>
+          <p style="color: var(--primary); font-weight: 600; margin: 0.5rem 0">
+            Founder & CEO
+          </p>
+          <p style="color: var(--text-muted); font-size: 0.9rem">
             20+ years in healthcare management
           </p>
         </div>
         <div class="card text-center">
           <div
             style="
-              width: 80px;
-              height: 80px;
-              background: var(--secondary);
+              width: 90px;
+              height: 90px;
+              background: linear-gradient(
+                135deg,
+                var(--secondary-subtle) 0%,
+                var(--primary-subtle) 100%
+              );
               border-radius: 50%;
-              margin: 0 auto 1rem;
+              margin: 0 auto 1.5rem;
               display: flex;
               align-items: center;
               justify-content: center;
-              font-size: 2rem;
+              font-size: 2.5rem;
             "
           >
             👩‍💻
           </div>
-          <h4>Sarah Johnson</h4>
-          <p style="color: var(--primary)">CTO</p>
-          <p style="color: var(--text-light); font-size: 0.9rem">
+          <h4 style="font-size: 1.25rem">Sarah Johnson</h4>
+          <p style="color: var(--primary); font-weight: 600; margin: 0.5rem 0">
+            CTO
+          </p>
+          <p style="color: var(--text-muted); font-size: 0.9rem">
             Tech innovator & healthcare IT expert
           </p>
         </div>
         <div class="card text-center">
           <div
             style="
-              width: 80px;
-              height: 80px;
-              background: var(--secondary);
+              width: 90px;
+              height: 90px;
+              background: linear-gradient(
+                135deg,
+                var(--primary-subtle) 0%,
+                var(--secondary-subtle) 100%
+              );
               border-radius: 50%;
-              margin: 0 auto 1rem;
+              margin: 0 auto 1.5rem;
               display: flex;
               align-items: center;
               justify-content: center;
-              font-size: 2rem;
+              font-size: 2.5rem;
             "
           >
             👩‍⚕️
           </div>
-          <h4>Dr. Fatima Al-Rashid</h4>
-          <p style="color: var(--primary)">Medical Director</p>
-          <p style="color: var(--text-light); font-size: 0.9rem">
+          <h4 style="font-size: 1.25rem">Dr. Fatima Al-Rashid</h4>
+          <p style="color: var(--primary); font-weight: 600; margin: 0.5rem 0">
+            Medical Director
+          </p>
+          <p style="color: var(--text-muted); font-size: 0.9rem">
             Specialist in Internal Medicine
           </p>
         </div>
         <div class="card text-center">
           <div
             style="
-              width: 80px;
-              height: 80px;
-              background: var(--secondary);
+              width: 90px;
+              height: 90px;
+              background: linear-gradient(
+                135deg,
+                var(--secondary-subtle) 0%,
+                var(--primary-subtle) 100%
+              );
               border-radius: 50%;
-              margin: 0 auto 1rem;
+              margin: 0 auto 1.5rem;
               display: flex;
               align-items: center;
               justify-content: center;
-              font-size: 2rem;
+              font-size: 2.5rem;
             "
           >
             👨‍💼
           </div>
-          <h4>Mohammed Ali</h4>
-          <p style="color: var(--primary)">Head of Operations</p>
-          <p style="color: var(--text-light); font-size: 0.9rem">
+          <h4 style="font-size: 1.25rem">Mohammed Ali</h4>
+          <p style="color: var(--primary); font-weight: 600; margin: 0.5rem 0">
+            Head of Operations
+          </p>
+          <p style="color: var(--text-muted); font-size: 0.9rem">
             Ensuring seamless patient experience
           </p>
         </div>
       </div>
     </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="footer-content">
+        <div>
+          <h3>🏥 HealthBridge</h3>
+          <p data-translate="connectingPatients" style="margin-top: 1rem">
+            Connecting patients with quality healthcare services.
+          </p>
+        </div>
+        <div>
+          <h4 data-translate="quickLinks">Quick Links</h4>
+          <ul style="margin-top: 1rem">
+            <li>
+              <a href="doctors.html" data-translate="findDoctor"
+                >Find a Doctor</a
+              >
+            </li>
+            <li>
+              <a href="appointments.html" data-translate="bookAppointment"
+                >Book Appointment</a
+              >
+            </li>
+            <li>
+              <a href="emergency.html" data-translate="emergency">Emergency</a>
+            </li>
+          </ul>
+        </div>
+        <div>
+          <h4 data-translate="contactUs">Contact Us</h4>
+          <p style="margin-top: 1rem">
+            <span data-translate="phone">📞 Phone</span>: +1 (555) 123-4567<br />
+            <span data-translate="email">📧 Email</span>:
+            support@healthbridge.com
+          </p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p data-translate="copyright">
+          &copy; 2026 HealthBridge. All rights reserved.
+        </p>
+      </div>
+    </footer>
 
     <script src="js/script.js"></script>
   </body>

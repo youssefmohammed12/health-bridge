@@ -3,12 +3,16 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Find expert doctors at HealthBridge. Browse specialties and book appointments."
+    />
     <title>Our Doctors - HealthBridge</title>
     <link rel="stylesheet" href="css/style.css" />
   </head>
   <body>
     <!-- Navigation -->
-    <nav class="navbar">
+    <nav class="navbar" id="navbar">
       <div class="nav-container">
         <a href="index.html" class="logo">
           <div class="logo-icon">🏥</div>
@@ -17,7 +21,11 @@
         <div class="nav-menu" id="nav-menu">
           <ul class="nav-links">
             <li><a href="index.html" data-translate="home">Home</a></li>
-            <li><a href="doctors.html" data-translate="doctors">Doctors</a></li>
+            <li>
+              <a href="doctors.html" data-translate="doctors" class="active"
+                >Doctors</a
+              >
+            </li>
             <li><a href="about.html" data-translate="aboutUs">About Us</a></li>
             <li>
               <a href="contact.html" data-translate="contactUs">Contact Us</a>
@@ -55,19 +63,31 @@
       </div>
     </nav>
 
-    <section style="padding: 3rem 2rem; max-width: 1200px; margin: 0 auto">
-      <div style="text-align: center; margin-bottom: 3rem">
+    <!-- Hero Section -->
+    <section class="hero" style="min-height: 40vh; padding: 5rem 2rem">
+      <div class="hero-content">
         <h1 data-translate="doctors">Our Medical Specialists</h1>
-        <p
-          style="color: var(--text-light); margin-top: 0.5rem"
-          data-translate="findDoctor"
-        >
+        <p data-translate="findDoctor" style="color: var(--text-secondary)">
           Find the right doctor for your needs
         </p>
       </div>
+    </section>
 
+    <!-- Doctors Section -->
+    <section style="padding: 3rem 2rem; max-width: 1280px; margin: 0 auto">
+      <!-- Filters -->
       <div
-        style="display: flex; gap: 1rem; margin-bottom: 2rem; flex-wrap: wrap"
+        style="
+          display: flex;
+          gap: 1rem;
+          margin-bottom: 2.5rem;
+          flex-wrap: wrap;
+          background: var(--surface);
+          padding: 1.5rem;
+          border-radius: var(--radius-lg);
+          box-shadow: var(--shadow-sm);
+          border: 1px solid rgba(226, 232, 240, 0.6);
+        "
       >
         <input
           type="text"
@@ -77,19 +97,24 @@
           style="
             flex: 1;
             min-width: 200px;
-            padding: 0.75rem;
-            border: 2px solid var(--accent);
-            border-radius: var(--radius-sm);
+            padding: 0.875rem 1rem;
+            border: 2px solid #e2e8f0;
+            border-radius: var(--radius-md);
+            font-size: 1rem;
+            transition: all 0.25s;
           "
         />
 
         <select
           id="specialty-filter"
           style="
-            padding: 0.75rem;
-            border: 2px solid var(--accent);
-            border-radius: var(--radius-sm);
-            min-width: 150px;
+            padding: 0.875rem 1rem;
+            border: 2px solid #e2e8f0;
+            border-radius: var(--radius-md);
+            min-width: 160px;
+            font-size: 1rem;
+            background: var(--surface);
+            cursor: pointer;
           "
         >
           <option value="all" data-translate="allSpecialties">
@@ -123,9 +148,12 @@
 
         <select
           style="
-            padding: 0.75rem;
-            border: 2px solid var(--accent);
-            border-radius: var(--radius-sm);
+            padding: 0.875rem 1rem;
+            border: 2px solid #e2e8f0;
+            border-radius: var(--radius-md);
+            font-size: 1rem;
+            background: var(--surface);
+            cursor: pointer;
           "
         >
           <option value="all" data-translate="availability">
@@ -139,10 +167,54 @@
         </select>
       </div>
 
+      <!-- Doctors Grid -->
       <div id="doctors-list" class="doctor-grid">
         <!-- Doctors loaded by JavaScript -->
       </div>
     </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="footer-content">
+        <div>
+          <h3>🏥 HealthBridge</h3>
+          <p data-translate="connectingPatients" style="margin-top: 1rem">
+            Connecting patients with quality healthcare services.
+          </p>
+        </div>
+        <div>
+          <h4 data-translate="quickLinks">Quick Links</h4>
+          <ul style="margin-top: 1rem">
+            <li>
+              <a href="doctors.html" data-translate="findDoctor"
+                >Find a Doctor</a
+              >
+            </li>
+            <li>
+              <a href="appointments.html" data-translate="bookAppointment"
+                >Book Appointment</a
+              >
+            </li>
+            <li>
+              <a href="emergency.html" data-translate="emergency">Emergency</a>
+            </li>
+          </ul>
+        </div>
+        <div>
+          <h4 data-translate="contactUs">Contact Us</h4>
+          <p style="margin-top: 1rem">
+            <span data-translate="phone">📞 Phone</span>: +1 (555) 123-4567<br />
+            <span data-translate="email">📧 Email</span>:
+            support@healthbridge.com
+          </p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p data-translate="copyright">
+          &copy; 2026 HealthBridge. All rights reserved.
+        </p>
+      </div>
+    </footer>
 
     <script src="js/script.js"></script>
   </body>

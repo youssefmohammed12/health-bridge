@@ -3,12 +3,16 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Access your medical records securely with HealthBridge."
+    />
     <title>Medical Records - HealthBridge</title>
     <link rel="stylesheet" href="css/style.css" />
   </head>
   <body>
     <!-- Navigation -->
-    <nav class="navbar">
+    <nav class="navbar" id="navbar">
       <div class="nav-container">
         <a href="index.html" class="logo">
           <div class="logo-icon">🏥</div>
@@ -56,13 +60,18 @@
     </nav>
 
     <div class="dashboard">
+      <!-- Sidebar -->
       <aside class="sidebar">
         <div style="text-align: center; margin-bottom: 2rem">
           <div
             style="
-              width: 80px;
-              height: 80px;
-              background: var(--secondary);
+              width: 90px;
+              height: 90px;
+              background: linear-gradient(
+                135deg,
+                var(--primary-subtle) 0%,
+                var(--secondary-subtle) 100%
+              );
               border-radius: 50%;
               margin: 0 auto 1rem;
               display: flex;
@@ -77,32 +86,42 @@
         </div>
         <ul class="sidebar-menu">
           <li>
-            <a href="dashboard.html"
-              >📊 <span data-translate="dashboard">Dashboard</span></a
-            >
+            <a href="dashboard.html">
+              <span>📊</span> <span data-translate="dashboard">Dashboard</span>
+            </a>
           </li>
           <li>
-            <a href="appointments.html"
-              >📅 <span data-translate="appointments">Appointments</span></a
-            >
+            <a href="appointments.html">
+              <span>📅</span>
+              <span data-translate="appointments">Appointments</span>
+            </a>
           </li>
           <li>
-            <a href="records.html" class="active"
-              >📋
-              <span data-translate="medicalRecords">Medical Records</span></a
-            >
+            <a href="records.html" class="active">
+              <span>📋</span>
+              <span data-translate="medicalRecords">Medical Records</span>
+            </a>
           </li>
           <li>
-            <a href="support.html"
-              >💬 <span data-translate="support">Support</span></a
-            >
+            <a href="support.html">
+              <span>💬</span> <span data-translate="support">Support</span>
+            </a>
           </li>
           <li>
-            <a href="#">⚙️ <span data-translate="settings">Settings</span></a>
+            <a
+              href="#"
+              onclick="
+                showModal('<h2>Settings</h2><p>Settings page coming soon!</p>');
+                return false;
+              "
+            >
+              <span>⚙️</span> <span data-translate="settings">Settings</span>
+            </a>
           </li>
         </ul>
       </aside>
 
+      <!-- Main Content -->
       <main class="main-content">
         <div
           style="
@@ -110,6 +129,8 @@
             justify-content: space-between;
             align-items: center;
             margin-bottom: 2rem;
+            flex-wrap: wrap;
+            gap: 1rem;
           "
         >
           <h2 data-translate="medicalRecords">Medical Records</h2>
@@ -133,8 +154,14 @@
           </div>
         </div>
 
+        <!-- Filter Buttons -->
         <div
-          style="display: flex; gap: 1rem; margin-bottom: 2rem; flex-wrap: wrap"
+          style="
+            display: flex;
+            gap: 0.75rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+          "
         >
           <button
             class="btn btn-primary filter-btn"
@@ -162,6 +189,7 @@
           </button>
         </div>
 
+        <!-- Records List -->
         <div
           id="records-list"
           class="card-grid"

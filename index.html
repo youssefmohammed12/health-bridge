@@ -3,12 +3,19 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="HealthBridge - Your Health Companion. Book appointments and access medical records easily."
+    />
+    <meta name="theme-color" content="#10b981" />
     <title>HealthBridge - Your Health Companion</title>
     <link rel="stylesheet" href="css/style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   </head>
   <body>
     <!-- Navigation -->
-    <nav class="navbar">
+    <nav class="navbar" id="navbar">
       <div class="nav-container">
         <a href="index.html" class="logo">
           <div class="logo-icon">🏥</div>
@@ -16,7 +23,9 @@
         </a>
         <div class="nav-menu" id="nav-menu">
           <ul class="nav-links">
-            <li><a href="index.html" data-translate="home">Home</a></li>
+            <li>
+              <a href="index.html" data-translate="home" class="active">Home</a>
+            </li>
             <li><a href="doctors.html" data-translate="doctors">Doctors</a></li>
             <li><a href="about.html" data-translate="aboutUs">About Us</a></li>
             <li>
@@ -25,7 +34,11 @@
             <li><a href="support.html" data-translate="support">Support</a></li>
           </ul>
           <div class="nav-actions">
-            <button class="lang-toggle" onclick="toggleLanguage()">
+            <button
+              class="lang-toggle"
+              onclick="toggleLanguage()"
+              aria-label="Toggle language"
+            >
               AR/EN
             </button>
             <div id="auth-links">
@@ -58,7 +71,7 @@
     <!-- Hero Section -->
     <section class="hero">
       <div class="hero-content">
-        <h1 data-translate="welcome">Welcome to HealthBridge</h1>
+        <h1 data-translate="welcome">Welcome to <span>HealthBridge</span></h1>
         <p data-translate="subtitle">
           Your health, our priority. Book appointments and access your medical
           records easily.
@@ -70,22 +83,26 @@
             id="search-input"
             data-translate-placeholder="searchPlaceholder"
             placeholder="Search doctors or departments..."
+            aria-label="Search doctors"
           />
           <button
             onclick="window.location.href = 'doctors.html'"
             data-translate="searchDoctors"
+            type="button"
           >
             Search
           </button>
         </div>
 
-        <div style="margin-top: 2rem">
+        <div style="margin-top: 2.5rem">
           <a
             href="emergency.html"
             class="btn btn-emergency"
             data-translate="emergency"
-            >🚨 Emergency</a
           >
+            <span>🚨</span>
+            <span>Emergency</span>
+          </a>
         </div>
       </div>
     </section>
@@ -106,8 +123,11 @@
     </section>
 
     <!-- Services Section -->
-    <section style="padding: 4rem 2rem">
-      <h2 class="text-center mb-2" data-translate="services">Our Services</h2>
+    <section class="section">
+      <h2 class="section-title" data-translate="services">Our Services</h2>
+      <p class="section-subtitle" data-translate="servicesSubtitle">
+        Comprehensive healthcare solutions designed for your convenience
+      </p>
       <div class="card-grid">
         <div class="card">
           <div class="card-icon">📅</div>
@@ -151,121 +171,218 @@
       </div>
     </section>
 
-    <!-- Testimonials -->
-    <section style="background: var(--white); padding: 4rem 2rem">
-      <h2 class="text-center mb-2" data-translate="whatPatientsSay">
+    <!-- Testimonials Section -->
+    <section class="section section-alt">
+      <h2 class="section-title" data-translate="whatPatientsSay">
         What Patients Say
       </h2>
+      <p class="section-subtitle" data-translate="testimonialsSubtitle">
+        Hear from our satisfied patients about their experience
+      </p>
       <div class="card-grid">
         <div class="card">
-          <p data-translate="testimonial1">
+          <div
+            style="
+              display: flex;
+              gap: 4px;
+              margin-bottom: 1rem;
+              color: var(--accent);
+            "
+          >
+            ★★★★★
+          </div>
+          <p
+            data-translate="testimonial1"
+            style="font-style: italic; line-height: 1.8"
+          >
             "HealthBridge made it so easy to book my appointment. The interface
             is clean and intuitive!"
           </p>
-          <p style="margin-top: 1rem; font-weight: 600; color: var(--primary)">
-            - Sarah M.
-          </p>
+          <div
+            style="
+              margin-top: 1.5rem;
+              display: flex;
+              align-items: center;
+              gap: 1rem;
+            "
+          >
+            <div
+              style="
+                width: 48px;
+                height: 48px;
+                background: var(--primary-subtle);
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 1.5rem;
+              "
+            >
+              👩
+            </div>
+            <div>
+              <p style="font-weight: 600; color: var(--text-primary)">
+                Sarah M.
+              </p>
+              <p style="font-size: 0.875rem; color: var(--text-muted)">
+                Regular Patient
+              </p>
+            </div>
+          </div>
         </div>
         <div class="card">
-          <p data-translate="testimonial2">
+          <div
+            style="
+              display: flex;
+              gap: 4px;
+              margin-bottom: 1rem;
+              color: var(--accent);
+            "
+          >
+            ★★★★★
+          </div>
+          <p
+            data-translate="testimonial2"
+            style="font-style: italic; line-height: 1.8"
+          >
             "I love being able to access my medical records instantly. Best
             healthcare app I've used."
           </p>
-          <p style="margin-top: 1rem; font-weight: 600; color: var(--primary)">
-            - Ahmed K.
-          </p>
+          <div
+            style="
+              margin-top: 1.5rem;
+              display: flex;
+              align-items: center;
+              gap: 1rem;
+            "
+          >
+            <div
+              style="
+                width: 48px;
+                height: 48px;
+                background: var(--secondary-subtle);
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 1.5rem;
+              "
+            >
+              👨
+            </div>
+            <div>
+              <p style="font-weight: 600; color: var(--text-primary)">
+                Ahmed K.
+              </p>
+              <p style="font-size: 0.875rem; color: var(--text-muted)">
+                Premium Member
+              </p>
+            </div>
+          </div>
         </div>
         <div class="card">
-          <p data-translate="testimonial3">
+          <div
+            style="
+              display: flex;
+              gap: 4px;
+              margin-bottom: 1rem;
+              color: var(--accent);
+            "
+          >
+            ★★★★★
+          </div>
+          <p
+            data-translate="testimonial3"
+            style="font-style: italic; line-height: 1.8"
+          >
             "The emergency feature gave me peace of mind. Highly recommended for
             everyone."
           </p>
-          <p style="margin-top: 1rem; font-weight: 600; color: var(--primary)">
-            - Fatima R.
-          </p>
+          <div
+            style="
+              margin-top: 1.5rem;
+              display: flex;
+              align-items: center;
+              gap: 1rem;
+            "
+          >
+            <div
+              style="
+                width: 48px;
+                height: 48px;
+                background: var(--primary-subtle);
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 1.5rem;
+              "
+            >
+              👩
+            </div>
+            <div>
+              <p style="font-weight: 600; color: var(--text-primary)">
+                Fatima R.
+              </p>
+              <p style="font-size: 0.875rem; color: var(--text-muted)">
+                Family Plan
+              </p>
+            </div>
+          </div>
         </div>
       </div>
     </section>
 
     <!-- CTA Section -->
-    <section
-      style="
-        background: linear-gradient(135deg, var(--primary) 0%, #16a34a 100%);
-        color: var(--white);
-        padding: 4rem 2rem;
-        text-align: center;
-      "
-    >
+    <section class="cta-section">
       <h2 data-translate="readyToStart">
         Ready to Take Control of Your Health?
       </h2>
-      <p style="margin: 1rem 0 2rem" data-translate="joinThousands">
+      <p data-translate="joinThousands">
         Join thousands of patients who trust HealthBridge
       </p>
       <a
         href="login.html#signup"
         class="btn"
-        style="background: var(--white); color: var(--primary)"
+        style="font-size: 1.1rem; padding: 1rem 2.5rem"
         data-translate="getStartedToday"
-        >Get Started Today</a
       >
+        Get Started Today
+      </a>
     </section>
 
     <!-- Footer -->
-    <footer
-      style="
-        background: var(--text-dark);
-        color: var(--white);
-        padding: 3rem 2rem 1rem;
-      "
-    >
-      <div
-        style="
-          max-width: 1200px;
-          margin: 0 auto;
-          display: grid;
-          grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-          gap: 2rem;
-        "
-      >
+    <footer class="footer">
+      <div class="footer-content">
         <div>
-          <h3>HealthBridge</h3>
-          <p data-translate="connectingPatients">
-            Connecting patients with quality healthcare services.
+          <h3>🏥 HealthBridge</h3>
+          <p data-translate="connectingPatients" style="margin-top: 1rem">
+            Connecting patients with quality healthcare services. Your health
+            journey starts here.
           </p>
         </div>
         <div>
           <h4 data-translate="quickLinks">Quick Links</h4>
-          <ul style="list-style: none; margin-top: 1rem">
+          <ul style="margin-top: 1rem">
             <li>
-              <a
-                href="doctors.html"
-                style="color: var(--accent); text-decoration: none"
-                data-translate="findDoctor"
+              <a href="doctors.html" data-translate="findDoctor"
                 >Find a Doctor</a
               >
             </li>
             <li>
-              <a
-                href="appointments.html"
-                style="color: var(--accent); text-decoration: none"
-                data-translate="bookAppointment"
+              <a href="appointments.html" data-translate="bookAppointment"
                 >Book Appointment</a
               >
             </li>
             <li>
-              <a
-                href="emergency.html"
-                style="color: var(--accent); text-decoration: none"
-                data-translate="emergency"
-                >Emergency</a
-              >
+              <a href="emergency.html" data-translate="emergency">Emergency</a>
             </li>
+            <li><a href="support.html" data-translate="support">Support</a></li>
           </ul>
         </div>
         <div>
           <h4 data-translate="contactUs">Contact Us</h4>
-          <p>
+          <p style="margin-top: 1rem">
             <span data-translate="phone">📞 Phone</span>: +1 (555) 123-4567<br />
             <span data-translate="email">📧 Email</span>:
             support@healthbridge.com<br />
@@ -274,14 +391,7 @@
           </p>
         </div>
       </div>
-      <div
-        style="
-          text-align: center;
-          margin-top: 2rem;
-          padding-top: 2rem;
-          border-top: 1px solid var(--accent);
-        "
-      >
+      <div class="footer-bottom">
         <p data-translate="copyright">
           &copy; 2026 HealthBridge. All rights reserved.
         </p>
