@@ -647,15 +647,25 @@ tr:hover {
 /* Responsive */
 @media (max-width: 900px) {
   .nav-container {
-    justify-content: center;
     padding: 1rem;
   }
   .nav-links {
+    display: none;
+    flex-direction: column;
     order: 3;
     width: 100%;
-    justify-content: center;
-    flex-wrap: wrap;
+    text-align: center;
+    background: var(--white);
+    padding: 1rem 0;
+    margin-top: 1rem;
+    border-top: 1px solid var(--accent);
     gap: 1rem;
+  }
+  .nav-links.active {
+    display: flex;
+  }
+  .mobile-menu {
+    display: block;
   }
 }
 
@@ -739,4 +749,26 @@ tr:hover {
   border-radius: var(--radius);
   overflow: hidden;
   box-shadow: var(--shadow-sm);
+}
+
+.mobile-menu {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 2rem;
+  cursor: pointer;
+  color: var(--text-dark);
+}
+
+.grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+}
+
+@media (max-width: 768px) {
+  .grid-2 {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
 }

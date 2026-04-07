@@ -111,6 +111,14 @@
         background: #fee2e2;
         color: var(--danger);
       }
+      @media (max-width: 768px) {
+        .admin-grid, .doctor-info-grid, .form-row {
+          grid-template-columns: 1fr;
+        }
+        .stats-bar {
+          flex-direction: column;
+        }
+      }
     </style>
   </head>
   <body>
