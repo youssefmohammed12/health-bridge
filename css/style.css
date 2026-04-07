@@ -665,25 +665,17 @@ tr:hover {
   }
 
   .sidebar {
-    display: none;
+    margin-bottom: 2rem;
   }
 
   .hero h1 {
     font-size: 2rem;
   }
 
-  .nav-links {
-    display: none;
-  }
-
   .nav-actions {
     flex-wrap: wrap;
     justify-content: center;
     width: 100%;
-  }
-
-  .mobile-menu {
-    display: block;
   }
 }
 
