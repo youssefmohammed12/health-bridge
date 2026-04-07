@@ -670,21 +670,64 @@ function logout() {
 
 // Navigation
 function setupNavigation() {
+  // Mobile menu toggle
   const mobileMenuBtn = document.getElementById("mobile-menu-btn");
-  if (mobileMenuBtn) {
-    mobileMenuBtn.addEventListener("click", () => {
-      const navMenu = document.querySelector("#nav-menu");
-      if (navMenu) navMenu.classList.toggle("active");
+  const navMenu = document.getElementById("nav-menu");
+
+  if (mobileMenuBtn && navMenu) {
+    mobileMenuBtn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      navMenu.classList.toggle("active");
+      // Change hamburger icon to X when open
+      if (navMenu.classList.contains("active")) {
+        mobileMenuBtn.innerHTML = "&#10005;"; // X symbol
+        mobileMenuBtn.style.fontSize = "1.5rem";
+      } else {
+        mobileMenuBtn.innerHTML = "&#9776;"; // Hamburger symbol
+        mobileMenuBtn.style.fontSize = "1.75rem";
+      }
+    });
+
+    // Close menu when clicking outside
+    document.addEventListener("click", (e) => {
+      if (!navMenu.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
+        navMenu.classList.remove("active");
+        mobileMenuBtn.innerHTML = "&#9776;";
+        mobileMenuBtn.style.fontSize = "1.75rem";
+      }
+    });
+
+    // Close menu when clicking a link
+    const navLinks = navMenu.querySelectorAll("a");
+    navLinks.forEach((link) => {
+      link.addEventListener("click", () => {
+        navMenu.classList.remove("active");
+        mobileMenuBtn.innerHTML = "&#9776;";
+        mobileMenuBtn.style.fontSize = "1.75rem";
+      });
     });
   }
 
-  const currentPage = window.location.pathname.split("/").pop();
+  // Active page highlighting
+  const currentPage = window.location.pathname.split("/").pop() || "index.html";
   document.querySelectorAll(".nav-links a").forEach((link) => {
-    if (link.getAttribute("href") === currentPage) {
+    const href = link.getAttribute("href");
+    if (href === currentPage || (currentPage === "" && href === "index.html")) {
       link.classList.add("active");
     }
   });
 }
+
+// Ensure this is called on DOMContentLoaded
+document.addEventListener("DOMContentLoaded", function () {
+  initLanguage();
+  checkAuth();
+  setupNavigation(); // This will now work properly
+  setupEventListeners();
+  loadPageSpecificContent();
+  translateStaticContent();
+  initMap();
+});
 
 // Page Specific Content
 function loadPageSpecificContent() {
