@@ -352,6 +352,9 @@ const translations = {
     emergencyCare24_7: "Emergency Care 24/7",
     supportIntro:
       "We're here to help. Find answers or chat with our support team",
+      main: "Main Line",
+      ourMissionText: "To empower patients with easy access to healthcare services and information, improving health outcomes through technology.",
+      ourVisionText: "A world where everyone has access to quality healthcare, regardless of location or circumstances.",
   },
 
   ar: {
@@ -607,6 +610,10 @@ const translations = {
     emergencyCare24_7: "رعاية الطوارئ 24/7",
     supportIntro:
       "نحن هنا للمساعدة. ابحث عن إجابات أو تحدث مع فريق الدعم الخاص بنا",
+
+      main: "الرقم الرئيسي",
+      ourMissionText: "لتمكين المرضى من الوصول السهل إلى خدمات الرعاية الصحية والمعلومات، وتحسين نتائج الصحة من خلال التكنولوجيا.",
+      ourVisionText: "عالم يتمتع فيه الجميع بإمكانية الوصول إلى رعاية صحية عالية الجودة، بغض النظر عن الموقع أو الظروف.",
   },
 };
 
