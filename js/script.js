@@ -670,45 +670,81 @@ function logout() {
 
 // Navigation
 function setupNavigation() {
-  // Mobile menu toggle
   const mobileMenuBtn = document.getElementById("mobile-menu-btn");
   const navMenu = document.getElementById("nav-menu");
 
+  console.log("Mobile button:", mobileMenuBtn); // Debug line
+  console.log("Nav menu:", navMenu); // Debug line
+
   if (mobileMenuBtn && navMenu) {
-    mobileMenuBtn.addEventListener("click", (e) => {
+    // Remove any existing listeners to avoid duplicates
+    mobileMenuBtn.replaceWith(mobileMenuBtn.cloneNode(true));
+    const newBtn = document.getElementById("mobile-menu-btn");
+
+    // Toggle function
+    function toggleMenu(e) {
+      e.preventDefault();
       e.stopPropagation();
+
       navMenu.classList.toggle("active");
-      // Change hamburger icon to X when open
+
+      // Toggle icon between hamburger (☰) and X (✕)
       if (navMenu.classList.contains("active")) {
-        mobileMenuBtn.innerHTML = "&#10005;"; // X symbol
-        mobileMenuBtn.style.fontSize = "1.5rem";
+        newBtn.innerHTML = "&#10005;";
+        newBtn.style.fontSize = "1.5rem";
+        newBtn.setAttribute("aria-expanded", "true");
       } else {
-        mobileMenuBtn.innerHTML = "&#9776;"; // Hamburger symbol
-        mobileMenuBtn.style.fontSize = "1.75rem";
+        newBtn.innerHTML = "&#9776;";
+        newBtn.style.fontSize = "1.75rem";
+        newBtn.setAttribute("aria-expanded", "false");
       }
+
+      console.log("Menu toggled:", navMenu.classList.contains("active")); // Debug
+    }
+
+    // Add click handler
+    newBtn.addEventListener("click", toggleMenu);
+
+    // Also add touchstart for better mobile response
+    newBtn.addEventListener("touchstart", function (e) {
+      e.preventDefault(); // Prevent mouse event emulation
+      toggleMenu(e);
     });
 
-    // Close menu when clicking outside
-    document.addEventListener("click", (e) => {
-      if (!navMenu.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
-        navMenu.classList.remove("active");
-        mobileMenuBtn.innerHTML = "&#9776;";
-        mobileMenuBtn.style.fontSize = "1.75rem";
-      }
-    });
-
-    // Close menu when clicking a link
+    // Close menu when clicking on a link
     const navLinks = navMenu.querySelectorAll("a");
     navLinks.forEach((link) => {
       link.addEventListener("click", () => {
         navMenu.classList.remove("active");
-        mobileMenuBtn.innerHTML = "&#9776;";
-        mobileMenuBtn.style.fontSize = "1.75rem";
+        newBtn.innerHTML = "&#9776;";
+        newBtn.setAttribute("aria-expanded", "false");
       });
     });
+
+    // Close menu when clicking outside
+    document.addEventListener("click", (e) => {
+      if (!navMenu.contains(e.target) && !newBtn.contains(e.target)) {
+        if (navMenu.classList.contains("active")) {
+          navMenu.classList.remove("active");
+          newBtn.innerHTML = "&#9776;";
+          newBtn.setAttribute("aria-expanded", "false");
+        }
+      }
+    });
+
+    // Handle escape key
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && navMenu.classList.contains("active")) {
+        navMenu.classList.remove("active");
+        newBtn.innerHTML = "&#9776;";
+        newBtn.setAttribute("aria-expanded", "false");
+      }
+    });
+  } else {
+    console.error("Mobile menu elements not found!");
   }
 
-  // Active page highlighting
+  // Highlight current page
   const currentPage = window.location.pathname.split("/").pop() || "index.html";
   document.querySelectorAll(".nav-links a").forEach((link) => {
     const href = link.getAttribute("href");
@@ -717,7 +753,6 @@ function setupNavigation() {
     }
   });
 }
-
 // Ensure this is called on DOMContentLoaded
 document.addEventListener("DOMContentLoaded", function () {
   initLanguage();
