@@ -9,54 +9,6 @@
     />
     <title>Login - HealthBridge</title>
     <link rel="stylesheet" href="css/style.css" />
-    <style>
-      .auth-tabs {
-        display: flex;
-        gap: 1rem;
-        margin-bottom: 2rem;
-        border-bottom: 2px solid #e2e8f0;
-      }
-      .tab-btn {
-        background: none;
-        border: none;
-        padding: 1rem 1.5rem;
-        cursor: pointer;
-        font-weight: 600;
-        color: var(--text-muted);
-        border-bottom: 2px solid transparent;
-        margin-bottom: -2px;
-        transition: all 0.25s;
-        font-size: 1rem;
-      }
-      .tab-btn:hover {
-        color: var(--text-secondary);
-      }
-      .tab-btn.active {
-        color: var(--primary);
-        border-bottom-color: var(--primary);
-      }
-      .social-login {
-        margin-top: 1.5rem;
-        padding-top: 1.5rem;
-        border-top: 1px solid #e2e8f0;
-        text-align: center;
-      }
-      .google-btn {
-        width: 100%;
-        background: var(--surface);
-        border: 2px solid #e2e8f0;
-        color: var(--text-primary);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 0.5rem;
-        transition: all 0.25s;
-      }
-      .google-btn:hover {
-        border-color: var(--primary);
-        background: var(--background);
-      }
-    </style>
   </head>
   <body>
     <!-- Simple Navbar -->
@@ -275,10 +227,5 @@
     </div>
 
     <script src="js/script.js"></script>
-    <script>
-      if (window.location.hash === "#signup") {
-        document.querySelector('[data-tab="signup"]').click();
-      }
-    </script>
   </body>
 </html>

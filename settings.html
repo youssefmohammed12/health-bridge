@@ -1,0 +1,1201 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Manage your HealthBridge account settings."
+    />
+    <title data-translate="settings">Settings - HealthBridge</title>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+      <div class="nav-container">
+        <a href="index.html" class="logo">
+          <div class="logo-icon">🏥</div>
+          <span>HealthBridge</span>
+        </a>
+        <div class="nav-menu" id="nav-menu">
+          <ul class="nav-links">
+            <li><a href="index.html" data-translate="home">Home</a></li>
+            <li><a href="doctors.html" data-translate="doctors">Doctors</a></li>
+            <li><a href="about.html" data-translate="aboutUs">About Us</a></li>
+            <li>
+              <a href="contact.html" data-translate="contactUs">Contact Us</a>
+            </li>
+            <li><a href="support.html" data-translate="support">Support</a></li>
+          </ul>
+          <div class="nav-actions">
+            <button class="lang-toggle" onclick="toggleLanguage()">
+              AR/EN
+            </button>
+            <div id="auth-links">
+              <a
+                href="login.html"
+                class="btn btn-outline"
+                data-translate="login"
+                >Login</a
+              >
+              <a
+                href="login.html#signup"
+                class="btn btn-primary"
+                data-translate="signUp"
+                >Sign Up</a
+              >
+            </div>
+          </div>
+        </div>
+        <button
+          id="mobile-menu-btn"
+          class="mobile-menu"
+          aria-label="Toggle menu"
+          aria-expanded="false"
+        >
+          &#9776;
+        </button>
+      </div>
+    </nav>
+
+    <!-- Settings Container -->
+    <div class="settings-container">
+      <h1
+        style="margin-bottom: 2rem; font-size: 2rem"
+        data-translate="settings"
+      >
+        Settings
+      </h1>
+
+      <div class="settings-grid">
+        <!-- Settings Sidebar -->
+        <aside class="settings-sidebar">
+          <ul class="settings-nav">
+            <li>
+              <a
+                href="#profile"
+                class="active"
+                data-section="profile"
+                onclick="
+                  showSettingsSection('profile');
+                  return false;
+                "
+              >
+                <span>👤</span> <span data-translate="profile">Profile</span>
+              </a>
+            </li>
+            <li>
+              <a
+                href="#account"
+                data-section="account"
+                onclick="
+                  showSettingsSection('account');
+                  return false;
+                "
+              >
+                <span>🔐</span>
+                <span data-translate="accountSecurity">Account & Security</span>
+              </a>
+            </li>
+            <li>
+              <a
+                href="#notifications"
+                data-section="notifications"
+                onclick="
+                  showSettingsSection('notifications');
+                  return false;
+                "
+              >
+                <span>🔔</span>
+                <span data-translate="notifications">Notifications</span>
+              </a>
+            </li>
+            <li>
+              <a
+                href="#privacy"
+                data-section="privacy"
+                onclick="
+                  showSettingsSection('privacy');
+                  return false;
+                "
+              >
+                <span>🔒</span> <span data-translate="privacy">Privacy</span>
+              </a>
+            </li>
+            <li>
+              <a
+                href="#appearance"
+                data-section="appearance"
+                onclick="
+                  showSettingsSection('appearance');
+                  return false;
+                "
+              >
+                <span>🎨</span>
+                <span data-translate="appearance">Appearance</span>
+              </a>
+            </li>
+            <li>
+              <a
+                href="#language"
+                data-section="language"
+                onclick="
+                  showSettingsSection('language');
+                  return false;
+                "
+              >
+                <span>🌐</span>
+                <span data-translate="languageRegion">Language & Region</span>
+              </a>
+            </li>
+            <li>
+              <a
+                href="#data"
+                data-section="data"
+                onclick="
+                  showSettingsSection('data');
+                  return false;
+                "
+              >
+                <span>💾</span>
+                <span data-translate="dataStorage">Data & Storage</span>
+              </a>
+            </li>
+            <li>
+              <a
+                href="#devices"
+                data-section="devices"
+                onclick="
+                  showSettingsSection('devices');
+                  return false;
+                "
+              >
+                <span>📱</span>
+                <span data-translate="connectedDevices">Connected Devices</span>
+              </a>
+            </li>
+            <li>
+              <a
+                href="#activity"
+                data-section="activity"
+                onclick="
+                  showSettingsSection('activity');
+                  return false;
+                "
+              >
+                <span>📋</span>
+                <span data-translate="activityLog">Activity Log</span>
+              </a>
+            </li>
+          </ul>
+        </aside>
+
+        <!-- Settings Content -->
+        <div class="settings-content">
+          <!-- Profile Section -->
+          <div id="profile-section" class="settings-section active">
+            <h2 data-translate="profileSettings">Profile Settings</h2>
+
+            <div class="profile-header">
+              <div class="profile-avatar">
+                👤
+                <div
+                  class="avatar-edit"
+                  onclick="showToast('Photo upload coming soon!')"
+                >
+                  📷
+                </div>
+              </div>
+              <div>
+                <h3 id="profile-name">John Doe</h3>
+                <p id="profile-email" style="color: var(--text-muted)">
+                  john.doe@email.com
+                </p>
+                <p
+                  style="
+                    color: var(--primary);
+                    font-size: 0.9rem;
+                    margin-top: 0.25rem;
+                  "
+                >
+                  ✓ Verified Account
+                </p>
+              </div>
+            </div>
+
+            <form id="profile-form">
+              <div class="grid-2">
+                <div class="form-group">
+                  <label data-translate="firstName">First Name</label>
+                  <input type="text" id="profile-firstname" value="John" />
+                </div>
+                <div class="form-group">
+                  <label data-translate="lastName">Last Name</label>
+                  <input type="text" id="profile-lastname" value="Doe" />
+                </div>
+              </div>
+              <div class="form-group">
+                <label data-translate="displayName">Display Name</label>
+                <input type="text" id="profile-display" value="John Doe" />
+              </div>
+              <div class="form-group">
+                <label data-translate="email">Email</label>
+                <input
+                  type="email"
+                  id="profile-email-input"
+                  value="john.doe@email.com"
+                />
+              </div>
+              <div class="form-group">
+                <label data-translate="phoneNumber">Phone Number</label>
+                <input
+                  type="tel"
+                  id="profile-phone"
+                  value="+1 (555) 123-4567"
+                />
+              </div>
+              <div class="form-group">
+                <label data-translate="dateOfBirth">Date of Birth</label>
+                <input type="date" id="profile-dob" value="1990-01-01" />
+              </div>
+              <div class="form-group">
+                <label data-translate="bio">Bio</label>
+                <textarea
+                  id="profile-bio"
+                  rows="3"
+                  placeholder="Tell us about yourself..."
+                ></textarea>
+              </div>
+              <div class="form-group">
+                <label data-translate="emergencyContact"
+                  >Emergency Contact</label
+                >
+                <input
+                  type="text"
+                  id="profile-emergency"
+                  placeholder="Name and phone number"
+                />
+              </div>
+              <button
+                type="submit"
+                class="btn btn-primary"
+                data-translate="saveChanges"
+              >
+                Save Changes
+              </button>
+            </form>
+          </div>
+
+          <!-- Account & Security Section -->
+          <div id="account-section" class="settings-section">
+            <h2 data-translate="accountSecurity">Account & Security</h2>
+
+            <div class="setting-item">
+              <div class="setting-info">
+                <h4 data-translate="changePassword">Change Password</h4>
+                <p data-translate="passwordLastChanged">
+                  Last changed 3 months ago
+                </p>
+              </div>
+              <button
+                class="btn btn-outline"
+                onclick="showChangePasswordModal()"
+                data-translate="change"
+              >
+                Change
+              </button>
+            </div>
+
+            <div class="setting-item">
+              <div class="setting-info">
+                <h4 data-translate="twoFactorAuth">
+                  Two-Factor Authentication
+                </h4>
+                <p data-translate="twoFactorDesc">
+                  Add an extra layer of security to your account
+                </p>
+              </div>
+              <label class="toggle-switch">
+                <input
+                  type="checkbox"
+                  id="toggle-2fa"
+                  onchange="toggle2FA(this)"
+                />
+                <span class="toggle-slider"></span>
+              </label>
+            </div>
+
+            <h3
+              style="margin-top: 2rem; margin-bottom: 1rem"
+              data-translate="loginSecurity"
+            >
+              Login Security
+            </h3>
+
+            <div class="security-item">
+              <div class="notification-icon email">📧</div>
+              <div>
+                <h4 data-translate="emailVerification">Email Verification</h4>
+                <p
+                  style="color: var(--text-muted); font-size: 0.9rem"
+                  data-translate="emailVerified"
+                >
+                  Your email is verified
+                </p>
+              </div>
+              <div class="security-status">
+                <span class="status-badge enabled" data-translate="verified"
+                  >Verified</span
+                >
+              </div>
+            </div>
+
+            <div class="security-item">
+              <div class="notification-icon sms">📱</div>
+              <div>
+                <h4 data-translate="phoneVerification">Phone Verification</h4>
+                <p
+                  style="color: var(--text-muted); font-size: 0.9rem"
+                  data-translate="phoneNotVerified"
+                >
+                  Your phone is not verified
+                </p>
+              </div>
+              <div class="security-status">
+                <button
+                  class="btn btn-outline btn-small"
+                  onclick="verifyPhone()"
+                  data-translate="verify"
+                >
+                  Verify
+                </button>
+              </div>
+            </div>
+
+            <div class="security-item">
+              <div class="notification-icon push">🔔</div>
+              <div>
+                <h4 data-translate="loginAlerts">Login Alerts</h4>
+                <p
+                  style="color: var(--text-muted); font-size: 0.9rem"
+                  data-translate="loginAlertsDesc"
+                >
+                  Get notified of new logins
+                </p>
+              </div>
+              <div class="security-status">
+                <label class="toggle-switch">
+                  <input type="checkbox" checked />
+                  <span class="toggle-slider"></span>
+                </label>
+              </div>
+            </div>
+
+            <div class="danger-zone">
+              <h3>⚠️ <span data-translate="dangerZone">Danger Zone</span></h3>
+              <div
+                class="setting-item"
+                style="border-bottom: none; padding: 1rem 0"
+              >
+                <div class="setting-info">
+                  <h4 data-translate="deactivateAccount">Deactivate Account</h4>
+                  <p data-translate="deactivateDesc">
+                    Temporarily disable your account
+                  </p>
+                </div>
+                <button
+                  class="btn btn-outline"
+                  style="color: var(--danger); border-color: var(--danger)"
+                  onclick="deactivateAccount()"
+                  data-translate="deactivate"
+                >
+                  Deactivate
+                </button>
+              </div>
+              <div
+                class="setting-item"
+                style="border-bottom: none; padding: 1rem 0"
+              >
+                <div class="setting-info">
+                  <h4 data-translate="deleteAccount">Delete Account</h4>
+                  <p data-translate="deleteAccountDesc">
+                    Permanently delete your account and all data
+                  </p>
+                </div>
+                <button
+                  class="btn btn-danger"
+                  onclick="deleteAccount()"
+                  data-translate="delete"
+                >
+                  Delete
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Notifications Section -->
+          <div id="notifications-section" class="settings-section">
+            <h2 data-translate="notificationPreferences">
+              Notification Preferences
+            </h2>
+
+            <div class="notification-preference">
+              <div class="notification-icon email">📧</div>
+              <div style="flex: 1">
+                <h4 data-translate="emailNotifications">Email Notifications</h4>
+                <p
+                  style="color: var(--text-muted); font-size: 0.9rem"
+                  data-translate="emailNotificationsDesc"
+                >
+                  Receive updates via email
+                </p>
+              </div>
+              <label class="toggle-switch">
+                <input
+                  type="checkbox"
+                  id="notif-email"
+                  checked
+                  onchange="saveNotificationPref('email', this.checked)"
+                />
+                <span class="toggle-slider"></span>
+              </label>
+            </div>
+
+            <div class="notification-preference">
+              <div class="notification-icon sms">💬</div>
+              <div style="flex: 1">
+                <h4 data-translate="smsNotifications">SMS Notifications</h4>
+                <p
+                  style="color: var(--text-muted); font-size: 0.9rem"
+                  data-translate="smsNotificationsDesc"
+                >
+                  Receive text messages for important updates
+                </p>
+              </div>
+              <label class="toggle-switch">
+                <input
+                  type="checkbox"
+                  id="notif-sms"
+                  onchange="saveNotificationPref('sms', this.checked)"
+                />
+                <span class="toggle-slider"></span>
+              </label>
+            </div>
+
+            <div class="notification-preference">
+              <div class="notification-icon push">🔔</div>
+              <div style="flex: 1">
+                <h4 data-translate="pushNotifications">Push Notifications</h4>
+                <p
+                  style="color: var(--text-muted); font-size: 0.9rem"
+                  data-translate="pushNotificationsDesc"
+                >
+                  Browser push notifications
+                </p>
+              </div>
+              <label class="toggle-switch">
+                <input
+                  type="checkbox"
+                  id="notif-push"
+                  checked
+                  onchange="saveNotificationPref('push', this.checked)"
+                />
+                <span class="toggle-slider"></span>
+              </label>
+            </div>
+
+            <h3
+              style="margin-top: 2rem; margin-bottom: 1rem"
+              data-translate="notificationTypes"
+            >
+              Notification Types
+            </h3>
+
+            <div class="setting-item">
+              <div class="setting-info">
+                <h4 data-translate="appointmentReminders">
+                  Appointment Reminders
+                </h4>
+                <p data-translate="appointmentRemindersDesc">
+                  Get reminded before your appointments
+                </p>
+              </div>
+              <label class="toggle-switch">
+                <input type="checkbox" checked />
+                <span class="toggle-slider"></span>
+              </label>
+            </div>
+
+            <div class="setting-item">
+              <div class="setting-info">
+                <h4 data-translate="testResults">Test Results</h4>
+                <p data-translate="testResultsDesc">
+                  Notify when new test results are available
+                </p>
+              </div>
+              <label class="toggle-switch">
+                <input type="checkbox" checked />
+                <span class="toggle-slider"></span>
+              </label>
+            </div>
+
+            <div class="setting-item">
+              <div class="setting-info">
+                <h4 data-translate="prescriptionAlerts">Prescription Alerts</h4>
+                <p data-translate="prescriptionAlertsDesc">
+                  Reminders for prescription refills
+                </p>
+              </div>
+              <label class="toggle-switch">
+                <input type="checkbox" checked />
+                <span class="toggle-slider"></span>
+              </label>
+            </div>
+
+            <div class="setting-item">
+              <div class="setting-info">
+                <h4 data-translate="healthTips">Health Tips & News</h4>
+                <p data-translate="healthTipsDesc">
+                  Weekly health tips and news updates
+                </p>
+              </div>
+              <label class="toggle-switch">
+                <input type="checkbox" />
+                <span class="toggle-slider"></span>
+              </label>
+            </div>
+
+            <div class="setting-item">
+              <div class="setting-info">
+                <h4 data-translate="marketingEmails">Marketing Emails</h4>
+                <p data-translate="marketingEmailsDesc">
+                  Promotional offers and updates
+                </p>
+              </div>
+              <label class="toggle-switch">
+                <input type="checkbox" />
+                <span class="toggle-slider"></span>
+              </label>
+            </div>
+          </div>
+
+          <!-- Privacy Section -->
+          <div id="privacy-section" class="settings-section">
+            <h2 data-translate="privacySettings">Privacy Settings</h2>
+
+            <div class="setting-item">
+              <div class="setting-info">
+                <h4 data-translate="profileVisibility">Profile Visibility</h4>
+                <p data-translate="profileVisibilityDesc">
+                  Who can see your profile information
+                </p>
+              </div>
+              <select
+                class="form-control"
+                style="
+                  padding: 0.5rem 1rem;
+                  border: 2px solid #e2e8f0;
+                  border-radius: var(--radius-md);
+                "
+              >
+                <option value="public" data-translate="everyone">
+                  Everyone
+                </option>
+                <option value="doctors" selected data-translate="doctorsOnly">
+                  Doctors Only
+                </option>
+                <option value="private" data-translate="onlyMe">Only Me</option>
+              </select>
+            </div>
+
+            <div class="setting-item">
+              <div class="setting-info">
+                <h4 data-translate="shareMedicalRecords">
+                  Share Medical Records
+                </h4>
+                <p data-translate="shareMedicalRecordsDesc">
+                  Allow doctors to access your records
+                </p>
+              </div>
+              <label class="toggle-switch">
+                <input type="checkbox" checked />
+                <span class="toggle-slider"></span>
+              </label>
+            </div>
+
+            <div class="setting-item">
+              <div class="setting-info">
+                <h4 data-translate="dataAnalytics">Data Analytics</h4>
+                <p data-translate="dataAnalyticsDesc">
+                  Help us improve by sharing usage data
+                </p>
+              </div>
+              <label class="toggle-switch">
+                <input type="checkbox" checked />
+                <span class="toggle-slider"></span>
+              </label>
+            </div>
+
+            <div class="setting-item">
+              <div class="setting-info">
+                <h4 data-translate="thirdPartySharing">Third-Party Sharing</h4>
+                <p data-translate="thirdPartySharingDesc">
+                  Share data with trusted partners
+                </p>
+              </div>
+              <label class="toggle-switch">
+                <input type="checkbox" />
+                <span class="toggle-slider"></span>
+              </label>
+            </div>
+
+            <h3
+              style="margin-top: 2rem; margin-bottom: 1rem"
+              data-translate="dataManagement"
+            >
+              Data Management
+            </h3>
+
+            <div class="setting-item">
+              <div class="setting-info">
+                <h4 data-translate="downloadData">Download Your Data</h4>
+                <p data-translate="downloadDataDesc">
+                  Get a copy of all your personal data
+                </p>
+              </div>
+              <button
+                class="btn btn-outline"
+                onclick="downloadUserData()"
+                data-translate="download"
+              >
+                Download
+              </button>
+            </div>
+
+            <div class="setting-item">
+              <div class="setting-info">
+                <h4 data-translate="clearHistory">Clear Search History</h4>
+                <p data-translate="clearHistoryDesc">
+                  Remove all your search history
+                </p>
+              </div>
+              <button
+                class="btn btn-outline"
+                onclick="clearSearchHistory()"
+                data-translate="clear"
+              >
+                Clear
+              </button>
+            </div>
+          </div>
+
+          <!-- Appearance Section -->
+          <div id="appearance-section" class="settings-section">
+            <h2 data-translate="appearanceSettings">Appearance Settings</h2>
+
+            <div class="form-group">
+              <label data-translate="theme">Theme</label>
+              <div class="theme-options">
+                <div
+                  class="theme-option active"
+                  onclick="setTheme('light', this)"
+                >
+                  <span>☀️</span> <span data-translate="light">Light</span>
+                </div>
+                <div class="theme-option" onclick="setTheme('dark', this)">
+                  <span>🌙</span> <span data-translate="dark">Dark</span>
+                </div>
+                <div class="theme-option" onclick="setTheme('auto', this)">
+                  <span>⚡</span> <span data-translate="auto">Auto</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="setting-item" style="margin-top: 2rem">
+              <div class="setting-info">
+                <h4 data-translate="compactMode">Compact Mode</h4>
+                <p data-translate="compactModeDesc">
+                  Reduce spacing for more content
+                </p>
+              </div>
+              <label class="toggle-switch">
+                <input
+                  type="checkbox"
+                  onchange="toggleCompactMode(this.checked)"
+                />
+                <span class="toggle-slider"></span>
+              </label>
+            </div>
+
+            <div class="setting-item">
+              <div class="setting-info">
+                <h4 data-translate="animations">Animations</h4>
+                <p data-translate="animationsDesc">
+                  Enable smooth transitions and animations
+                </p>
+              </div>
+              <label class="toggle-switch">
+                <input
+                  type="checkbox"
+                  checked
+                  onchange="toggleAnimations(this.checked)"
+                />
+                <span class="toggle-slider"></span>
+              </label>
+            </div>
+
+            <div class="setting-item">
+              <div class="setting-info">
+                <h4 data-translate="highContrast">High Contrast</h4>
+                <p data-translate="highContrastDesc">
+                  Increase contrast for better visibility
+                </p>
+              </div>
+              <label class="toggle-switch">
+                <input
+                  type="checkbox"
+                  onchange="toggleHighContrast(this.checked)"
+                />
+                <span class="toggle-slider"></span>
+              </label>
+            </div>
+
+            <div class="setting-item">
+              <div class="setting-info">
+                <h4 data-translate="reducedMotion">Reduced Motion</h4>
+                <p data-translate="reducedMotionDesc">
+                  Minimize animations for accessibility
+                </p>
+              </div>
+              <label class="toggle-switch">
+                <input
+                  type="checkbox"
+                  onchange="toggleReducedMotion(this.checked)"
+                />
+                <span class="toggle-slider"></span>
+              </label>
+            </div>
+          </div>
+
+          <!-- Language & Region Section -->
+          <div id="language-section" class="settings-section">
+            <h2 data-translate="languageRegionSettings">
+              Language & Region Settings
+            </h2>
+
+            <div class="form-group">
+              <label data-translate="language">Language</label>
+              <select
+                id="settings-language"
+                class="form-control"
+                style="
+                  width: 100%;
+                  padding: 0.75rem;
+                  border: 2px solid #e2e8f0;
+                  border-radius: var(--radius-md);
+                "
+                onchange="changeLanguage(this.value)"
+              >
+                <option value="en" selected>🇺🇸 English</option>
+                <option value="ar">🇸🇦 العربية (Arabic)</option>
+                <option value="es">🇪🇸 Español (Spanish)</option>
+                <option value="fr">🇫🇷 Français (French)</option>
+                <option value="de">🇩🇪 Deutsch (German)</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label data-translate="region">Region</label>
+              <select
+                class="form-control"
+                style="
+                  width: 100%;
+                  padding: 0.75rem;
+                  border: 2px solid #e2e8f0;
+                  border-radius: var(--radius-md);
+                "
+              >
+                <option value="us">🇺🇸 United States</option>
+                <option value="uk">🇬🇧 United Kingdom</option>
+                <option value="ca">🇨🇦 Canada</option>
+                <option value="au">🇦🇺 Australia</option>
+                <option value="sa">🇸🇦 Saudi Arabia</option>
+                <option value="ae">🇦🇪 UAE</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label data-translate="timezone">Timezone</label>
+              <select
+                class="form-control"
+                style="
+                  width: 100%;
+                  padding: 0.75rem;
+                  border: 2px solid #e2e8f0;
+                  border-radius: var(--radius-md);
+                "
+              >
+                <option value="est">America/New York (EST)</option>
+                <option value="cst">America/Chicago (CST)</option>
+                <option value="mst">America/Denver (MST)</option>
+                <option value="pst">America/Los Angeles (PST)</option>
+                <option value="gmt">Europe/London (GMT)</option>
+                <option value="gst">Asia/Dubai (GST)</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label data-translate="dateFormat">Date Format</label>
+              <select
+                class="form-control"
+                style="
+                  width: 100%;
+                  padding: 0.75rem;
+                  border: 2px solid #e2e8f0;
+                  border-radius: var(--radius-md);
+                "
+              >
+                <option value="mdy">MM/DD/YYYY</option>
+                <option value="dmy">DD/MM/YYYY</option>
+                <option value="ymd">YYYY/MM/DD</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label data-translate="timeFormat">Time Format</label>
+              <select
+                class="form-control"
+                style="
+                  width: 100%;
+                  padding: 0.75rem;
+                  border: 2px solid #e2e8f0;
+                  border-radius: var(--radius-md);
+                "
+              >
+                <option value="12h">12-hour (AM/PM)</option>
+                <option value="24h">24-hour</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label data-translate="currency">Currency</label>
+              <select
+                class="form-control"
+                style="
+                  width: 100%;
+                  padding: 0.75rem;
+                  border: 2px solid #e2e8f0;
+                  border-radius: var(--radius-md);
+                "
+              >
+                <option value="usd">USD ($)</option>
+                <option value="eur">EUR (€)</option>
+                <option value="gbp">GBP (£)</option>
+                <option value="sar">SAR (﷼)</option>
+                <option value="aed">AED (د.إ)</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Data & Storage Section -->
+          <div id="data-section" class="settings-section">
+            <h2 data-translate="dataStorageSettings">
+              Data & Storage Settings
+            </h2>
+
+            <div class="setting-item">
+              <div class="setting-info">
+                <h4 data-translate="storageUsed">Storage Used</h4>
+                <p data-translate="storageUsedDesc">2.4 GB of 5 GB used</p>
+                <div class="data-usage-bar">
+                  <div class="data-usage-fill" style="width: 48%"></div>
+                </div>
+              </div>
+              <button
+                class="btn btn-outline"
+                onclick="manageStorage()"
+                data-translate="manage"
+              >
+                Manage
+              </button>
+            </div>
+
+            <h3
+              style="margin-top: 2rem; margin-bottom: 1rem"
+              data-translate="cacheData"
+            >
+              Cache & Data
+            </h3>
+
+            <div class="setting-item">
+              <div class="setting-info">
+                <h4 data-translate="clearCache">Clear Cache</h4>
+                <p data-translate="cacheSize">Cache size: 124 MB</p>
+              </div>
+              <button
+                class="btn btn-outline"
+                onclick="clearCache()"
+                data-translate="clear"
+              >
+                Clear
+              </button>
+            </div>
+
+            <div class="setting-item">
+              <div class="setting-info">
+                <h4 data-translate="offlineMode">Offline Mode</h4>
+                <p data-translate="offlineModeDesc">
+                  Download data for offline access
+                </p>
+              </div>
+              <label class="toggle-switch">
+                <input
+                  type="checkbox"
+                  onchange="toggleOfflineMode(this.checked)"
+                />
+                <span class="toggle-slider"></span>
+              </label>
+            </div>
+
+            <div class="setting-item">
+              <div class="setting-info">
+                <h4 data-translate="autoSync">Auto Sync</h4>
+                <p data-translate="autoSyncDesc">
+                  Automatically sync data across devices
+                </p>
+              </div>
+              <label class="toggle-switch">
+                <input type="checkbox" checked />
+                <span class="toggle-slider"></span>
+              </label>
+            </div>
+
+            <div class="setting-item">
+              <div class="setting-info">
+                <h4 data-translate="syncFrequency">Sync Frequency</h4>
+                <p data-translate="syncFrequencyDesc">
+                  How often to sync your data
+                </p>
+              </div>
+              <select
+                class="form-control"
+                style="
+                  padding: 0.5rem 1rem;
+                  border: 2px solid #e2e8f0;
+                  border-radius: var(--radius-md);
+                "
+              >
+                <option value="realtime" selected data-translate="realtime">
+                  Real-time
+                </option>
+                <option value="hourly" data-translate="hourly">
+                  Every hour
+                </option>
+                <option value="daily" data-translate="daily">Daily</option>
+                <option value="manual" data-translate="manualOnly">
+                  Manual only
+                </option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Connected Devices Section -->
+          <div id="devices-section" class="settings-section">
+            <h2 data-translate="connectedDevices">Connected Devices</h2>
+
+            <div class="connected-device">
+              <div class="device-icon">💻</div>
+              <div class="device-info">
+                <h4>Chrome on Windows</h4>
+                <p style="color: var(--text-muted); font-size: 0.9rem">
+                  Last active: Now
+                </p>
+              </div>
+              <div class="device-status">
+                <span style="color: var(--success)">●</span>
+                <span data-translate="currentDevice">Current Device</span>
+              </div>
+            </div>
+
+            <div class="connected-device">
+              <div
+                class="device-icon"
+                style="background: var(--primary-subtle)"
+              >
+                📱
+              </div>
+              <div class="device-info">
+                <h4>HealthBridge App on iPhone</h4>
+                <p style="color: var(--text-muted); font-size: 0.9rem">
+                  Last active: 2 hours ago
+                </p>
+              </div>
+              <button
+                class="btn btn-outline btn-small"
+                onclick="disconnectDevice('iphone')"
+                data-translate="disconnect"
+              >
+                Disconnect
+              </button>
+            </div>
+
+            <div class="connected-device">
+              <div class="device-icon" style="background: var(--accent-light)">
+                📱
+              </div>
+              <div class="device-info">
+                <h4>Chrome on Android</h4>
+                <p style="color: var(--text-muted); font-size: 0.9rem">
+                  Last active: 3 days ago
+                </p>
+              </div>
+              <button
+                class="btn btn-outline btn-small"
+                onclick="disconnectDevice('android')"
+                data-translate="disconnect"
+              >
+                Disconnect
+              </button>
+            </div>
+
+            <button
+              class="btn btn-danger"
+              style="margin-top: 1rem; width: 100%"
+              onclick="disconnectAllDevices()"
+              data-translate="disconnectAllDevices"
+            >
+              Disconnect All Devices
+            </button>
+          </div>
+
+          <!-- Activity Log Section -->
+          <div id="activity-section" class="settings-section">
+            <h2 data-translate="activityLog">Activity Log</h2>
+
+            <div class="activity-log">
+              <div class="activity-item">
+                <div class="activity-icon">🔑</div>
+                <div class="activity-content">
+                  <h4 data-translate="successfulLogin">Successful login</h4>
+                  <p style="color: var(--text-muted); font-size: 0.9rem">
+                    Chrome on Windows • IP: 192.168.1.1
+                  </p>
+                </div>
+                <span class="activity-time">2 minutes ago</span>
+              </div>
+
+              <div class="activity-item">
+                <div
+                  class="activity-icon"
+                  style="background: var(--secondary-subtle)"
+                >
+                  📅
+                </div>
+                <div class="activity-content">
+                  <h4 data-translate="appointmentBooked">Appointment booked</h4>
+                  <p style="color: var(--text-muted); font-size: 0.9rem">
+                    Dr. Sarah Johnson - Cardiology
+                  </p>
+                </div>
+                <span class="activity-time">Yesterday</span>
+              </div>
+
+              <div class="activity-item">
+                <div
+                  class="activity-icon"
+                  style="background: var(--accent-light)"
+                >
+                  🔒
+                </div>
+                <div class="activity-content">
+                  <h4 data-translate="passwordChanged">Password changed</h4>
+                  <p style="color: var(--text-muted); font-size: 0.9rem">
+                    Security update
+                  </p>
+                </div>
+                <span class="activity-time">3 days ago</span>
+              </div>
+
+              <div class="activity-item">
+                <div class="activity-icon" style="background: #e0e7ff">👤</div>
+                <div class="activity-content">
+                  <h4 data-translate="profileUpdated">Profile updated</h4>
+                  <p style="color: var(--text-muted); font-size: 0.9rem">
+                    Phone number added
+                  </p>
+                </div>
+                <span class="activity-time">1 week ago</span>
+              </div>
+
+              <div class="activity-item">
+                <div class="activity-icon">📱</div>
+                <div class="activity-content">
+                  <h4 data-translate="newDevice">New device connected</h4>
+                  <p style="color: var(--text-muted); font-size: 0.9rem">
+                    iPhone 14 Pro
+                  </p>
+                </div>
+                <span class="activity-time">2 weeks ago</span>
+              </div>
+            </div>
+
+            <button
+              class="btn btn-outline"
+              style="margin-top: 1.5rem; width: 100%"
+              onclick="downloadActivityLog()"
+              data-translate="downloadFullLog"
+            >
+              Download Full Activity Log
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="footer-content">
+        <div>
+          <h3>🏥 HealthBridge</h3>
+          <p data-translate="connectingPatients" style="margin-top: 1rem">
+            Connecting patients with quality healthcare services.
+          </p>
+        </div>
+        <div>
+          <h4 data-translate="quickLinks">Quick Links</h4>
+          <ul style="margin-top: 1rem">
+            <li>
+              <a href="doctors.html" data-translate="findDoctor"
+                >Find a Doctor</a
+              >
+            </li>
+            <li>
+              <a href="appointments.html" data-translate="bookAppointment"
+                >Book Appointment</a
+              >
+            </li>
+            <li>
+              <a href="emergency.html" data-translate="emergency">Emergency</a>
+            </li>
+          </ul>
+        </div>
+        <div>
+          <h4 data-translate="contactUs">Contact Us</h4>
+          <p style="margin-top: 1rem">
+            <span data-translate="phone">📞 Phone</span>: +1 (555) 123-4567<br />
+            <span data-translate="email">📧 Email</span>:
+            support@healthbridge.com
+          </p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p data-translate="copyright">
+          &copy; 2026 HealthBridge. All rights reserved.
+        </p>
+      </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+  </body>
+</html>

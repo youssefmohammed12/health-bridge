@@ -1,16 +1,67 @@
 // HealthBridge - Enhanced JavaScript
 // Modern healthcare platform with smooth animations and bilingual support
+// Performance optimized with debouncing, lazy loading, and efficient event handling
 
 // ========================
-// GLOBAL STATE
+// GLOBAL STATE - Optimized
 // ========================
 const state = {
-  currentUser: JSON.parse(localStorage.getItem("currentUser")) || null,
-  language: localStorage.getItem("language") || "en",
-  doctors: JSON.parse(localStorage.getItem("doctors")) || generateMockDoctors(),
-  appointments: JSON.parse(localStorage.getItem("appointments")) || [],
-  records: JSON.parse(localStorage.getItem("records")) || generateMockRecords(),
+  currentUser: null,
+  language: "en",
+  doctors: [],
+  appointments: [],
+  records: [],
+  initialized: false,
 };
+
+// ========================
+// PERFORMANCE UTILITIES
+// ========================
+
+// Debounce function for performance
+function debounce(func, wait) {
+  let timeout;
+  return function executedFunction(...args) {
+    const later = () => {
+      clearTimeout(timeout);
+      func(...args);
+    };
+    clearTimeout(timeout);
+    timeout = setTimeout(later, wait);
+  };
+}
+
+// Throttle function for scroll events
+function throttle(func, limit) {
+  let inThrottle;
+  return function (...args) {
+    if (!inThrottle) {
+      func.apply(this, args);
+      inThrottle = true;
+      setTimeout(() => (inThrottle = false), limit);
+    }
+  };
+}
+
+// Lazy load images
+function lazyLoadImages() {
+  const images = document.querySelectorAll("img[data-src]");
+  const imageObserver = new IntersectionObserver(
+    (entries, observer) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const img = entry.target;
+          img.src = img.dataset.src;
+          img.removeAttribute("data-src");
+          observer.unobserve(img);
+        }
+      });
+    },
+    { rootMargin: "50px" },
+  );
+
+  images.forEach((img) => imageObserver.observe(img));
+}
 
 // ========================
 // MOCK DATA GENERATORS
@@ -38,7 +89,7 @@ function generateMockDoctors() {
     "Dr. Noura Saeed",
   ];
 
-  const doctors = names.map((name, i) => ({
+  return names.map((name, i) => ({
     id: i + 1,
     name: name,
     specialty: specialties[i % specialties.length],
@@ -47,9 +98,6 @@ function generateMockDoctors() {
     available: Math.random() > 0.2,
     image: `https://api.dicebear.com/7.x/avataaars/svg?seed=${i}`,
   }));
-
-  localStorage.setItem("doctors", JSON.stringify(doctors));
-  return doctors;
 }
 
 function generateMockRecords() {
@@ -90,7 +138,7 @@ function generateMockRecords() {
 }
 
 // ========================
-// TRANSLATIONS
+// TRANSLATIONS - Optimized
 // ========================
 const translations = {
   en: {
@@ -105,6 +153,7 @@ const translations = {
     login: "Login",
     signUp: "Sign Up",
     logout: "Logout",
+    settings: "Settings",
 
     // Hero
     welcome: "Welcome to HealthBridge",
@@ -340,21 +389,141 @@ const translations = {
     send: "Send",
     contactInfo: "Contact Information",
 
+    // Settings
+    profile: "Profile",
+    accountSecurity: "Account & Security",
+    notifications: "Notifications",
+    privacy: "Privacy",
+    appearance: "Appearance",
+    languageRegion: "Language & Region",
+    dataStorage: "Data & Storage",
+    connectedDevices: "Connected Devices",
+    activityLog: "Activity Log",
+    profileSettings: "Profile Settings",
+    displayName: "Display Name",
+    dateOfBirth: "Date of Birth",
+    bio: "Bio",
+    emergencyContact: "Emergency Contact",
+    saveChanges: "Save Changes",
+    changePassword: "Change Password",
+    passwordLastChanged: "Last changed 3 months ago",
+    change: "Change",
+    twoFactorAuth: "Two-Factor Authentication",
+    twoFactorDesc: "Add an extra layer of security to your account",
+    loginSecurity: "Login Security",
+    emailVerification: "Email Verification",
+    emailVerified: "Your email is verified",
+    phoneVerification: "Phone Verification",
+    phoneNotVerified: "Your phone is not verified",
+    verify: "Verify",
+    loginAlerts: "Login Alerts",
+    loginAlertsDesc: "Get notified of new logins",
+    dangerZone: "Danger Zone",
+    deactivateAccount: "Deactivate Account",
+    deactivateDesc: "Temporarily disable your account",
+    deactivate: "Deactivate",
+    deleteAccount: "Delete Account",
+    deleteAccountDesc: "Permanently delete your account and all data",
+    delete: "Delete",
+    verified: "Verified",
+    notificationPreferences: "Notification Preferences",
+    emailNotifications: "Email Notifications",
+    emailNotificationsDesc: "Receive updates via email",
+    smsNotifications: "SMS Notifications",
+    smsNotificationsDesc: "Receive text messages for important updates",
+    pushNotifications: "Push Notifications",
+    pushNotificationsDesc: "Browser push notifications",
+    notificationTypes: "Notification Types",
+    appointmentReminders: "Appointment Reminders",
+    appointmentRemindersDesc: "Get reminded before your appointments",
+    testResults: "Test Results",
+    testResultsDesc: "Notify when new test results are available",
+    prescriptionAlerts: "Prescription Alerts",
+    prescriptionAlertsDesc: "Reminders for prescription refills",
+    healthTips: "Health Tips & News",
+    healthTipsDesc: "Weekly health tips and news updates",
+    marketingEmails: "Marketing Emails",
+    marketingEmailsDesc: "Promotional offers and updates",
+    privacySettings: "Privacy Settings",
+    profileVisibility: "Profile Visibility",
+    profileVisibilityDesc: "Who can see your profile information",
+    everyone: "Everyone",
+    doctorsOnly: "Doctors Only",
+    onlyMe: "Only Me",
+    shareMedicalRecords: "Share Medical Records",
+    shareMedicalRecordsDesc: "Allow doctors to access your records",
+    dataAnalytics: "Data Analytics",
+    dataAnalyticsDesc: "Help us improve by sharing usage data",
+    thirdPartySharing: "Third-Party Sharing",
+    thirdPartySharingDesc: "Share data with trusted partners",
+    dataManagement: "Data Management",
+    downloadData: "Download Your Data",
+    downloadDataDesc: "Get a copy of all your personal data",
+    download: "Download",
+    clearHistory: "Clear Search History",
+    clearHistoryDesc: "Remove all your search history",
+    clear: "Clear",
+    appearanceSettings: "Appearance Settings",
+    theme: "Theme",
+    light: "Light",
+    dark: "Dark",
+    auto: "Auto",
+    compactMode: "Compact Mode",
+    compactModeDesc: "Reduce spacing for more content",
+    animations: "Animations",
+    animationsDesc: "Enable smooth transitions and animations",
+    highContrast: "High Contrast",
+    highContrastDesc: "Increase contrast for better visibility",
+    reducedMotion: "Reduced Motion",
+    reducedMotionDesc: "Minimize animations for accessibility",
+    languageRegionSettings: "Language & Region Settings",
+    language: "Language",
+    region: "Region",
+    timezone: "Timezone",
+    dateFormat: "Date Format",
+    timeFormat: "Time Format",
+    currency: "Currency",
+    dataStorageSettings: "Data & Storage Settings",
+    storageUsed: "Storage Used",
+    storageUsedDesc: "2.4 GB of 5 GB used",
+    manage: "Manage",
+    cacheData: "Cache & Data",
+    clearCache: "Clear Cache",
+    cacheSize: "Cache size: 124 MB",
+    offlineMode: "Offline Mode",
+    offlineModeDesc: "Download data for offline access",
+    autoSync: "Auto Sync",
+    autoSyncDesc: "Automatically sync data across devices",
+    syncFrequency: "Sync Frequency",
+    syncFrequencyDesc: "How often to sync your data",
+    realtime: "Real-time",
+    hourly: "Every hour",
+    daily: "Daily",
+    manualOnly: "Manual only",
+    currentDevice: "Current Device",
+    disconnect: "Disconnect",
+    disconnectAllDevices: "Disconnect All Devices",
+    successfulLogin: "Successful login",
+    appointmentBooked: "Appointment booked",
+    passwordChanged: "Password changed",
+    profileUpdated: "Profile updated",
+    newDevice: "New device connected",
+    downloadFullLog: "Download Full Activity Log",
+    cancel: "Cancel",
+    edit: "Edit",
+    twoFactorAuthDisabled: "Two-factor authentication disabled",
+
     // Misc
     loading: "Loading...",
-    settings: "Settings",
-    cancel: "Cancel",
-    delete: "Delete",
-    edit: "Edit",
-
     expertDoctors: "Expert Doctors",
     patientsServed: "Patients Served",
-    emergencyCare24_7: "Emergency Care 24/7",
-    supportIntro:
-      "We're here to help. Find answers or chat with our support team",
-      main: "Main Line",
-      ourMissionText: "To empower patients with easy access to healthcare services and information, improving health outcomes through technology.",
-      ourVisionText: "A world where everyone has access to quality healthcare, regardless of location or circumstances.",
+    emergencyCare24_7: "Emergency Care",
+    ourMissionP:
+      "Our mission is to empower patients with easy access to healthcare services and information, improving health outcomes through technology.",
+    ourVisionP:
+      "Our vision is to create a world where everyone has access to quality healthcare, regardless of location or circumstances.",
+    supportDescription:
+      "We're here to help. Find answers or chat with our support team.",
   },
 
   ar: {
@@ -369,6 +538,7 @@ const translations = {
     login: "تسجيل الدخول",
     signUp: "إنشاء حساب",
     logout: "تسجيل الخروج",
+    settings: "الإعدادات",
 
     // Hero
     welcome: "مرحباً بك في HealthBridge",
@@ -598,38 +768,206 @@ const translations = {
     send: "إرسال",
     contactInfo: "معلومات الاتصال",
 
+    // Settings
+    profile: "الملف الشخصي",
+    accountSecurity: "الحساب والأمان",
+    notifications: "الإشعارات",
+    privacy: "الخصوصية",
+    appearance: "المظهر",
+    languageRegion: "اللغة والمنطقة",
+    dataStorage: "البيانات والتخزين",
+    connectedDevices: "الأجهزة المتصلة",
+    activityLog: "سجل النشاط",
+    profileSettings: "إعدادات الملف الشخصي",
+    displayName: "اسم العرض",
+    dateOfBirth: "تاريخ الميلاد",
+    bio: "نبذة",
+    emergencyContact: "جهة اتصال الطوارئ",
+    saveChanges: "حفظ التغييرات",
+    changePassword: "تغيير كلمة المرور",
+    passwordLastChanged: "آخر تغيير قبل 3 أشهر",
+    change: "تغيير",
+    twoFactorAuth: "المصادقة الثنائية",
+    twoFactorDesc: "أضف طبقة أمان إضافية لحسابك",
+    loginSecurity: "أمان تسجيل الدخول",
+    emailVerification: "التحقق من البريد الإلكتروني",
+    emailVerified: "بريدك الإلكتروني مُحقق",
+    phoneVerification: "التحقق من الهاتف",
+    phoneNotVerified: "هاتفك غير مُحقق",
+    verify: "تحقق",
+    loginAlerts: "تنبيهات تسجيل الدخول",
+    loginAlertsDesc: "احصل على إشعارات عند تسجيل دخول جديد",
+    dangerZone: "منطقة الخطر",
+    deactivateAccount: "تعطيل الحساب",
+    deactivateDesc: "تعطيل حسابك مؤقتاً",
+    deactivate: "تعطيل",
+    deleteAccount: "حذف الحساب",
+    deleteAccountDesc: "حذف حسابك وبياناتك نهائياً",
+    delete: "حذف",
+    verified: "مُحقق",
+    notificationPreferences: "تفضيلات الإشعارات",
+    emailNotifications: "إشعارات البريد الإلكتروني",
+    emailNotificationsDesc: "استلام التحديثات عبر البريد",
+    smsNotifications: "إشعارات الرسائل القصيرة",
+    smsNotificationsDesc: "استلام رسائل نصية للتحديثات المهمة",
+    pushNotifications: "إشعارات الدفع",
+    pushNotificationsDesc: "إشعارات المتصفح",
+    notificationTypes: "أنواع الإشعارات",
+    appointmentReminders: "تذكيرات المواعيد",
+    appointmentRemindersDesc: "تذكير قبل مواعيدك",
+    testResults: "نتائج الفحوصات",
+    testResultsDesc: "إشعار عند توفر نتائج جديدة",
+    prescriptionAlerts: "تنبيهات الوصفات",
+    prescriptionAlertsDesc: "تذكيرات لإعادة تعبئة الوصفات",
+    healthTips: "نصائح وأخبار صحية",
+    healthTipsDesc: "نصائح صحية وتحديثات أسبوعية",
+    marketingEmails: "رسائل تسويقية",
+    marketingEmailsDesc: "عروض ترويجية وتحديثات",
+    privacySettings: "إعدادات الخصوصية",
+    profileVisibility: "رؤية الملف الشخصي",
+    profileVisibilityDesc: "من يمكنه رؤية معلومات ملفك",
+    everyone: "الجميع",
+    doctorsOnly: "الأطباء فقط",
+    onlyMe: "أنا فقط",
+    shareMedicalRecords: "مشاركة السجلات الطبية",
+    shareMedicalRecordsDesc: "السماح للأطباء بالوصول لسجلاتك",
+    dataAnalytics: "تحليلات البيانات",
+    dataAnalyticsDesc: "ساعدنا في التحسين بمشاركة بيانات الاستخدام",
+    thirdPartySharing: "المشاركة مع طرف ثالث",
+    thirdPartySharingDesc: "مشاركة البيانات مع شركاء موثوقين",
+    dataManagement: "إدارة البيانات",
+    downloadData: "تحميل بياناتك",
+    downloadDataDesc: "احصل على نسخة من جميع بياناتك الشخصية",
+    download: "تحميل",
+    clearHistory: "مسح سجل البحث",
+    clearHistoryDesc: "إزالة جميع سجل البحث",
+    clear: "مسح",
+    appearanceSettings: "إعدادات المظهر",
+    theme: "السمة",
+    light: "فاتح",
+    dark: "داكن",
+    auto: "تلقائي",
+    compactMode: "الوضع المدمج",
+    compactModeDesc: "تقليل المسافات لمحتوى أكثر",
+    animations: "الرسوم المتحركة",
+    animationsDesc: "تفعيل الانتقالات السلسة والرسوم المتحركة",
+    highContrast: "تباين عالي",
+    highContrastDesc: "زيادة التباين لرؤية أفضل",
+    reducedMotion: "حركة مخفضة",
+    reducedMotionDesc: "تقليل الرسوم المتحركة لإمكانية الوصول",
+    languageRegionSettings: "إعدادات اللغة والمنطقة",
+    language: "اللغة",
+    region: "المنطقة",
+    timezone: "المنطقة الزمنية",
+    dateFormat: "تنسيق التاريخ",
+    timeFormat: "تنسيق الوقت",
+    currency: "العملة",
+    dataStorageSettings: "إعدادات البيانات والتخزين",
+    storageUsed: "التخزين المستخدم",
+    storageUsedDesc: "2.4 جيجابايت من 5 جيجابايت",
+    manage: "إدارة",
+    cacheData: "ذاكرة التخزين المؤقت والبيانات",
+    clearCache: "مسح ذاكرة التخزين",
+    cacheSize: "حجم الذاكرة: 124 ميجابايت",
+    offlineMode: "وضع عدم الاتصال",
+    offlineModeDesc: "تحميل البيانات للوصول بدون إنترنت",
+    autoSync: "المزامنة التلقائية",
+    autoSyncDesc: "مزامنة البيانات تلقائياً عبر الأجهزة",
+    syncFrequency: "تكرار المزامنة",
+    syncFrequencyDesc: "كم مرة تتم مزامنة بياناتك",
+    realtime: "في الوقت الفعلي",
+    hourly: "كل ساعة",
+    daily: "يومياً",
+    manualOnly: "يدوي فقط",
+    currentDevice: "الجهاز الحالي",
+    disconnect: "فصل",
+    disconnectAllDevices: "فصل جميع الأجهزة",
+    successfulLogin: "تسجيل دخول ناجح",
+    appointmentBooked: "تم حجز موعد",
+    passwordChanged: "تم تغيير كلمة المرور",
+    profileUpdated: "تم تحديث الملف الشخصي",
+    newDevice: "جهاز جديد متصل",
+    downloadFullLog: "تحميل سجل النشاط الكامل",
+    cancel: "إلغاء",
+    edit: "تعديل",
+    twoFactorAuthDisabled: "تم تعطيل المصادقة الثنائية",
+
     // Misc
     loading: "جاري التحميل...",
-    settings: "الإعدادات",
-    cancel: "إلغاء",
-    delete: "حذف",
-    edit: "تعديل",
-
     expertDoctors: "أطباء خبراء",
-    patientsServed: "المرضى الذين تم خدمتهم",
-    emergencyCare24_7: "رعاية الطوارئ 24/7",
-    supportIntro:
-      "نحن هنا للمساعدة. ابحث عن إجابات أو تحدث مع فريق الدعم الخاص بنا",
-
-      main: "الرقم الرئيسي",
-      ourMissionText: "لتمكين المرضى من الوصول السهل إلى خدمات الرعاية الصحية والمعلومات، وتحسين نتائج الصحة من خلال التكنولوجيا.",
-      ourVisionText: "عالم يتمتع فيه الجميع بإمكانية الوصول إلى رعاية صحية عالية الجودة، بغض النظر عن الموقع أو الظروف.",
+    patientsServed: "مرضى تم خدمتهم",
+    emergencyCare24_7: "رعاية طوارئ 24/7",
+    ourMissionP:
+      "مهمتنا هي تمكين المرضى من الوصول السهل إلى خدمات الرعاية الصحية والمعلومات، وتحسين النتائج الصحية من خلال التكنولوجيا.",
+    ourVisionP:
+      "رؤيتنا هي خلق عالم يتمتع فيه الجميع بإمكانية الوصول إلى رعاية صحية عالية الجودة، بغض النظر عن الموقع أو الظروف.",
+    supportDescription:
+      "نحن هنا للمساعدة. ابحث عن إجابات أو تحدث مع فريق الدعم الخاص بنا.",
   },
 };
 
 // ========================
-// INITIALIZATION
+// INITIALIZATION - Optimized
 // ========================
 document.addEventListener("DOMContentLoaded", function () {
+  // Initialize state from localStorage
+  initState();
+
+  // Initialize language
   initLanguage();
+
+  // Check authentication
   checkAuth();
+
+  // Setup navigation
   setupNavigation();
+
+  // Setup event listeners
   setupEventListeners();
+
+  // Load page specific content
   loadPageSpecificContent();
+
+  // Translate static content
   translateStaticContent();
+
+  // Initialize map
   initMap();
+
+  // Setup scroll effects
   setupScrollEffects();
+
+  // Apply saved theme
+  applySavedTheme();
+
+  // Lazy load images
+  lazyLoadImages();
+
+  // Mark as initialized
+  state.initialized = true;
 });
+
+function initState() {
+  try {
+    state.currentUser = JSON.parse(localStorage.getItem("currentUser")) || null;
+    state.language = localStorage.getItem("language") || "en";
+    state.doctors =
+      JSON.parse(localStorage.getItem("doctors")) || generateMockDoctors();
+    state.appointments = JSON.parse(localStorage.getItem("appointments")) || [];
+    state.records =
+      JSON.parse(localStorage.getItem("records")) || generateMockRecords();
+
+    // Save doctors if not exists
+    if (!localStorage.getItem("doctors")) {
+      localStorage.setItem("doctors", JSON.stringify(state.doctors));
+    }
+  } catch (e) {
+    console.error("Error initializing state:", e);
+    // Fallback to defaults
+    state.doctors = generateMockDoctors();
+    state.records = generateMockRecords();
+  }
+}
 
 // ========================
 // LANGUAGE FUNCTIONS
@@ -650,32 +988,29 @@ function toggleLanguage() {
 }
 
 function t(key) {
-  return translations[state.language][key] || key;
+  return translations[state.language]?.[key] || key;
 }
 
 function translateStaticContent() {
-  // Translate elements with data-translate
-  document.querySelectorAll("[data-translate]").forEach((el) => {
-    const key = el.getAttribute("data-translate");
-    if (translations[state.language][key]) {
-      el.textContent = translations[state.language][key];
-    }
-  });
+  // Use requestAnimationFrame for better performance
+  requestAnimationFrame(() => {
+    // Translate elements with data-translate
+    document.querySelectorAll("[data-translate]").forEach((el) => {
+      const key = el.getAttribute("data-translate");
+      const translation = translations[state.language]?.[key];
+      if (translation) {
+        el.textContent = translation;
+      }
+    });
 
-  // Translate placeholders
-  document.querySelectorAll("[data-translate-placeholder]").forEach((el) => {
-    const key = el.getAttribute("data-translate-placeholder");
-    if (translations[state.language][key]) {
-      el.placeholder = translations[state.language][key];
-    }
-  });
-
-  // Translate values (for buttons)
-  document.querySelectorAll("[data-translate-value]").forEach((el) => {
-    const key = el.getAttribute("data-translate-value");
-    if (translations[state.language][key]) {
-      el.value = translations[state.language][key];
-    }
+    // Translate placeholders
+    document.querySelectorAll("[data-translate-placeholder]").forEach((el) => {
+      const key = el.getAttribute("data-translate-placeholder");
+      const translation = translations[state.language]?.[key];
+      if (translation) {
+        el.placeholder = translation;
+      }
+    });
   });
 }
 
@@ -683,17 +1018,21 @@ function translateStaticContent() {
 // AUTHENTICATION
 // ========================
 function checkAuth() {
-  const protectedPages = ["dashboard", "appointments", "records"];
+  const protectedPages = ["dashboard", "appointments", "records", "settings"];
   const currentPage = window.location.pathname
     .split("/")
     .pop()
     .replace(".html", "");
 
   if (protectedPages.includes(currentPage) && !state.currentUser) {
+    // Store intended page for redirect after login
+    sessionStorage.setItem("redirectAfterLogin", window.location.href);
     window.location.href = "login.html";
+    return false;
   }
 
   updateUIForAuth();
+  return true;
 }
 
 function updateUIForAuth() {
@@ -702,8 +1041,11 @@ function updateUIForAuth() {
 
   if (state.currentUser) {
     authLinks.innerHTML = `
-      <a href="dashboard.html" class="btn btn-outline">${state.currentUser.name}</a>
-      <button onclick="logout()" class="btn btn-secondary">${t("logout")}</button>
+      <div class="user-nav-group">
+        <a href="settings.html" class="settings-icon-btn" title="${t("settings")}">⚙️</a>
+        <a href="dashboard.html" class="btn btn-outline">${escapeHtml(state.currentUser.name)}</a>
+        <button onclick="logout()" class="btn btn-secondary">${t("logout")}</button>
+      </div>
     `;
   } else {
     authLinks.innerHTML = `
@@ -714,10 +1056,16 @@ function updateUIForAuth() {
 }
 
 function login(email, password, userType = "patient") {
+  // Validate inputs
+  if (!email || !password) {
+    showToast("Please enter both email and password", "error");
+    return;
+  }
+
   const mockUser = {
-    id: 1,
+    id: Date.now(),
     email: email,
-    name: email.split("@")[0],
+    name: email.split("@")[0] || "User",
     type: userType,
     phone: "+1234567890",
   };
@@ -725,10 +1073,28 @@ function login(email, password, userType = "patient") {
   state.currentUser = mockUser;
   localStorage.setItem("currentUser", JSON.stringify(mockUser));
   showToast(t("welcomeBack"));
-  setTimeout(() => (window.location.href = "dashboard.html"), 1000);
+
+  // Check for redirect
+  const redirectUrl = sessionStorage.getItem("redirectAfterLogin");
+  sessionStorage.removeItem("redirectAfterLogin");
+
+  setTimeout(() => {
+    window.location.href = redirectUrl || "dashboard.html";
+  }, 1000);
 }
 
 function signup(userData) {
+  // Validate
+  if (!userData.name || !userData.email || !userData.password) {
+    showToast("Please fill in all required fields", "error");
+    return;
+  }
+
+  if (userData.password !== userData.confirmPassword) {
+    showToast("Passwords do not match", "error");
+    return;
+  }
+
   showToast(
     state.language === "ar"
       ? "تم إنشاء الحساب بنجاح!"
@@ -744,7 +1110,7 @@ function logout() {
 }
 
 // ========================
-// NAVIGATION
+// NAVIGATION - Optimized
 // ========================
 function setupNavigation() {
   const mobileMenuBtn = document.getElementById("mobile-menu-btn");
@@ -757,16 +1123,11 @@ function setupNavigation() {
       e.preventDefault();
       e.stopPropagation();
 
-      navMenu.classList.toggle("active");
+      const isActive = navMenu.classList.toggle("active");
 
       // Toggle icon
-      if (navMenu.classList.contains("active")) {
-        mobileMenuBtn.innerHTML = "&#10005;";
-        mobileMenuBtn.setAttribute("aria-expanded", "true");
-      } else {
-        mobileMenuBtn.innerHTML = "&#9776;";
-        mobileMenuBtn.setAttribute("aria-expanded", "false");
-      }
+      mobileMenuBtn.innerHTML = isActive ? "&#10005;" : "&#9776;";
+      mobileMenuBtn.setAttribute("aria-expanded", isActive ? "true" : "false");
     });
 
     // Close menu when clicking a link
@@ -808,22 +1169,30 @@ function setupNavigation() {
     }
   });
 
-  // Navbar scroll effect
+  // Navbar scroll effect - throttled for performance
   if (navbar) {
-    window.addEventListener("scroll", () => {
+    const handleScroll = throttle(() => {
       if (window.scrollY > 10) {
         navbar.classList.add("scrolled");
       } else {
         navbar.classList.remove("scrolled");
       }
-    });
+    }, 100);
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
   }
 }
 
 // ========================
-// SCROLL EFFECTS
+// SCROLL EFFECTS - Optimized
 // ========================
 function setupScrollEffects() {
+  // Check if user prefers reduced motion
+  const prefersReducedMotion = window.matchMedia(
+    "(prefers-reduced-motion: reduce)",
+  ).matches;
+  if (prefersReducedMotion) return;
+
   // Intersection Observer for fade-in animations
   const observerOptions = {
     threshold: 0.1,
@@ -835,6 +1204,7 @@ function setupScrollEffects() {
       if (entry.isIntersecting) {
         entry.target.style.opacity = "1";
         entry.target.style.transform = "translateY(0)";
+        observer.unobserve(entry.target);
       }
     });
   }, observerOptions);
@@ -846,6 +1216,32 @@ function setupScrollEffects() {
     card.style.transition = "opacity 0.5s ease, transform 0.5s ease";
     observer.observe(card);
   });
+}
+
+// ========================
+// THEME FUNCTIONS
+// ========================
+function applySavedTheme() {
+  const savedTheme = localStorage.getItem("theme") || "light";
+  const savedCompact = localStorage.getItem("compactMode") === "true";
+  const savedHighContrast = localStorage.getItem("highContrast") === "true";
+  const savedReducedMotion = localStorage.getItem("reducedMotion") === "true";
+
+  if (savedTheme === "dark") {
+    document.documentElement.classList.add("dark-theme");
+  }
+
+  if (savedCompact) {
+    document.body.classList.add("compact-mode");
+  }
+
+  if (savedHighContrast) {
+    document.body.classList.add("high-contrast");
+  }
+
+  if (savedReducedMotion) {
+    document.body.classList.add("reduced-motion");
+  }
 }
 
 // ========================
@@ -871,6 +1267,15 @@ function loadPageSpecificContent() {
     case "records.html":
       loadRecords();
       break;
+    case "about.html":
+      // About page specific logic if needed
+      break;
+    case "settings.html":
+      loadSettings();
+      break;
+    case "settings.html": // Call settings-specific JS after loading settings
+      loadSettingsPageSpecificJs();
+      break;
   }
 }
 
@@ -881,35 +1286,17 @@ function loadHomePage() {
     statsContainer.innerHTML = `
       <div class="stat-card">
         <h4>50+</h4>
-        <p data-translate="expertDoctors">${t("expertDoctors") || "Expert Doctors"}</p>
+        <p>${t("expertDoctors")}</p>
       </div>
       <div class="stat-card" style="background: linear-gradient(135deg, var(--secondary) 0%, #0284c7 100%);">
         <h4>10k+</h4>
-        <p data-translate="patientsServed">${t("patientsServed") || "Patients Served"}</p>
+        <p>${t("patientsServed")}</p>
       </div>
-      <div class="stat-card" style="background: linear-gradient(135deg, var(--accent) 0%, #d97706 100%);">
+      <div class="stat-card" style="background: linear-gradient(135deg, var(--accent) 0%, #d97706 100%); color: white;">
         <h4>24/7</h4>
-        <p data-translate="emergencyCare24_7">${t("emergencyCare24_7") || "Emergency Care"}</p>
+        <p>${t("emergencyCare24_7")}</p>
       </div>
     `;
-  }
-
-  // Update service cards
-  const serviceTitles = document.querySelectorAll(".service-title");
-  const serviceDescs = document.querySelectorAll(".service-desc");
-
-  if (serviceTitles.length >= 4) {
-    serviceTitles[0].textContent = t("onlineBooking");
-    serviceTitles[1].textContent = t("medicalRecords");
-    serviceTitles[2].textContent = t("twentyFourSevenSupport");
-    serviceTitles[3].textContent = t("emergencyCare");
-  }
-
-  if (serviceDescs.length >= 4) {
-    serviceDescs[0].textContent = t("onlineBookingDesc");
-    serviceDescs[1].textContent = t("medicalRecordsDesc");
-    serviceDescs[2].textContent = t("supportDesc");
-    serviceDescs[3].textContent = t("emergencyCareDesc");
   }
 }
 
@@ -935,14 +1322,17 @@ function renderDoctors(doctors) {
   const container = document.getElementById("doctors-list");
   if (!container) return;
 
-  container.innerHTML = doctors
-    .map(
-      (doctor) => `
-    <div class="doctor-card">
+  // Use DocumentFragment for better performance
+  const fragment = document.createDocumentFragment();
+
+  doctors.forEach((doctor) => {
+    const card = document.createElement("div");
+    card.className = "doctor-card";
+    card.innerHTML = `
       <div class="doctor-img">👨‍⚕️</div>
       <div class="doctor-info">
-        <h3>${doctor.name}</h3>
-        <p class="specialty">${t(doctor.specialty.toLowerCase()) || doctor.specialty}</p>
+        <h3>${escapeHtml(doctor.name)}</h3>
+        <p class="specialty">${escapeHtml(t(doctor.specialty.toLowerCase()) || doctor.specialty)}</p>
         <div class="rating">⭐ ${doctor.rating} (${doctor.experience} ${t("yearsExp")})</div>
         <p style="color: ${doctor.available ? "var(--success)" : "var(--danger)"}; font-weight: 500; margin-bottom: 1rem;">
           ${doctor.available ? `● ${t("available")}` : `● ${t("notAvailable")}`}
@@ -952,21 +1342,28 @@ function renderDoctors(doctors) {
           ${t("bookAppointment")}
         </button>
       </div>
-    </div>
-  `,
-    )
-    .join("");
+    `;
+    fragment.appendChild(card);
+  });
+
+  container.innerHTML = "";
+  container.appendChild(fragment);
 }
 
 function loadDashboard() {
   if (!state.currentUser) return;
 
-  const userInfo = document.getElementById("user-info");
-  if (userInfo) {
-    userInfo.innerHTML = `
-      <h2 style="font-size: 1.25rem;">${state.language === "ar" ? "مرحباً، " : "Welcome, "}${state.currentUser.name}</h2>
-      <p style="color: var(--text-muted); font-size: 0.9rem;">${state.currentUser.email}</p>
-    `;
+  const nameEl = document.getElementById("dashboard-user-name");
+  const emailEl = document.getElementById("dashboard-user-email");
+
+  if (nameEl) {
+    nameEl.textContent =
+      state.language === "ar"
+        ? "مرحباً، " + escapeHtml(state.currentUser.name)
+        : "Welcome, " + escapeHtml(state.currentUser.name);
+  }
+  if (emailEl) {
+    emailEl.textContent = escapeHtml(state.currentUser.email);
   }
 
   // Update stat labels
@@ -985,21 +1382,24 @@ function loadDashboard() {
     if (upcoming.length === 0) {
       upcomingContainer.innerHTML = `<p class="text-center" style="color: var(--text-muted); padding: 2rem;">${t("noAppointments")}</p>`;
     } else {
-      upcomingContainer.innerHTML = upcoming
-        .map(
-          (appt) => `
-        <div class="card" style="margin-bottom: 1rem;">
-          <div class="flex justify-between items-center" style="display: flex; justify-content: space-between; align-items: center;">
+      const fragment = document.createDocumentFragment();
+      upcoming.forEach((appt) => {
+        const card = document.createElement("div");
+        card.className = "card";
+        card.style.marginBottom = "1rem";
+        card.innerHTML = `
+          <div style="display: flex; justify-content: space-between; align-items: center;">
             <div>
-              <h4 style="font-weight: 600;">${appt.doctorName}</h4>
-              <p style="color: var(--text-muted); font-size: 0.9rem;">${appt.department} - ${appt.date}</p>
+              <h4 style="font-weight: 600;">${escapeHtml(appt.doctorName)}</h4>
+              <p style="color: var(--text-muted); font-size: 0.9rem;">${escapeHtml(appt.department)} - ${appt.date}</p>
             </div>
             <span class="btn btn-secondary" style="padding: 0.25rem 0.75rem; font-size: 0.875rem;">${appt.time}</span>
           </div>
-        </div>
-      `,
-        )
-        .join("");
+        `;
+        fragment.appendChild(card);
+      });
+      upcomingContainer.innerHTML = "";
+      upcomingContainer.appendChild(fragment);
     }
   }
 
@@ -1036,7 +1436,7 @@ function loadAppointments() {
         state.doctors
           .map(
             (d) =>
-              `<option value="${d.id}">${d.name} - ${t(d.specialty.toLowerCase()) || d.specialty}</option>`,
+              `<option value="${d.id}">${escapeHtml(d.name)} - ${escapeHtml(t(d.specialty.toLowerCase()) || d.specialty)}</option>`,
           )
           .join("");
     }
@@ -1044,11 +1444,17 @@ function loadAppointments() {
     form.addEventListener("submit", (e) => {
       e.preventDefault();
       const formData = new FormData(form);
+      const doctor = state.doctors.find((d) => d.id == formData.get("doctor"));
+
+      if (!doctor) {
+        showToast("Please select a doctor", "error");
+        return;
+      }
+
       const appointment = {
         id: Date.now(),
         doctorId: formData.get("doctor"),
-        doctorName: state.doctors.find((d) => d.id == formData.get("doctor"))
-          ?.name,
+        doctorName: doctor.name,
         department: formData.get("department"),
         date: formData.get("date"),
         time: formData.get("time"),
@@ -1081,22 +1487,23 @@ function loadAppointments() {
         </tr>
       `;
     } else {
-      historyContainer.innerHTML = state.appointments
-        .map(
-          (appt) => `
-        <tr>
-          <td>${appt.doctorName}</td>
-          <td>${appt.department}</td>
+      const fragment = document.createDocumentFragment();
+      state.appointments.forEach((appt) => {
+        const row = document.createElement("tr");
+        row.innerHTML = `
+          <td>${escapeHtml(appt.doctorName)}</td>
+          <td>${escapeHtml(appt.department)}</td>
           <td>${appt.date}</td>
           <td>${appt.time}</td>
           <td><span class="btn btn-secondary" style="padding: 0.25rem 0.5rem; font-size: 0.8rem;">${appt.status}</span></td>
           <td>
             <button class="btn btn-danger" style="padding: 0.25rem 0.5rem; font-size: 0.8rem;" onclick="cancelAppointment(${appt.id})">${t("cancel")}</button>
           </td>
-        </tr>
-      `,
-        )
-        .join("");
+        `;
+        fragment.appendChild(row);
+      });
+      historyContainer.innerHTML = "";
+      historyContainer.appendChild(fragment);
     }
   }
 
@@ -1132,39 +1539,67 @@ function loadRecords() {
   const filterBtn = document.getElementById("filter-btn");
   if (filterBtn) filterBtn.textContent = t("filter");
 
-  container.innerHTML = state.records
-    .map((record) => {
-      let typeKey = "";
-      if (record.type === "Lab Results") typeKey = "labResults";
-      else if (record.type === "Prescription") typeKey = "prescriptions";
-      else if (record.type === "Diagnosis") typeKey = "diagnoses";
-      else if (record.type === "Imaging") typeKey = "imaging";
+  const fragment = document.createDocumentFragment();
 
-      let statusKey = "";
-      if (record.status === "Normal") statusKey = "normal";
-      else if (record.status === "Active") statusKey = "active";
-      else if (record.status === "Completed") statusKey = "completed";
+  state.records.forEach((record) => {
+    let typeKey = "";
+    if (record.type === "Lab Results") typeKey = "labResults";
+    else if (record.type === "Prescription") typeKey = "prescriptions";
+    else if (record.type === "Diagnosis") typeKey = "diagnoses";
+    else if (record.type === "Imaging") typeKey = "imaging";
 
-      return `
-      <div class="card">
-        <div class="flex justify-between items-start" style="display: flex; justify-content: space-between; align-items: flex-start;">
-          <div>
-            <span class="btn btn-secondary" style="padding: 0.25rem 0.75rem; font-size: 0.875rem; display: inline-block; margin-bottom: 0.5rem;">${t(typeKey) || record.type}</span>
-            <h3 style="margin-top: 0.5rem;">${record.title}</h3>
-            <p style="color: var(--text-muted); font-size: 0.9rem;">${record.doctor} • ${record.date}</p>
-          </div>
-          <span style="color: ${record.status === "Normal" ? "var(--success)" : "var(--secondary)"}; font-weight: 600;">
-            ${t(statusKey) || record.status}
-          </span>
+    let statusKey = "";
+    if (record.status === "Normal") statusKey = "normal";
+    else if (record.status === "Active") statusKey = "active";
+    else if (record.status === "Completed") statusKey = "completed";
+
+    const card = document.createElement("div");
+    card.className = "card";
+    card.innerHTML = `
+      <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+        <div>
+          <span class="btn btn-secondary" style="padding: 0.25rem 0.75rem; font-size: 0.875rem; display: inline-block; margin-bottom: 0.5rem;">${t(typeKey) || record.type}</span>
+          <h3 style="margin-top: 0.5rem;">${escapeHtml(record.title)}</h3>
+          <p style="color: var(--text-muted); font-size: 0.9rem;">${escapeHtml(record.doctor)} • ${record.date}</p>
         </div>
-        <div style="margin-top: 1rem; display: flex; gap: 0.5rem;">
-          <button class="btn btn-outline" style="padding: 0.375rem 0.75rem; font-size: 0.875rem;" onclick="viewRecord(${record.id})">${t("view")}</button>
-          <button class="btn btn-secondary" style="padding: 0.375rem 0.75rem; font-size: 0.875rem;" onclick="downloadRecord(${record.id})">${t("download")}</button>
-        </div>
+        <span style="color: ${record.status === "Normal" ? "var(--success)" : "var(--secondary)"}; font-weight: 600;">
+          ${t(statusKey) || record.status}
+        </span>
+      </div>
+      <div style="margin-top: 1rem; display: flex; gap: 0.5rem;">
+        <button class="btn btn-outline" style="padding: 0.375rem 0.75rem; font-size: 0.875rem;" onclick="viewRecord(${record.id})">${t("view")}</button>
+        <button class="btn btn-secondary" style="padding: 0.375rem 0.75rem; font-size: 0.875rem;" onclick="downloadRecord(${record.id})">${t("download")}</button>
       </div>
     `;
-    })
-    .join("");
+    fragment.appendChild(card);
+  });
+
+  container.innerHTML = "";
+  container.appendChild(fragment);
+}
+
+function loadSettings() {
+  // Load user data into profile form
+  if (state.currentUser) {
+    const nameParts = state.currentUser.name
+      ? state.currentUser.name.split(" ")
+      : ["", ""];
+    const firstNameInput = document.getElementById("profile-firstname");
+    const lastNameInput = document.getElementById("profile-lastname");
+    const emailInput = document.getElementById("profile-email-input");
+    const displayNameInput = document.getElementById("profile-display");
+
+    if (firstNameInput) firstNameInput.value = nameParts[0] || "";
+    if (lastNameInput) lastNameInput.value = nameParts.slice(1).join(" ") || "";
+    if (emailInput) emailInput.value = state.currentUser.email || "";
+    if (displayNameInput) displayNameInput.value = state.currentUser.name || "";
+  }
+
+  // Set language selector
+  const langSelect = document.getElementById("settings-language");
+  if (langSelect) {
+    langSelect.value = state.language;
+  }
 }
 
 // ========================
@@ -1189,7 +1624,7 @@ function cancelAppointment(id) {
   ) {
     state.appointments = state.appointments.filter((a) => a.id !== id);
     localStorage.setItem("appointments", JSON.stringify(state.appointments));
-    loadAppointments();
+    renderAppointmentHistory(); // Call the specific history renderer
     showToast(
       state.language === "ar" ? "تم إلغاء الموعد" : "Appointment cancelled",
     );
@@ -1211,9 +1646,9 @@ function viewRecord(id) {
         : "Carefully examined. Results are within normal range.";
 
     showModal(`
-      <h2 style="margin-bottom: 1rem;">${record.title}</h2>
-      <p style="margin-bottom: 0.5rem;"><strong>${typeLabel}:</strong> ${record.type}</p>
-      <p style="margin-bottom: 0.5rem;"><strong>${doctorLabel}:</strong> ${record.doctor}</p>
+      <h2 style="margin-bottom: 1rem;">${escapeHtml(record.title)}</h2>
+      <p style="margin-bottom: 0.5rem;"><strong>${typeLabel}:</strong> ${escapeHtml(record.type)}</p>
+      <p style="margin-bottom: 0.5rem;"><strong>${doctorLabel}:</strong> ${escapeHtml(record.doctor)}</p>
       <p style="margin-bottom: 0.5rem;"><strong>${dateLabel}:</strong> ${record.date}</p>
       <p style="margin-bottom: 0.5rem;"><strong>${statusLabel}:</strong> ${record.status}</p>
       <p><strong>${detailsLabel}:</strong> ${details}</p>
@@ -1235,7 +1670,7 @@ function downloadRecord(id) {
 }
 
 // ========================
-// EVENT LISTENERS
+// EVENT LISTENERS - Optimized
 // ========================
 function setupEventListeners() {
   // Login form
@@ -1243,8 +1678,8 @@ function setupEventListeners() {
   if (loginForm) {
     loginForm.addEventListener("submit", (e) => {
       e.preventDefault();
-      const email = document.getElementById("email").value;
-      const password = document.getElementById("password").value;
+      const email = document.getElementById("email")?.value?.trim();
+      const password = document.getElementById("password")?.value;
       login(email, password);
     });
   }
@@ -1255,11 +1690,14 @@ function setupEventListeners() {
     signupForm.addEventListener("submit", (e) => {
       e.preventDefault();
       const userData = {
-        name: document.getElementById("signup-name").value,
-        email: document.getElementById("signup-email").value,
-        phone: document.getElementById("signup-phone").value,
-        password: document.getElementById("signup-password").value,
-        type: document.getElementById("user-type").value,
+        name: document.getElementById("signup-name")?.value?.trim(),
+        email: document.getElementById("signup-email")?.value?.trim(),
+        phone: document.getElementById("signup-phone")?.value?.trim(),
+        password: document.getElementById("signup-password")?.value,
+        confirmPassword: signupForm.querySelector(
+          'input[type="password"]:nth-of-type(2)',
+        )?.value,
+        type: document.getElementById("user-type")?.value || "patient",
       };
       signup(userData);
     });
@@ -1277,22 +1715,33 @@ function setupEventListeners() {
       document
         .querySelectorAll(".auth-form")
         .forEach((f) => f.classList.add("hidden"));
-      document.getElementById(`${tab}-form`).classList.remove("hidden");
+      const targetForm = document.getElementById(`${tab}-form`);
+      if (targetForm) targetForm.classList.remove("hidden");
     });
   });
 
-  // Search functionality
+  // Handle URL hash for login/signup tab switching
+  if (
+    window.location.pathname.includes("login.html") &&
+    window.location.hash === "#signup"
+  ) {
+    document.querySelector('[data-tab="signup"]')?.click();
+  }
+
+  // Search functionality - debounced for performance
   const searchInput = document.getElementById("search-input");
   if (searchInput) {
-    searchInput.addEventListener("input", (e) => {
-      const query = e.target.value.toLowerCase();
+    const debouncedSearch = debounce((e) => {
+      const query = e.target.value.toLowerCase().trim();
       const filtered = state.doctors.filter(
         (d) =>
           d.name.toLowerCase().includes(query) ||
           d.specialty.toLowerCase().includes(query),
       );
       renderDoctors(filtered);
-    });
+    }, 300);
+
+    searchInput.addEventListener("input", debouncedSearch);
   }
 
   // Chat functionality
@@ -1301,7 +1750,7 @@ function setupEventListeners() {
     chatForm.addEventListener("submit", (e) => {
       e.preventDefault();
       const input = document.getElementById("chat-input-field");
-      const message = input.value.trim();
+      const message = input?.value?.trim();
       if (message) {
         addChatMessage(message, "sent");
         input.value = "";
@@ -1352,7 +1801,7 @@ function addChatMessage(text, type, sender = "") {
   const msgDiv = document.createElement("div");
   msgDiv.className = `message ${type}`;
   if (sender && type === "received") {
-    msgDiv.innerHTML = `<strong>${sender}</strong><br>${text}`;
+    msgDiv.innerHTML = `<strong>${escapeHtml(sender)}</strong><br>${escapeHtml(text)}`;
   } else {
     msgDiv.textContent = text;
   }
@@ -1363,7 +1812,33 @@ function addChatMessage(text, type, sender = "") {
 // ========================
 // UTILITY FUNCTIONS
 // ========================
+
+// XSS Protection - Escape HTML
+function escapeHtml(text) {
+  if (typeof text !== "string") return text;
+  const div = document.createElement("div");
+  div.textContent = text;
+  return div.innerHTML;
+}
+
+// Toast notification with queue management
+let toastQueue = [];
+let toastTimeout = null;
+
 function showToast(message, type = "success") {
+  // Add to queue
+  toastQueue.push({ message, type });
+
+  // Process queue
+  processToastQueue();
+}
+
+function processToastQueue() {
+  if (toastTimeout || toastQueue.length === 0) return;
+
+  const { message, type } = toastQueue.shift();
+
+  // Remove existing toast
   const existing = document.querySelector(".toast");
   if (existing) existing.remove();
 
@@ -1377,13 +1852,18 @@ function showToast(message, type = "success") {
     toast.classList.add("show");
   });
 
-  setTimeout(() => {
+  toastTimeout = setTimeout(() => {
     toast.classList.remove("show");
-    setTimeout(() => toast.remove(), 300);
+    setTimeout(() => {
+      toast.remove();
+      toastTimeout = null;
+      processToastQueue();
+    }, 300);
   }, 3000);
 }
 
 function showModal(content) {
+  // Remove existing modal
   const existing = document.querySelector(".modal");
   if (existing) existing.remove();
 
@@ -1400,6 +1880,15 @@ function showModal(content) {
   modal.addEventListener("click", (e) => {
     if (e.target === modal) modal.remove();
   });
+
+  // Close on escape key
+  const closeOnEscape = (e) => {
+    if (e.key === "Escape") {
+      modal.remove();
+      document.removeEventListener("keydown", closeOnEscape);
+    }
+  };
+  document.addEventListener("keydown", closeOnEscape);
 }
 
 // ========================
@@ -1412,22 +1901,341 @@ function initMap() {
   const hospitalLat = 29.312139;
   const hospitalLng = 30.856225;
 
-  const map = L.map("map").setView([hospitalLat, hospitalLng], 15);
+  try {
+    const map = L.map("map").setView([hospitalLat, hospitalLng], 15);
 
-  L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-    attribution:
-      '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-  }).addTo(map);
+    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+      attribution:
+        '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+    }).addTo(map);
 
-  const popupContent =
-    state.language === "ar"
-      ? "<b>مركز HealthBridge الطبي</b><br>١٢٣ شارع الرعاية الصحية"
-      : "<b>HealthBridge Medical Center</b><br>123 Healthcare Avenue";
+    const popupContent =
+      state.language === "ar"
+        ? "<b>مركز HealthBridge الطبي</b><br>١٢٣ شارع الرعاية الصحية"
+        : "<b>HealthBridge Medical Center</b><br>123 Healthcare Avenue";
 
-  L.marker([hospitalLat, hospitalLng])
-    .addTo(map)
-    .bindPopup(popupContent)
-    .openPopup();
+    L.marker([hospitalLat, hospitalLng])
+      .addTo(map)
+      .bindPopup(popupContent)
+      .openPopup();
+  } catch (e) {
+    console.error("Map initialization error:", e);
+    mapContainer.innerHTML =
+      '<p style="text-align: center; padding: 2rem;">Map loading...</p>';
+  }
+}
+
+// ========================
+// SETTINGS PAGE FUNCTIONS
+// ========================
+function loadSettingsPageSpecificJs() {
+  // Load last visited section
+  const lastSection = localStorage.getItem("lastSettingsSection");
+  if (lastSection) {
+    showSettingsSection(lastSection);
+  }
+
+  // Load profile data
+  loadProfileData();
+
+  // Load notification preferences
+  loadNotificationPrefs();
+
+  // Load theme preference
+  loadThemePreference();
+
+  // Profile form submission
+  document
+    .getElementById("profile-form")
+    ?.addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      const userData = {
+        name:
+          document.getElementById("profile-firstname").value +
+          " " +
+          document.getElementById("profile-lastname").value,
+        email: document.getElementById("profile-email-input").value,
+        phone: document.getElementById("profile-phone").value,
+        displayName: document.getElementById("profile-display").value,
+        dob: document.getElementById("profile-dob").value,
+        bio: document.getElementById("profile-bio").value,
+        emergencyContact: document.getElementById("profile-emergency").value,
+      };
+
+      // Update current user
+      const currentUser = JSON.parse(localStorage.getItem("currentUser")) || {};
+      Object.assign(currentUser, userData);
+      localStorage.setItem("currentUser", JSON.stringify(currentUser));
+
+      showToast("Profile updated successfully!");
+    });
+}
+
+function showSettingsSection(sectionId) {
+  // Hide all sections
+  document.querySelectorAll(".settings-section").forEach((section) => {
+    section.classList.remove("active");
+  });
+
+  // Show selected section
+  document.getElementById(sectionId + "-section").classList.add("active");
+
+  // Update sidebar active state
+  document.querySelectorAll(".settings-nav a").forEach((link) => {
+    link.classList.remove("active");
+  });
+  document
+    .querySelector(`[data-section="${sectionId}"]`)
+    .classList.add("active");
+
+  // Save to localStorage
+  localStorage.setItem("lastSettingsSection", sectionId);
+}
+
+function loadProfileData() {
+  const user = JSON.parse(localStorage.getItem("currentUser"));
+  if (user) {
+    document.getElementById("profile-name").textContent = user.name || "User";
+    document.getElementById("profile-email").textContent = user.email || "";
+  }
+}
+
+// Notification preferences
+function saveNotificationPref(type, enabled) {
+  const prefs = JSON.parse(localStorage.getItem("notificationPrefs")) || {};
+  prefs[type] = enabled;
+  localStorage.setItem("notificationPrefs", JSON.stringify(prefs));
+  showToast(
+    `${type.charAt(0).toUpperCase() + type.slice(1)} notifications ${enabled ? "enabled" : "disabled"}`,
+  );
+}
+
+function loadNotificationPrefs() {
+  const prefs = JSON.parse(localStorage.getItem("notificationPrefs")) || {};
+  if (prefs.email !== undefined)
+    document.getElementById("notif-email").checked = prefs.email;
+  if (prefs.sms !== undefined)
+    document.getElementById("notif-sms").checked = prefs.sms;
+  if (prefs.push !== undefined)
+    document.getElementById("notif-push").checked = prefs.push;
+}
+
+// Theme settings
+function setTheme(theme, element) {
+  // Update UI
+  document
+    .querySelectorAll(".theme-option")
+    .forEach((opt) => opt.classList.remove("active"));
+  element.classList.add("active");
+
+  // Save preference
+  localStorage.setItem("theme", theme);
+
+  // Apply theme
+  if (theme === "dark") {
+    document.documentElement.classList.add("dark-theme");
+  } else if (theme === "light") {
+    document.documentElement.classList.remove("dark-theme");
+  } else {
+    // Auto - check system preference
+    const prefersDark = window.matchMedia(
+      "(prefers-color-scheme: dark)",
+    ).matches;
+    if (prefersDark) {
+      document.documentElement.classList.add("dark-theme");
+    } else {
+      document.documentElement.classList.remove("dark-theme");
+    }
+  }
+
+  showToast(`Theme set to ${theme}`);
+}
+
+function loadThemePreference() {
+  const savedTheme = localStorage.getItem("theme") || "light";
+  const themeOption = document.querySelector(
+    `.theme-option:nth-child(${savedTheme === "light" ? 1 : savedTheme === "dark" ? 2 : 3})`,
+  );
+  if (themeOption) {
+    setTheme(savedTheme, themeOption);
+  }
+}
+
+// 2FA toggle
+function toggle2FA(checkbox) {
+  if (checkbox.checked) {
+    showModal(`
+      <h3>🔐 ${t("twoFactorAuth")}</h3>
+      <p style="margin: 1rem 0;">${t("twoFactorDesc")}</p>
+      <div style="width: 200px; height: 200px; background: #f1f5f9; margin: 1rem auto; display: flex; align-items: center; justify-content: center; border-radius: 8px;">
+        <span style="font-size: 4rem;">📱</span>
+      </div>
+      <p style="color: var(--text-muted); font-size: 0.9rem;">${t("orContinueWith")} <strong>ABCD-EFGH-IJKL-MNOP</strong></p>
+      <div style="margin-top: 1.5rem;">
+        <button class="btn btn-primary" onclick="this.closest('.modal').remove(); showToast('2FA enabled successfully!')" style="width: 100%;">${t("verify")} ${t("andEnable")}</button>
+      </div>
+    `);
+  } else {
+    showToast(t("twoFactorAuthDisabled"));
+  }
+}
+
+// Phone verification
+function verifyPhone() {
+  showModal(`
+    <h3>📱 ${t("phoneVerification")}</h3>
+    <p style="margin: 1rem 0;">${t("enter6DigitCode")}</p>
+    <div class="form-group">
+      <input type="text" maxlength="6" placeholder="000000" style="text-align: center; font-size: 1.5rem; letter-spacing: 0.5rem;">
+    </div>
+    <button class="btn btn-primary" onclick="this.closest('.modal').remove(); showToast('Phone verified successfully!')" style="width: 100%;">${t("verify")}</button>
+    <p style="text-align: center; margin-top: 1rem; color: var(--text-muted);">${t("didntReceiveCode")} <a href="#" onclick="showToast('Code resent!'); return false;">${t("resend")}</a></p>
+  `);
+}
+
+// Account actions
+function deactivateAccount() {
+  if (confirm(t("deactivateAccountConfirm"))) {
+    showToast(t("accountDeactivated"));
+    setTimeout(() => logout(), 2000);
+  }
+}
+
+function deleteAccount() {
+  if (confirm(t("deleteAccountWarning"))) {
+    if (confirm(t("deleteAccountConfirm"))) {
+      localStorage.clear();
+      showToast(t("accountDeleted"));
+      setTimeout(() => (window.location.href = "index.html"), 2000);
+    }
+  }
+}
+
+// Data management
+function downloadUserData() {
+  showToast(t("preparingDataDownload"));
+  setTimeout(() => {
+    showToast(t("dataDownloaded"));
+  }, 2000);
+}
+
+function clearSearchHistory() {
+  if (confirm(t("clearSearchHistoryConfirm"))) {
+    localStorage.removeItem("searchHistory");
+    showToast(t("searchHistoryCleared"));
+  }
+}
+
+// Appearance settings
+function toggleCompactMode(enabled) {
+  document.body.classList.toggle("compact-mode", enabled);
+  localStorage.setItem("compactMode", enabled);
+  showToast(t("compactMode") + ` ${enabled ? t("enabled") : t("disabled")}`);
+}
+
+function toggleAnimations(enabled) {
+  document.body.classList.toggle("no-animations", !enabled);
+  localStorage.setItem("animations", enabled);
+  showToast(t("animations") + ` ${enabled ? t("enabled") : t("disabled")}`);
+}
+
+function toggleHighContrast(enabled) {
+  document.body.classList.toggle("high-contrast", enabled);
+  localStorage.setItem("highContrast", enabled);
+  showToast(t("highContrast") + ` ${enabled ? t("enabled") : t("disabled")}`);
+}
+
+function toggleReducedMotion(enabled) {
+  document.body.classList.toggle("reduced-motion", enabled);
+  localStorage.setItem("reducedMotion", enabled);
+  showToast(t("reducedMotion") + ` ${enabled ? t("enabled") : t("disabled")}`);
+}
+
+// Language change from settings dropdown
+function setLanguageFromSettings(lang) {
+  state.language = lang;
+  localStorage.setItem("language", lang);
+  initLanguage();
+  translateStaticContent();
+  showToast(t("languageChangedTo") + ` ${lang.toUpperCase()}`);
+}
+
+// Storage management
+function manageStorage() {
+  showModal(`
+    <h3>💾 ${t("manageStorage")}</h3>
+    <div style="margin: 1.5rem 0;">
+      <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+        <span>${t("documents")}</span>
+        <span>1.2 GB</span>
+      </div>
+      <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+        <span>${t("images")}</span>
+        <span>800 MB</span>
+      </div>
+      <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+        <span>${t("cache")}</span>
+        <span>124 MB</span>
+      </div>
+      <div style="display: flex; justify-content: space-between; font-weight: 600;">
+        <span>${t("totalUsed")}</span>
+        <span>2.4 GB</span>
+      </div>
+    </div>
+    <button class="btn btn-primary" onclick="this.closest('.modal').remove()" style="width: 100%;">${t("done")}</button>
+  `);
+}
+
+function clearCache() {
+  if (confirm(t("clearCacheConfirm"))) {
+    showToast(t("cacheCleared"));
+  }
+}
+
+function toggleOfflineMode(enabled) {
+  showToast(t("offlineMode") + ` ${enabled ? t("enabled") : t("disabled")}`);
+}
+
+// Device management
+function disconnectDevice(deviceId) {
+  if (confirm(t("disconnectDeviceConfirm"))) {
+    showToast(t("deviceDisconnected"));
+  }
+}
+
+function disconnectAllDevices() {
+  if (confirm(t("disconnectAllDevicesConfirm"))) {
+    showToast(t("allDevicesDisconnected"));
+  }
+}
+
+// Activity log
+function downloadActivityLog() {
+  showToast(t("downloadingActivityLog"));
+  setTimeout(() => showToast(t("activityLogDownloaded")), 1500);
+}
+
+// Password change modal
+function showChangePasswordModal() {
+  showModal(`
+    <h3>🔐 ${t("changePassword")}</h3>
+    <form onsubmit="event.preventDefault(); this.closest('.modal').remove(); showToast('${t("passwordChangedSuccessfully")}');">
+      <div class="form-group">
+        <label>${t("currentPassword")}</label>
+        <input type="password" required>
+      </div>
+      <div class="form-group">
+        <label>${t("newPassword")}</label>
+        <input type="password" required>
+      </div>
+      <div class="form-group">
+        <label>${t("confirmNewPassword")}</label>
+        <input type="password" required>
+      </div>
+      <button type="submit" class="btn btn-primary" style="width: 100%;">${t("changePassword")}</button>
+    </form>
+  `);
 }
 
 // ========================
@@ -1441,3 +2249,27 @@ window.viewRecord = viewRecord;
 window.downloadRecord = downloadRecord;
 window.showToast = showToast;
 window.showModal = showModal;
+window.t = t;
+
+// Settings page specific exports
+window.showSettingsSection = showSettingsSection;
+window.saveNotificationPref = saveNotificationPref;
+window.setTheme = setTheme;
+window.toggle2FA = toggle2FA;
+window.verifyPhone = verifyPhone;
+window.deactivateAccount = deactivateAccount;
+window.deleteAccount = deleteAccount;
+window.downloadUserData = downloadUserData;
+window.clearSearchHistory = clearSearchHistory;
+window.toggleCompactMode = toggleCompactMode;
+window.toggleAnimations = toggleAnimations;
+window.toggleHighContrast = toggleHighContrast;
+window.toggleReducedMotion = toggleReducedMotion;
+window.setLanguageFromSettings = setLanguageFromSettings; // Renamed from changeLanguage to avoid conflict
+window.manageStorage = manageStorage;
+window.clearCache = clearCache;
+window.toggleOfflineMode = toggleOfflineMode;
+window.disconnectDevice = disconnectDevice;
+window.disconnectAllDevices = disconnectAllDevices;
+window.downloadActivityLog = downloadActivityLog;
+window.showChangePasswordModal = showChangePasswordModal;
