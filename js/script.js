@@ -1272,8 +1272,6 @@ function loadPageSpecificContent() {
       break;
     case "settings.html":
       loadSettings();
-      break;
-    case "settings.html": // Call settings-specific JS after loading settings
       loadSettingsPageSpecificJs();
       break;
   }
@@ -1941,6 +1939,9 @@ function loadSettingsPageSpecificJs() {
   // Load notification preferences
   loadNotificationPrefs();
 
+  // Load appearance preferences
+  loadAppearancePrefs();
+
   // Load theme preference
   loadThemePreference();
 
@@ -2022,7 +2023,24 @@ function loadNotificationPrefs() {
 }
 
 // Theme settings
-function setTheme(theme, element) {
+function loadAppearancePrefs() {
+  const savedCompact = localStorage.getItem("compactMode") === "true";
+  const savedAnimations = localStorage.getItem("animations") !== "false";
+  const savedHighContrast = localStorage.getItem("highContrast") === "true";
+  const savedReducedMotion = localStorage.getItem("reducedMotion") === "true";
+
+  if (document.getElementById("toggle-compact"))
+    document.getElementById("toggle-compact").checked = savedCompact;
+  if (document.getElementById("toggle-animations"))
+    document.getElementById("toggle-animations").checked = savedAnimations;
+  if (document.getElementById("toggle-high-contrast"))
+    document.getElementById("toggle-high-contrast").checked = savedHighContrast;
+  if (document.getElementById("toggle-reduced-motion"))
+    document.getElementById("toggle-reduced-motion").checked =
+      savedReducedMotion;
+}
+
+function setTheme(theme, element, silent = false) {
   // Update UI
   document
     .querySelectorAll(".theme-option")
@@ -2049,7 +2067,7 @@ function setTheme(theme, element) {
     }
   }
 
-  showToast(`Theme set to ${theme}`);
+  if (!silent) showToast(`Theme set to ${theme}`);
 }
 
 function loadThemePreference() {
@@ -2058,7 +2076,7 @@ function loadThemePreference() {
     `.theme-option:nth-child(${savedTheme === "light" ? 1 : savedTheme === "dark" ? 2 : 3})`,
   );
   if (themeOption) {
-    setTheme(savedTheme, themeOption);
+    setTheme(savedTheme, themeOption, true);
   }
 }
 
