@@ -1,3 +1,4 @@
+<!-- settings.html - Fixed version -->
 <!doctype html>
 <html lang="en" dir="ltr">
   <head>
@@ -386,7 +387,13 @@
               </div>
               <div class="security-status">
                 <label class="toggle-switch">
-                  <input type="checkbox" checked />
+                  <input
+                    type="checkbox"
+                    id="toggle-login-alerts"
+                    onchange="
+                      saveAccountSecurityPref('loginAlerts', this.checked)
+                    "
+                  />
                   <span class="toggle-slider"></span>
                 </label>
               </div>
@@ -522,7 +529,16 @@
                 </p>
               </div>
               <label class="toggle-switch">
-                <input type="checkbox" checked />
+                <input
+                  type="checkbox"
+                  id="toggle-appt-reminders"
+                  onchange="
+                    saveNotificationTypePref(
+                      'appointmentReminders',
+                      this.checked,
+                    )
+                  "
+                />
                 <span class="toggle-slider"></span>
               </label>
             </div>
@@ -535,7 +551,13 @@
                 </p>
               </div>
               <label class="toggle-switch">
-                <input type="checkbox" checked />
+                <input
+                  type="checkbox"
+                  id="toggle-test-results"
+                  onchange="
+                    saveNotificationTypePref('testResults', this.checked)
+                  "
+                />
                 <span class="toggle-slider"></span>
               </label>
             </div>
@@ -548,7 +570,13 @@
                 </p>
               </div>
               <label class="toggle-switch">
-                <input type="checkbox" checked />
+                <input
+                  type="checkbox"
+                  id="toggle-presc-alerts"
+                  onchange="
+                    saveNotificationTypePref('prescriptionAlerts', this.checked)
+                  "
+                />
                 <span class="toggle-slider"></span>
               </label>
             </div>
@@ -561,7 +589,13 @@
                 </p>
               </div>
               <label class="toggle-switch">
-                <input type="checkbox" />
+                <input
+                  type="checkbox"
+                  id="toggle-health-tips"
+                  onchange="
+                    saveNotificationTypePref('healthTips', this.checked)
+                  "
+                />
                 <span class="toggle-slider"></span>
               </label>
             </div>
@@ -574,7 +608,13 @@
                 </p>
               </div>
               <label class="toggle-switch">
-                <input type="checkbox" />
+                <input
+                  type="checkbox"
+                  id="toggle-marketing-emails"
+                  onchange="
+                    saveNotificationTypePref('marketingEmails', this.checked)
+                  "
+                />
                 <span class="toggle-slider"></span>
               </label>
             </div>
@@ -598,6 +638,8 @@
                   border: 2px solid #e2e8f0;
                   border-radius: var(--radius-md);
                 "
+                id="privacy-visibility"
+                onchange="savePrivacyPref('visibility', this.value)"
               >
                 <option value="public" data-translate="everyone">
                   Everyone
@@ -619,7 +661,11 @@
                 </p>
               </div>
               <label class="toggle-switch">
-                <input type="checkbox" checked />
+                <input
+                  type="checkbox"
+                  id="toggle-share-records"
+                  onchange="savePrivacyPref('shareRecords', this.checked)"
+                />
                 <span class="toggle-slider"></span>
               </label>
             </div>
@@ -632,7 +678,12 @@
                 </p>
               </div>
               <label class="toggle-switch">
-                <input type="checkbox" checked />
+                <input
+                  type="checkbox"
+                  id="toggle-data-analytics"
+                  checked
+                  onchange="savePrivacyPref('dataAnalytics', this.checked)"
+                />
                 <span class="toggle-slider"></span>
               </label>
             </div>
@@ -645,7 +696,11 @@
                 </p>
               </div>
               <label class="toggle-switch">
-                <input type="checkbox" />
+                <input
+                  type="checkbox"
+                  id="toggle-third-party"
+                  onchange="savePrivacyPref('thirdParty', this.checked)"
+                />
                 <span class="toggle-slider"></span>
               </label>
             </div>
@@ -812,6 +867,7 @@
             <div class="form-group">
               <label data-translate="region">Region</label>
               <select
+                id="region-select"
                 class="form-control"
                 style="
                   width: 100%;
@@ -819,6 +875,7 @@
                   border: 2px solid #e2e8f0;
                   border-radius: var(--radius-md);
                 "
+                onchange="saveLanguageRegionPref('region', this.value)"
               >
                 <option value="us">🇺🇸 United States</option>
                 <option value="uk">🇬🇧 United Kingdom</option>
@@ -832,6 +889,7 @@
             <div class="form-group">
               <label data-translate="timezone">Timezone</label>
               <select
+                id="timezone-select"
                 class="form-control"
                 style="
                   width: 100%;
@@ -839,6 +897,7 @@
                   border: 2px solid #e2e8f0;
                   border-radius: var(--radius-md);
                 "
+                onchange="saveLanguageRegionPref('timezone', this.value)"
               >
                 <option value="est">America/New York (EST)</option>
                 <option value="cst">America/Chicago (CST)</option>
@@ -852,6 +911,7 @@
             <div class="form-group">
               <label data-translate="dateFormat">Date Format</label>
               <select
+                id="date-format-select"
                 class="form-control"
                 style="
                   width: 100%;
@@ -859,6 +919,7 @@
                   border: 2px solid #e2e8f0;
                   border-radius: var(--radius-md);
                 "
+                onchange="saveLanguageRegionPref('dateFormat', this.value)"
               >
                 <option value="mdy">MM/DD/YYYY</option>
                 <option value="dmy">DD/MM/YYYY</option>
@@ -869,6 +930,7 @@
             <div class="form-group">
               <label data-translate="timeFormat">Time Format</label>
               <select
+                id="time-format-select"
                 class="form-control"
                 style="
                   width: 100%;
@@ -876,6 +938,7 @@
                   border: 2px solid #e2e8f0;
                   border-radius: var(--radius-md);
                 "
+                onchange="saveLanguageRegionPref('timeFormat', this.value)"
               >
                 <option value="12h">12-hour (AM/PM)</option>
                 <option value="24h">24-hour</option>
@@ -885,6 +948,7 @@
             <div class="form-group">
               <label data-translate="currency">Currency</label>
               <select
+                id="currency-select"
                 class="form-control"
                 style="
                   width: 100%;
@@ -892,6 +956,7 @@
                   border: 2px solid #e2e8f0;
                   border-radius: var(--radius-md);
                 "
+                onchange="saveLanguageRegionPref('currency', this.value)"
               >
                 <option value="usd">USD ($)</option>
                 <option value="eur">EUR (€)</option>
@@ -956,6 +1021,7 @@
               <label class="toggle-switch">
                 <input
                   type="checkbox"
+                  id="toggle-offline-mode"
                   onchange="toggleOfflineMode(this.checked)"
                 />
                 <span class="toggle-slider"></span>
@@ -970,7 +1036,12 @@
                 </p>
               </div>
               <label class="toggle-switch">
-                <input type="checkbox" checked />
+                <input
+                  type="checkbox"
+                  id="toggle-auto-sync"
+                  checked
+                  onchange="saveDataStoragePref('autoSync', this.checked)"
+                />
                 <span class="toggle-slider"></span>
               </label>
             </div>
@@ -989,6 +1060,8 @@
                   border: 2px solid #e2e8f0;
                   border-radius: var(--radius-md);
                 "
+                id="sync-frequency"
+                onchange="saveDataStoragePref('syncFrequency', this.value)"
               >
                 <option value="realtime" selected data-translate="realtime">
                   Real-time

@@ -3,10 +3,16 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Contact HealthBridge for support and inquiries." />
+    <meta
+      name="description"
+      content="Contact HealthBridge for support and inquiries."
+    />
     <title>Contact Us - HealthBridge</title>
     <link rel="stylesheet" href="css/style.css" />
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    />
   </head>
   <body>
     <!-- Navigation -->
@@ -21,35 +27,57 @@
             <li><a href="index.html" data-translate="home">Home</a></li>
             <li><a href="doctors.html" data-translate="doctors">Doctors</a></li>
             <li><a href="about.html" data-translate="aboutUs">About Us</a></li>
-            <li><a href="contact.html" data-translate="contactUs" class="active">Contact Us</a></li>
+            <li>
+              <a href="contact.html" data-translate="contactUs" class="active"
+                >Contact Us</a
+              >
+            </li>
             <li><a href="support.html" data-translate="support">Support</a></li>
           </ul>
           <div class="nav-actions">
-            <button class="lang-toggle" onclick="toggleLanguage()">AR/EN</button>
+            <button class="lang-toggle" onclick="toggleLanguage()">
+              AR/EN
+            </button>
             <div id="auth-links">
-              <a href="login.html" class="btn btn-outline" data-translate="login">Login</a>
-              <a href="login.html#signup" class="btn btn-primary" data-translate="signUp">Sign Up</a>
+              <a
+                href="login.html"
+                class="btn btn-outline"
+                data-translate="login"
+                >Login</a
+              >
+              <a
+                href="login.html#signup"
+                class="btn btn-primary"
+                data-translate="signUp"
+                >Sign Up</a
+              >
             </div>
           </div>
         </div>
-        <button id="mobile-menu-btn" class="mobile-menu" aria-label="Toggle menu" aria-expanded="false">
+        <button
+          id="mobile-menu-btn"
+          class="mobile-menu"
+          aria-label="Toggle menu"
+          aria-expanded="false"
+        >
           &#9776;
         </button>
       </div>
     </nav>
 
     <!-- Hero Section -->
-    <section class="hero" style="min-height: 35vh; padding: 4rem 2rem;">
+    <section class="hero" style="min-height: 35vh; padding: 4rem 2rem">
       <div class="hero-content">
         <h1 data-translate="getInTouch">Get in Touch</h1>
-        <p data-translate="weLoveToHear" style="color: var(--text-secondary);">
-          We'd love to hear from you. Send us a message and we'll respond as soon as possible.
+        <p data-translate="weLoveToHear" style="color: var(--text-secondary)">
+          We'd love to hear from you. Send us a message and we'll respond as
+          soon as possible.
         </p>
       </div>
     </section>
 
     <!-- Contact Content -->
-    <div style="max-width: 1200px; margin: 3rem auto; padding: 0 2rem;">
+    <div style="max-width: 1200px; margin: 3rem auto; padding: 0 2rem">
       <div class="grid-2">
         <!-- Contact Form -->
         <div>
@@ -57,11 +85,21 @@
             <div class="grid-2">
               <div class="form-group">
                 <label data-translate="firstName">First Name</label>
-                <input type="text" required data-translate-placeholder="enterFirstName" placeholder="Enter your first name" />
+                <input
+                  type="text"
+                  required
+                  data-translate-placeholder="enterFirstName"
+                  placeholder="Enter your first name"
+                />
               </div>
               <div class="form-group">
                 <label data-translate="lastName">Last Name</label>
-                <input type="text" required data-translate-placeholder="enterLastName" placeholder="Enter your last name" />
+                <input
+                  type="text"
+                  required
+                  data-translate-placeholder="enterLastName"
+                  placeholder="Enter your last name"
+                />
               </div>
             </div>
             <div class="form-group">
@@ -75,17 +113,35 @@
             <div class="form-group">
               <label data-translate="subject">Subject</label>
               <select required>
-                <option value="" data-translate="generalInquiry">General Inquiry</option>
-                <option value="appointment" data-translate="appointmentIssue">Appointment Issue</option>
-                <option value="technical" data-translate="technicalSupport">Technical Support</option>
-                <option value="feedback" data-translate="feedback">Feedback</option>
+                <option value="" data-translate="generalInquiry">
+                  General Inquiry
+                </option>
+                <option value="appointment" data-translate="appointmentIssue">
+                  Appointment Issue
+                </option>
+                <option value="technical" data-translate="technicalSupport">
+                  Technical Support
+                </option>
+                <option value="feedback" data-translate="feedback">
+                  Feedback
+                </option>
               </select>
             </div>
             <div class="form-group">
               <label data-translate="message">Message</label>
-              <textarea rows="5" required data-translate-placeholder="howCanWeHelp" placeholder="How can we help you?"></textarea>
+              <textarea
+                rows="5"
+                required
+                data-translate-placeholder="howCanWeHelp"
+                placeholder="How can we help you?"
+              ></textarea>
             </div>
-            <button type="submit" class="btn btn-primary" style="width: 100%;" data-translate="sendMessage">
+            <button
+              type="submit"
+              class="btn btn-primary"
+              style="width: 100%"
+              data-translate="sendMessage"
+            >
               Send Message
             </button>
           </form>
@@ -93,39 +149,66 @@
 
         <!-- Contact Info -->
         <div>
-          <div class="card" style="margin-bottom: 1.5rem;">
-            <h3 style="display: flex; align-items: center; gap: 0.5rem;">
-              <span style="font-size: 1.5rem;">📍</span>
+          <div class="card" style="margin-bottom: 1.5rem">
+            <h3 style="display: flex; align-items: center; gap: 0.5rem">
+              <span style="font-size: 1.5rem">📍</span>
               <span data-translate="visitUs">Visit Us</span>
             </h3>
-            <p style="margin-top: 1rem; color: var(--text-secondary);">
-              <strong style="color: var(--text-primary);">HealthBridge Medical Center</strong><br />
-              <span data-translate="hospitalAddress">123 Healthcare Avenue, Medical District, City 12345</span>
+            <p style="margin-top: 1rem; color: var(--text-secondary)">
+              <strong style="color: var(--text-primary)"
+                >HealthBridge Medical Center</strong
+              ><br />
+              <span data-translate="hospitalAddress"
+                >123 Healthcare Avenue, Medical District, City 12345</span
+              >
             </p>
           </div>
 
-          <div class="card" style="margin-bottom: 1.5rem;">
-            <h3 style="display: flex; align-items: center; gap: 0.5rem;">
-              <span style="font-size: 1.5rem;">📞</span>
+          <div class="card" style="margin-bottom: 1.5rem">
+            <h3 style="display: flex; align-items: center; gap: 0.5rem">
+              <span style="font-size: 1.5rem">📞</span>
               <span data-translate="callUs">Call Us</span>
             </h3>
-            <p style="margin-top: 1rem; color: var(--text-secondary);">
-              <strong data-translate="main" style="color: var(--text-primary);">Main</strong>: +1 (555) 123-4567<br />
-              <strong data-translate="emergency" style="color: var(--text-primary);">Emergency</strong>: 911<br />
-              <strong data-translate="appointments" style="color: var(--text-primary);">Appointments</strong>: +1 (555) 123-4568
+            <p style="margin-top: 1rem; color: var(--text-secondary)">
+              <strong data-translate="main" style="color: var(--text-primary)"
+                >Main</strong
+              >: +1 (555) 123-4567<br />
+              <strong
+                data-translate="emergency"
+                style="color: var(--text-primary)"
+                >Emergency</strong
+              >: 911<br />
+              <strong
+                data-translate="appointments"
+                style="color: var(--text-primary)"
+                >Appointments</strong
+              >: +1 (555) 123-4568
             </p>
           </div>
 
-          <div class="card" style="margin-bottom: 1.5rem;">
-            <h3 style="display: flex; align-items: center; gap: 0.5rem;">
-              <span style="font-size: 1.5rem;">🕐</span>
+          <div class="card" style="margin-bottom: 1.5rem">
+            <h3 style="display: flex; align-items: center; gap: 0.5rem">
+              <span style="font-size: 1.5rem">🕐</span>
               <span data-translate="workingHours">Working Hours</span>
             </h3>
-            <p style="margin-top: 1rem; color: var(--text-secondary);">
-              <strong data-translate="monFri" style="color: var(--text-primary);">Mon - Fri</strong>: 8:00 AM - 8:00 PM<br />
-              <strong data-translate="saturday" style="color: var(--text-primary);">Saturday</strong>: 9:00 AM - 5:00 PM<br />
-              <strong data-translate="sunday" style="color: var(--text-primary);">Sunday</strong>: <span data-translate="emergencyOnly">Emergency Only</span><br />
-              <strong data-translate="emergency" style="color: var(--text-primary);">Emergency</strong>: <span data-translate="twentyFourSeven">24/7</span>
+            <p style="margin-top: 1rem; color: var(--text-secondary)">
+              <strong data-translate="monFri" style="color: var(--text-primary)"
+                >Mon - Fri</strong
+              >: 8:00 AM - 8:00 PM<br />
+              <strong
+                data-translate="saturday"
+                style="color: var(--text-primary)"
+                >Saturday</strong
+              >: 9:00 AM - 5:00 PM<br />
+              <strong data-translate="sunday" style="color: var(--text-primary)"
+                >Sunday</strong
+              >: <span data-translate="emergencyOnly">Emergency Only</span
+              ><br />
+              <strong
+                data-translate="emergency"
+                style="color: var(--text-primary)"
+                >Emergency</strong
+              >: <span data-translate="twentyFourSeven">24/7</span>
             </p>
           </div>
 
@@ -140,28 +223,41 @@
       <div class="footer-content">
         <div>
           <h3>🏥 HealthBridge</h3>
-          <p data-translate="connectingPatients" style="margin-top: 1rem;">
+          <p data-translate="connectingPatients" style="margin-top: 1rem">
             Connecting patients with quality healthcare services.
           </p>
         </div>
         <div>
           <h4 data-translate="quickLinks">Quick Links</h4>
-          <ul style="margin-top: 1rem;">
-            <li><a href="doctors.html" data-translate="findDoctor">Find a Doctor</a></li>
-            <li><a href="appointments.html" data-translate="bookAppointment">Book Appointment</a></li>
-            <li><a href="emergency.html" data-translate="emergency">Emergency</a></li>
+          <ul style="margin-top: 1rem">
+            <li>
+              <a href="doctors.html" data-translate="findDoctor"
+                >Find a Doctor</a
+              >
+            </li>
+            <li>
+              <a href="appointments.html" data-translate="bookAppointment"
+                >Book Appointment</a
+              >
+            </li>
+            <li>
+              <a href="emergency.html" data-translate="emergency">Emergency</a>
+            </li>
           </ul>
         </div>
         <div>
           <h4 data-translate="contactUs">Contact Us</h4>
-          <p style="margin-top: 1rem;">
+          <p style="margin-top: 1rem">
             <span data-translate="phone">📞 Phone</span>: +1 (555) 123-4567<br />
-            <span data-translate="email">📧 Email</span>: support@healthbridge.com
+            <span data-translate="email">📧 Email</span>:
+            support@healthbridge.com
           </p>
         </div>
       </div>
       <div class="footer-bottom">
-        <p data-translate="copyright">&copy; 2026 HealthBridge. All rights reserved.</p>
+        <p data-translate="copyright">
+          &copy; 2026 HealthBridge. All rights reserved.
+        </p>
       </div>
     </footer>
 

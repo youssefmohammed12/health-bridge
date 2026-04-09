@@ -3,7 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Admin panel for managing doctors at HealthBridge." />
+    <meta
+      name="description"
+      content="Admin panel for managing doctors at HealthBridge."
+    />
     <title>Admin - Manage Doctors | HealthBridge</title>
     <link rel="stylesheet" href="css/style.css" />
     <style>
@@ -98,7 +101,11 @@
       .stat-number {
         font-size: 2.5rem;
         font-weight: 800;
-        background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+        background: linear-gradient(
+          135deg,
+          var(--primary) 0%,
+          var(--primary-dark) 100%
+        );
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         background-clip: text;
@@ -126,7 +133,9 @@
         color: var(--danger);
       }
       @media (max-width: 768px) {
-        .admin-grid, .doctor-info-grid, .form-row {
+        .admin-grid,
+        .doctor-info-grid,
+        .form-row {
           grid-template-columns: 1fr;
         }
         .stats-bar {
@@ -144,7 +153,7 @@
           <div class="logo-icon">🏥</div>
           <span>HealthBridge Admin</span>
         </a>
-        <div style="display: flex; gap: 1rem;">
+        <div style="display: flex; gap: 1rem">
           <a href="doctors.html" class="btn btn-outline">View Public Page</a>
           <a href="index.html" class="btn btn-secondary">Back to Site</a>
         </div>
@@ -152,35 +161,51 @@
     </nav>
 
     <div class="admin-container">
-      <h1 style="margin-bottom: 0.5rem; font-size: 2rem;">👨‍⚕️ Doctor Management</h1>
-      <p style="color: var(--text-muted); margin-bottom: 2rem;">
-        Add, edit, or remove doctors from the system. Changes are saved locally in your browser.
+      <h1 style="margin-bottom: 0.5rem; font-size: 2rem">
+        👨‍⚕️ Doctor Management
+      </h1>
+      <p style="color: var(--text-muted); margin-bottom: 2rem">
+        Add, edit, or remove doctors from the system. Changes are saved locally
+        in your browser.
       </p>
 
       <!-- Stats -->
       <div class="stats-bar">
         <div class="stat-item">
           <div class="stat-number" id="total-doctors">0</div>
-          <div style="color: var(--text-secondary); margin-top: 0.25rem;">Total Doctors</div>
+          <div style="color: var(--text-secondary); margin-top: 0.25rem">
+            Total Doctors
+          </div>
         </div>
         <div class="stat-item">
           <div class="stat-number" id="available-doctors">0</div>
-          <div style="color: var(--text-secondary); margin-top: 0.25rem;">Available</div>
+          <div style="color: var(--text-secondary); margin-top: 0.25rem">
+            Available
+          </div>
         </div>
         <div class="stat-item">
           <div class="stat-number" id="specialties-count">0</div>
-          <div style="color: var(--text-secondary); margin-top: 0.25rem;">Specialties</div>
+          <div style="color: var(--text-secondary); margin-top: 0.25rem">
+            Specialties
+          </div>
         </div>
       </div>
 
       <div class="admin-grid">
         <!-- Add New Doctor Form -->
-        <div class="card" style="height: fit-content;">
-          <h3 style="margin-bottom: 1.5rem; font-size: 1.25rem;">➕ Add New Doctor</h3>
+        <div class="card" style="height: fit-content">
+          <h3 style="margin-bottom: 1.5rem; font-size: 1.25rem">
+            ➕ Add New Doctor
+          </h3>
           <form id="add-doctor-form">
             <div class="form-group">
               <label>Full Name</label>
-              <input type="text" id="new-name" required placeholder="Dr. Full Name" />
+              <input
+                type="text"
+                id="new-name"
+                required
+                placeholder="Dr. Full Name"
+              />
             </div>
 
             <div class="form-group">
@@ -202,47 +227,108 @@
             <div class="form-row">
               <div class="form-group">
                 <label>Experience (years)</label>
-                <input type="number" id="new-exp" required min="1" max="50" value="5" />
+                <input
+                  type="number"
+                  id="new-exp"
+                  required
+                  min="1"
+                  max="50"
+                  value="5"
+                />
               </div>
               <div class="form-group">
                 <label>Rating (1-5)</label>
-                <input type="number" id="new-rating" required min="1" max="5" step="0.1" value="4.5" />
+                <input
+                  type="number"
+                  id="new-rating"
+                  required
+                  min="1"
+                  max="5"
+                  step="0.1"
+                  value="4.5"
+                />
               </div>
             </div>
 
             <div class="form-group">
-              <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
-                <input type="checkbox" id="new-available" checked style="width: auto;" />
+              <label
+                style="
+                  display: flex;
+                  align-items: center;
+                  gap: 0.5rem;
+                  cursor: pointer;
+                "
+              >
+                <input
+                  type="checkbox"
+                  id="new-available"
+                  checked
+                  style="width: auto"
+                />
                 <span>Available for Booking</span>
               </label>
             </div>
 
-            <button type="submit" class="btn btn-primary" style="width: 100%;">
+            <button type="submit" class="btn btn-primary" style="width: 100%">
               Add Doctor
             </button>
           </form>
 
-          <hr style="margin: 2rem 0; border: none; border-top: 1px solid #e2e8f0;" />
+          <hr
+            style="margin: 2rem 0; border: none; border-top: 1px solid #e2e8f0"
+          />
 
-          <h4 style="margin-bottom: 1rem; color: var(--danger);">⚠️ Danger Zone</h4>
-          <button onclick="resetAllDoctors()" class="btn btn-danger" style="width: 100%;">
+          <h4 style="margin-bottom: 1rem; color: var(--danger)">
+            ⚠️ Danger Zone
+          </h4>
+          <button
+            onclick="resetAllDoctors()"
+            class="btn btn-danger"
+            style="width: 100%"
+          >
             Reset to Default (8 Doctors)
           </button>
-          <p style="font-size: 0.875rem; color: var(--text-muted); margin-top: 0.5rem;">
-            This will delete all current doctors and restore the original 8 mock doctors.
+          <p
+            style="
+              font-size: 0.875rem;
+              color: var(--text-muted);
+              margin-top: 0.5rem;
+            "
+          >
+            This will delete all current doctors and restore the original 8 mock
+            doctors.
           </p>
         </div>
 
         <!-- Doctors List -->
         <div>
-          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; flex-wrap: wrap; gap: 1rem;">
+          <div
+            style="
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+              margin-bottom: 1.5rem;
+              flex-wrap: wrap;
+              gap: 1rem;
+            "
+          >
             <h3>Current Doctors</h3>
-            <input type="text" id="search-doctors" placeholder="Search doctors..." style="padding: 0.625rem 1rem; border: 1px solid #e2e8f0; border-radius: var(--radius-md); min-width: 200px;" />
+            <input
+              type="text"
+              id="search-doctors"
+              placeholder="Search doctors..."
+              style="
+                padding: 0.625rem 1rem;
+                border: 1px solid #e2e8f0;
+                border-radius: var(--radius-md);
+                min-width: 200px;
+              "
+            />
           </div>
 
           <div id="doctors-list-admin">
             <div class="empty-state">
-              <div style="font-size: 3rem; margin-bottom: 1rem;">⏳</div>
+              <div style="font-size: 3rem; margin-bottom: 1rem">⏳</div>
               <h3>Loading doctors...</h3>
             </div>
           </div>
@@ -255,7 +341,7 @@
       <div class="footer-content">
         <div>
           <h3>🏥 HealthBridge Admin</h3>
-          <p style="margin-top: 1rem;">Doctor management system.</p>
+          <p style="margin-top: 1rem">Doctor management system.</p>
         </div>
       </div>
       <div class="footer-bottom">
@@ -269,22 +355,27 @@
       let currentDoctors = [];
 
       function loadDoctorsAdmin() {
-        currentDoctors = JSON.parse(localStorage.getItem('doctors')) || [];
+        currentDoctors = JSON.parse(localStorage.getItem("doctors")) || [];
         updateStats();
         renderDoctorsList(currentDoctors);
       }
 
       function updateStats() {
-        document.getElementById('total-doctors').textContent = currentDoctors.length;
-        document.getElementById('available-doctors').textContent = currentDoctors.filter(d => d.available).length;
-        
-        const uniqueSpecialties = [...new Set(currentDoctors.map(d => d.specialty))];
-        document.getElementById('specialties-count').textContent = uniqueSpecialties.length;
+        document.getElementById("total-doctors").textContent =
+          currentDoctors.length;
+        document.getElementById("available-doctors").textContent =
+          currentDoctors.filter((d) => d.available).length;
+
+        const uniqueSpecialties = [
+          ...new Set(currentDoctors.map((d) => d.specialty)),
+        ];
+        document.getElementById("specialties-count").textContent =
+          uniqueSpecialties.length;
       }
 
       function renderDoctorsList(doctors) {
-        const container = document.getElementById('doctors-list-admin');
-        
+        const container = document.getElementById("doctors-list-admin");
+
         if (doctors.length === 0) {
           container.innerHTML = `
             <div class="empty-state">
@@ -296,13 +387,15 @@
           return;
         }
 
-        container.innerHTML = doctors.map(doc => `
+        container.innerHTML = doctors
+          .map(
+            (doc) => `
           <div class="doctor-card-admin" data-id="${doc.id}">
             <div class="doctor-header">
               <div>
                 <h4 style="margin-bottom: 0.25rem; font-size: 1.1rem;">${doc.name}</h4>
-                <span class="specialty-badge ${doc.available ? 'available-badge' : 'unavailable-badge'}">
-                  ${doc.specialty} ${doc.available ? '● Available' : '● Unavailable'}
+                <span class="specialty-badge ${doc.available ? "available-badge" : "unavailable-badge"}">
+                  ${doc.specialty} ${doc.available ? "● Available" : "● Unavailable"}
                 </span>
               </div>
               <div class="doctor-actions">
@@ -353,7 +446,7 @@
               </div>
               <div class="form-group">
                 <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
-                  <input type="checkbox" id="edit-available-${doc.id}" ${doc.available ? 'checked' : ''} style="width: auto;">
+                  <input type="checkbox" id="edit-available-${doc.id}" ${doc.available ? "checked" : ""} style="width: auto;">
                   <span>Available</span>
                 </label>
               </div>
@@ -363,21 +456,38 @@
               </div>
             </div>
           </div>
-        `).join('');
+        `,
+          )
+          .join("");
       }
 
       function getSpecialtyOptions(selected) {
-        const specialties = ['Cardiology', 'Dermatology', 'Neurology', 'Pediatrics', 'Orthopedics', 'General Medicine', 'Dentistry', 'Ophthalmology', 'Gynecology'];
-        return specialties.map(s => `<option value="${s}" ${s === selected ? 'selected' : ''}>${s}</option>`).join('');
+        const specialties = [
+          "Cardiology",
+          "Dermatology",
+          "Neurology",
+          "Pediatrics",
+          "Orthopedics",
+          "General Medicine",
+          "Dentistry",
+          "Ophthalmology",
+          "Gynecology",
+        ];
+        return specialties
+          .map(
+            (s) =>
+              `<option value="${s}" ${s === selected ? "selected" : ""}>${s}</option>`,
+          )
+          .join("");
       }
 
       function toggleEditForm(id) {
         const form = document.getElementById(`edit-form-${id}`);
-        form.classList.toggle('active');
+        form.classList.toggle("active");
       }
 
       function saveDoctorEdit(id) {
-        const index = currentDoctors.findIndex(d => d.id === id);
+        const index = currentDoctors.findIndex((d) => d.id === id);
         if (index === -1) return;
 
         currentDoctors[index] = {
@@ -385,64 +495,78 @@
           name: document.getElementById(`edit-name-${id}`).value,
           specialty: document.getElementById(`edit-specialty-${id}`).value,
           experience: parseInt(document.getElementById(`edit-exp-${id}`).value),
-          rating: parseFloat(document.getElementById(`edit-rating-${id}`).value).toFixed(1),
-          available: document.getElementById(`edit-available-${id}`).checked
+          rating: parseFloat(
+            document.getElementById(`edit-rating-${id}`).value,
+          ).toFixed(1),
+          available: document.getElementById(`edit-available-${id}`).checked,
         };
 
-        localStorage.setItem('doctors', JSON.stringify(currentDoctors));
-        showToast('Doctor updated successfully!');
+        localStorage.setItem("doctors", JSON.stringify(currentDoctors));
+        showToast("Doctor updated successfully!");
         loadDoctorsAdmin();
       }
 
       function deleteDoctor(id) {
-        if (!confirm('Are you sure you want to delete this doctor?')) return;
-        
-        currentDoctors = currentDoctors.filter(d => d.id !== id);
-        localStorage.setItem('doctors', JSON.stringify(currentDoctors));
-        showToast('Doctor deleted successfully!');
+        if (!confirm("Are you sure you want to delete this doctor?")) return;
+
+        currentDoctors = currentDoctors.filter((d) => d.id !== id);
+        localStorage.setItem("doctors", JSON.stringify(currentDoctors));
+        showToast("Doctor deleted successfully!");
         loadDoctorsAdmin();
       }
 
       function resetAllDoctors() {
-        if (!confirm('WARNING: This will delete ALL current doctors and restore the default 8 doctors. Continue?')) return;
-        
-        localStorage.removeItem('doctors');
+        if (
+          !confirm(
+            "WARNING: This will delete ALL current doctors and restore the default 8 doctors. Continue?",
+          )
+        )
+          return;
+
+        localStorage.removeItem("doctors");
         location.reload();
       }
 
       // Add new doctor
-      document.getElementById('add-doctor-form').addEventListener('submit', function(e) {
-        e.preventDefault();
-        
-        const newDoctor = {
-          id: Date.now(),
-          name: document.getElementById('new-name').value,
-          specialty: document.getElementById('new-specialty').value,
-          experience: parseInt(document.getElementById('new-exp').value),
-          rating: parseFloat(document.getElementById('new-rating').value).toFixed(1),
-          available: document.getElementById('new-available').checked
-        };
+      document
+        .getElementById("add-doctor-form")
+        .addEventListener("submit", function (e) {
+          e.preventDefault();
 
-        currentDoctors.push(newDoctor);
-        localStorage.setItem('doctors', JSON.stringify(currentDoctors));
-        
-        this.reset();
-        showToast('Doctor added successfully!');
-        loadDoctorsAdmin();
-      });
+          const newDoctor = {
+            id: Date.now(),
+            name: document.getElementById("new-name").value,
+            specialty: document.getElementById("new-specialty").value,
+            experience: parseInt(document.getElementById("new-exp").value),
+            rating: parseFloat(
+              document.getElementById("new-rating").value,
+            ).toFixed(1),
+            available: document.getElementById("new-available").checked,
+          };
+
+          currentDoctors.push(newDoctor);
+          localStorage.setItem("doctors", JSON.stringify(currentDoctors));
+
+          this.reset();
+          showToast("Doctor added successfully!");
+          loadDoctorsAdmin();
+        });
 
       // Search functionality
-      document.getElementById('search-doctors').addEventListener('input', function(e) {
-        const query = e.target.value.toLowerCase();
-        const filtered = currentDoctors.filter(d => 
-          d.name.toLowerCase().includes(query) || 
-          d.specialty.toLowerCase().includes(query)
-        );
-        renderDoctorsList(filtered);
-      });
+      document
+        .getElementById("search-doctors")
+        .addEventListener("input", function (e) {
+          const query = e.target.value.toLowerCase();
+          const filtered = currentDoctors.filter(
+            (d) =>
+              d.name.toLowerCase().includes(query) ||
+              d.specialty.toLowerCase().includes(query),
+          );
+          renderDoctorsList(filtered);
+        });
 
       // Load on page start
-      document.addEventListener('DOMContentLoaded', loadDoctorsAdmin);
+      document.addEventListener("DOMContentLoaded", loadDoctorsAdmin);
     </script>
   </body>
 </html>
