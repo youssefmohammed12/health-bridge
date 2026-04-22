@@ -1,6 +1,3 @@
-// HealthBridge - Optimized JavaScript
-// Modern healthcare platform with smooth animations and bilingual support
-
 // ========================
 // GLOBAL STATE
 // ========================
@@ -46,13 +43,25 @@ function throttle(func, limit) {
 // ========================
 function generateMockDoctors() {
   const specialties = [
-    "Cardiology", "Dermatology", "Neurology", "Pediatrics",
-    "Orthopedics", "General Medicine", "Gynecology", "Ophthalmology", "Dentistry",
+    "Cardiology",
+    "Dermatology",
+    "Neurology",
+    "Pediatrics",
+    "Orthopedics",
+    "General Medicine",
+    "Gynecology",
+    "Ophthalmology",
+    "Dentistry",
   ];
   const names = [
-    "Dr. Ahmed Hassan", "Dr. Sarah Johnson", "Dr. Mohammed Ali",
-    "Dr. Fatima Al-Rashid", "Dr. Omar Khan", "Dr. Lisa Smith",
-    "Dr. Karim Fayed", "Dr. Noura Saeed",
+    "Dr. Ahmed Hassan",
+    "Dr. Sarah Johnson",
+    "Dr. Mohammed Ali",
+    "Dr. Fatima Al-Rashid",
+    "Dr. Omar Khan",
+    "Dr. Lisa Smith",
+    "Dr. Karim Fayed",
+    "Dr. Noura Saeed",
   ];
 
   return names.map((name, i) => ({
@@ -69,10 +78,38 @@ function generateMockDoctors() {
 
 function generateMockRecords() {
   return [
-    { id: 1, date: "2024-03-15", type: "Lab Results", title: "Complete Blood Count", doctor: "Dr. Ahmed Hassan", status: "Normal" },
-    { id: 2, date: "2024-03-10", type: "Prescription", title: "Amoxicillin 500mg", doctor: "Dr. Sarah Johnson", status: "Active" },
-    { id: 3, date: "2024-02-28", type: "Diagnosis", title: "Annual Physical Exam", doctor: "Dr. Mohammed Ali", status: "Completed" },
-    { id: 4, date: "2024-02-15", type: "Imaging", title: "Chest X-Ray", doctor: "Dr. Fatima Al-Rashid", status: "Normal" },
+    {
+      id: 1,
+      date: "2024-03-15",
+      type: "Lab Results",
+      title: "Complete Blood Count",
+      doctor: "Dr. Ahmed Hassan",
+      status: "Normal",
+    },
+    {
+      id: 2,
+      date: "2024-03-10",
+      type: "Prescription",
+      title: "Amoxicillin 500mg",
+      doctor: "Dr. Sarah Johnson",
+      status: "Active",
+    },
+    {
+      id: 3,
+      date: "2024-02-28",
+      type: "Diagnosis",
+      title: "Annual Physical Exam",
+      doctor: "Dr. Mohammed Ali",
+      status: "Completed",
+    },
+    {
+      id: 4,
+      date: "2024-02-15",
+      type: "Imaging",
+      title: "Chest X-Ray",
+      doctor: "Dr. Fatima Al-Rashid",
+      status: "Normal",
+    },
   ];
 }
 
@@ -81,246 +118,716 @@ function generateMockRecords() {
 // ========================
 const translations = {
   en: {
-    home: "Home", doctors: "Doctors", appointments: "Appointments", records: "Medical Records",
-    support: "Support", aboutUs: "About Us", contactUs: "Contact Us", login: "Login",
-    signUp: "Sign Up", logout: "Logout", settings: "Settings", welcome: "Welcome to HealthBridge",
-    subtitle: "Your health, our priority. Book appointments and access your medical records easily.",
-    searchPlaceholder: "Search doctors or departments...", searchDoctors: "Search doctors...",
-    emergency: "Emergency", services: "Our Services", servicesSubtitle: "Comprehensive healthcare solutions designed for your convenience",
-    onlineBooking: "Online Booking", onlineBookingDesc: "Book appointments with top doctors instantly through our easy-to-use platform.",
-    medicalRecords: "Medical Records", medicalRecordsDesc: "Access your complete medical history, lab results, and prescriptions anytime.",
-    twentyFourSevenSupport: "24/7 Support", supportDesc: "Get assistance anytime with our dedicated support team and live chat.",
-    emergencyCare: "Emergency Care", emergencyCareDesc: "Quick access to emergency services and nearest hospital locations.",
-    whatPatientsSay: "What Patients Say", testimonialsSubtitle: "Hear from our satisfied patients about their experience",
-    testimonial1: '"HealthBridge made it so easy to book my appointment. The interface is clean and intuitive!"',
-    testimonial2: '"I love being able to access my medical records instantly. Best healthcare app I\'ve used."',
-    testimonial3: '"The emergency feature gave me peace of mind. Highly recommended for everyone."',
-    readyToStart: "Ready to Take Control of Your Health?", joinThousands: "Join thousands of patients who trust HealthBridge",
-    getStartedToday: "Get Started Today", quickLinks: "Quick Links", findDoctor: "Find a Doctor",
-    bookAppointment: "Book Appointment", connectingPatients: "Connecting patients with quality healthcare services. Your health journey starts here.",
-    phone: "Phone", email: "Email", address: "Address", copyright: "© 2026 HealthBridge. All rights reserved.",
-    dashboard: "Dashboard", dashboardOverview: "Dashboard Overview", totalAppointments: "Total Appointments",
-    pendingRecords: "Pending Records", yourRating: "Your Rating", upcoming: "Upcoming Appointments",
-    noAppointments: "No upcoming appointments", viewAll: "View All", needToSeeDoctor: "Need to see a doctor?",
-    bookWithSpecialists: "Book an appointment with our top specialists today.", bookNow: "Book Now",
-    allSpecialties: "All Specialties", availability: "Availability", availableNow: "Available Now",
-    today: "Today", thisWeek: "This Week", chooseDepartment: "Choose Department", chooseDoctor: "Choose Doctor",
-    yearsExp: "years exp", available: "Available", notAvailable: "Not Available", rateDoctor: "Rate Doctor",
-    submitRating: "Submit Rating", cancelRating: "Cancel", yourRatingLabel: "Your Rating",
-    reviewPlaceholder: "Write your review (optional)...", ratingSubmitted: "Thank you! Your rating has been submitted.",
-    ratingUpdated: "Your rating has been updated.", loginToRate: "Please log in to rate doctors.",
-    ratingsCount: "ratings", sortBy: "Sort By", sortDefault: "Default", sortRatingHigh: "Highest Rated",
-    sortRatingLow: "Lowest Rated", sortExp: "Most Experienced", alreadyRated: "You already rated this doctor. Rating updated.",
-    cardiology: "Cardiology", dermatology: "Dermatology", neurology: "Neurology", pediatrics: "Pediatrics",
-    orthopedics: "Orthopedics", dentistry: "Dentistry", ophthalmology: "Ophthalmology", gynecology: "Gynecology",
-    ourStory: "Our Story", ourMission: "Our Mission", ourVision: "Our Vision", missionVision: "Mission & Vision",
-    ourTeam: "Our Team", ourStoryP1: "Founded in 2026, HealthBridge was born from a simple idea: healthcare should be accessible, transparent, and patient-centered.",
-    ourStoryP2: "Today, we serve thousands of patients, connecting them with top-tier medical professionals.",
-    getInTouch: "Get in Touch", weLoveToHear: "We'd love to hear from you. Send us a message and we'll respond as soon as possible.",
-    firstName: "First Name", lastName: "Last Name", enterFirstName: "Enter your first name",
-    enterLastName: "Enter your last name", phoneNumber: "Phone Number", enterPhone: "Enter your phone number",
-    subject: "Subject", message: "Message", sendMessage: "Send Message", generalInquiry: "General Inquiry",
-    appointmentIssue: "Appointment Issue", technicalSupport: "Technical Support", feedback: "Feedback",
-    visitUs: "Visit Us", callUs: "Call Us", workingHours: "Working Hours", monFri: "Mon - Fri",
-    saturday: "Saturday", sunday: "Sunday", emergencyOnly: "Emergency Only", twentyFourSeven: "24/7",
-    hospitalAddress: "123 Healthcare Avenue, Medical District, City 12345", welcomeBack: "Welcome Back",
-    signInToAccess: "Sign in to access your health dashboard", emailPhone: "Email / Phone",
-    enterEmail: "Enter your email or phone", password: "Password", enterPassword: "Enter your password",
-    rememberMe: "Remember me", forgotPassword: "Forgot Password?", signIn: "Sign In", fullName: "Full Name",
-    enterFullName: "Enter your full name", userType: "User Type", patient: "Patient", doctor: "Doctor",
-    confirmPassword: "Confirm Password", confirmYourPassword: "Confirm your password", createAccount: "Create Account",
-    orContinueWith: "Or continue with", google: "Google", selectDepartment: "Select Department",
-    selectDoctor: "Select Doctor", preferredDate: "Preferred Date", preferredTime: "Preferred Time",
-    patientName: "Patient Name", additionalNotes: "Additional Notes (Optional)", confirmBooking: "Confirm Booking",
-    appointmentHistory: "Appointment History", noAppointmentsFound: "No appointments found", status: "Status",
-    actions: "Actions", departments: "Departments", allRecords: "All Records", labResults: "Lab Results",
-    prescriptions: "Prescriptions", diagnoses: "Diagnoses", imaging: "Imaging", filter: "Filter",
-    exportAll: "Export All", view: "View", download: "Download PDF", normal: "Normal", active: "Active",
-    completed: "Completed", backToHome: "Back to Home", nearestHospital: "Nearest Hospital",
-    ambulance: "Ambulance", poisonControl: "Poison Control", firstAid: "First Aid Instructions",
-    cpr: "CPR", burns: "Burns", bleeding: "Bleeding", choking: "Choking", call911: "CALL 911",
-    getDirections: "Get Directions", callAmbulance: "Call Ambulance", callNow: "Call Now",
-    hospitalName: "City General Hospital", distance: "0.5 miles away", emergencyLine: "Emergency Line",
-    avgResponse: "Avg response", poisonHotline: "24/7 Hotline", forPoisoning: "For poisoning emergencies",
-    whatToDoEmergency: "If you are experiencing a life-threatening emergency, call immediately",
-    checkResponsiveness: "1. Check responsiveness", call911First: "2. Call 911", pushHard: "3. Push hard and fast in center of chest",
-    useAed: "4. Use AED if available", coolWater: "1. Cool with running water", coverDressing: "2. Cover with sterile dressing",
-    noIce: "3. Do not apply ice", seekAttention: "4. Seek medical attention", applyPressure: "1. Apply direct pressure",
-    elevate: "2. Elevate the wound", cleanCloth: "3. Use clean cloth/bandage", callIfSevere: "4. Call 911 if severe",
-    encourageCough: "1. Encourage coughing", heimlich: "2. Perform Heimlich maneuver", callUnable: "3. Call 911 if unable to breathe",
-    continueHelp: "4. Continue until help arrives", faq: "Frequently Asked Questions", howToBook: "How do I book an appointment?",
-    bookAppointmentAnswer: "You can book an appointment by visiting the Appointments page, selecting your preferred department and doctor.",
-    accessRecords: "Can I access my medical records online?", accessRecordsAnswer: "Yes! All your medical records are available in the Medical Records section.",
-    dataSecure: "Is my data secure?", dataSecureAnswer: "Absolutely. We use industry-standard encryption to protect your personal health information.",
-    emergencyAnswer: "For emergencies, please use the Emergency button or call 911 immediately.", liveChat: "Live Chat Support",
-    healthbridgeSupport: "HealthBridge Support", helloHowCanHelp: "Hello! How can I help you today?",
-    typeMessage: "Type your message...", send: "Send", contactInfo: "Contact Information", profile: "Profile",
-    accountSecurity: "Account & Security", notifications: "Notifications", privacy: "Privacy", appearance: "Appearance",
-    languageRegion: "Language & Region", dataStorage: "Data & Storage", connectedDevices: "Connected Devices",
-    activityLog: "Activity Log", profileSettings: "Profile Settings", displayName: "Display Name",
-    dateOfBirth: "Date of Birth", bio: "Bio", emergencyContact: "Emergency Contact", saveChanges: "Save Changes",
-    changePassword: "Change Password", passwordLastChanged: "Last changed 3 months ago", change: "Change",
-    twoFactorAuth: "Two-Factor Authentication", twoFactorDesc: "Add an extra layer of security to your account",
-    loginSecurity: "Login Security", emailVerification: "Email Verification", emailVerified: "Your email is verified",
-    phoneVerification: "Phone Verification", phoneNotVerified: "Your phone is not verified", verify: "Verify",
-    loginAlerts: "Login Alerts", loginAlertsDesc: "Get notified of new logins", dangerZone: "Danger Zone",
-    deactivateAccount: "Deactivate Account", deactivateDesc: "Temporarily disable your account", deactivate: "Deactivate",
-    deleteAccount: "Delete Account", deleteAccountDesc: "Permanently delete your account and all data", delete: "Delete",
-    verified: "Verified", notificationPreferences: "Notification Preferences", emailNotifications: "Email Notifications",
-    emailNotificationsDesc: "Receive updates via email", smsNotifications: "SMS Notifications",
-    smsNotificationsDesc: "Receive text messages for important updates", pushNotifications: "Push Notifications",
-    pushNotificationsDesc: "Browser push notifications", notificationTypes: "Notification Types",
-    appointmentReminders: "Appointment Reminders", appointmentRemindersDesc: "Get reminded before your appointments",
-    testResults: "Test Results", testResultsDesc: "Notify when new test results are available",
-    prescriptionAlerts: "Prescription Alerts", prescriptionAlertsDesc: "Reminders for prescription refills",
-    healthTips: "Health Tips & News", healthTipsDesc: "Weekly health tips and news updates", marketingEmails: "Marketing Emails",
-    marketingEmailsDesc: "Promotional offers and updates", privacySettings: "Privacy Settings",
-    profileVisibility: "Profile Visibility", profileVisibilityDesc: "Who can see your profile information",
-    everyone: "Everyone", doctorsOnly: "Doctors Only", onlyMe: "Only Me", shareMedicalRecords: "Share Medical Records",
-    shareMedicalRecordsDesc: "Allow doctors to access your records", dataAnalytics: "Data Analytics",
-    dataAnalyticsDesc: "Help us improve by sharing usage data", thirdPartySharing: "Third-Party Sharing",
-    thirdPartySharingDesc: "Share data with trusted partners", dataManagement: "Data Management",
-    downloadData: "Download Your Data", downloadDataDesc: "Get a copy of all your personal data", download: "Download",
-    clearHistory: "Clear Search History", clearHistoryDesc: "Remove all your search history", clear: "Clear",
-    appearanceSettings: "Appearance Settings", theme: "Theme", light: "Light", dark: "Dark", auto: "Auto",
-    compactMode: "Compact Mode", compactModeDesc: "Reduce spacing for more content", animations: "Animations",
-    animationsDesc: "Enable smooth transitions and animations", highContrast: "High Contrast",
-    highContrastDesc: "Increase contrast for better visibility", reducedMotion: "Reduced Motion",
-    reducedMotionDesc: "Minimize animations for accessibility", languageRegionSettings: "Language & Region Settings",
-    language: "Language", region: "Region", timezone: "Timezone", dateFormat: "Date Format", timeFormat: "Time Format",
-    currency: "Currency", dataStorageSettings: "Data & Storage Settings", storageUsed: "Storage Used",
-    storageUsedDesc: "2.4 GB of 5 GB used", manage: "Manage", cacheData: "Cache & Data", clearCache: "Clear Cache",
-    cacheSize: "Cache size: 124 MB", offlineMode: "Offline Mode", offlineModeDesc: "Download data for offline access",
-    autoSync: "Auto Sync", autoSyncDesc: "Automatically sync data across devices", syncFrequency: "Sync Frequency",
-    syncFrequencyDesc: "How often to sync your data", realtime: "Real-time", hourly: "Every hour", daily: "Daily",
-    manualOnly: "Manual only", currentDevice: "Current Device", disconnect: "Disconnect",
-    disconnectAllDevices: "Disconnect All Devices", successfulLogin: "Successful login",
-    appointmentBooked: "Appointment booked", passwordChanged: "Password changed", profileUpdated: "Profile updated",
-    newDevice: "New device connected", downloadFullLog: "Download Full Activity Log", cancel: "Cancel", edit: "Edit",
-    twoFactorAuthDisabled: "Two-factor authentication disabled", loading: "Loading...", expertDoctors: "Expert Doctors",
-    patientsServed: "Patients Served", emergencyCare24_7: "Emergency Care 24/7",
-    ourMissionP: "Our mission is to empower patients with easy access to healthcare services and information.",
-    ourVisionP: "Our vision is to create a world where everyone has access to quality healthcare.",
-    supportDescription: "We're here to help. Find answers or chat with our support team.",
+    home: "Home",
+    doctors: "Doctors",
+    appointments: "Appointments",
+    records: "Medical Records",
+    support: "Support",
+    aboutUs: "About Us",
+    contactUs: "Contact Us",
+    login: "Login",
+    signUp: "Sign Up",
+    logout: "Logout",
+    settings: "Settings",
+    welcome: "Welcome to HealthBridge",
+    subtitle:
+      "Your health, our priority. Book appointments and access your medical records easily.",
+    searchPlaceholder: "Search doctors or departments...",
+    searchDoctors: "Search doctors...",
+    emergency: "Emergency",
+    services: "Our Services",
+    servicesSubtitle:
+      "Comprehensive healthcare solutions designed for your convenience",
+    onlineBooking: "Online Booking",
+    onlineBookingDesc:
+      "Book appointments with top doctors instantly through our easy-to-use platform.",
+    medicalRecords: "Medical Records",
+    medicalRecordsDesc:
+      "Access your complete medical history, lab results, and prescriptions anytime.",
+    twentyFourSevenSupport: "24/7 Support",
+    supportDesc:
+      "Get assistance anytime with our dedicated support team and live chat.",
+    emergencyCare: "Emergency Care",
+    emergencyCareDesc:
+      "Quick access to emergency services and nearest hospital locations.",
+    whatPatientsSay: "What Patients Say",
+    testimonialsSubtitle:
+      "Hear from our satisfied patients about their experience",
+    testimonial1:
+      '"HealthBridge made it so easy to book my appointment. The interface is clean and intuitive!"',
+    testimonial2:
+      '"I love being able to access my medical records instantly. Best healthcare app I\'ve used."',
+    testimonial3:
+      '"The emergency feature gave me peace of mind. Highly recommended for everyone."',
+    readyToStart: "Ready to Take Control of Your Health?",
+    joinThousands: "Join thousands of patients who trust HealthBridge",
+    getStartedToday: "Get Started Today",
+    quickLinks: "Quick Links",
+    findDoctor: "Find a Doctor",
+    bookAppointment: "Book Appointment",
+    connectingPatients:
+      "Connecting patients with quality healthcare services. Your health journey starts here.",
+    phone: "Phone",
+    email: "Email",
+    address: "Address",
+    copyright: "© 2026 HealthBridge. All rights reserved.",
+    dashboard: "Dashboard",
+    dashboardOverview: "Dashboard Overview",
+    totalAppointments: "Total Appointments",
+    pendingRecords: "Pending Records",
+    yourRating: "Your Rating",
+    upcoming: "Upcoming Appointments",
+    noAppointments: "No upcoming appointments",
+    viewAll: "View All",
+    needToSeeDoctor: "Need to see a doctor?",
+    bookWithSpecialists: "Book an appointment with our top specialists today.",
+    bookNow: "Book Now",
+    allSpecialties: "All Specialties",
+    availability: "Availability",
+    availableNow: "Available Now",
+    today: "Today",
+    thisWeek: "This Week",
+    chooseDepartment: "Choose Department",
+    chooseDoctor: "Choose Doctor",
+    yearsExp: "years exp",
+    available: "Available",
+    notAvailable: "Not Available",
+    rateDoctor: "Rate Doctor",
+    submitRating: "Submit Rating",
+    cancelRating: "Cancel",
+    yourRatingLabel: "Your Rating",
+    reviewPlaceholder: "Write your review (optional)...",
+    ratingSubmitted: "Thank you! Your rating has been submitted.",
+    ratingUpdated: "Your rating has been updated.",
+    loginToRate: "Please log in to rate doctors.",
+    ratingsCount: "ratings",
+    sortBy: "Sort By",
+    sortDefault: "Default",
+    sortRatingHigh: "Highest Rated",
+    sortRatingLow: "Lowest Rated",
+    sortExp: "Most Experienced",
+    alreadyRated: "You already rated this doctor. Rating updated.",
+    cardiology: "Cardiology",
+    dermatology: "Dermatology",
+    neurology: "Neurology",
+    pediatrics: "Pediatrics",
+    orthopedics: "Orthopedics",
+    dentistry: "Dentistry",
+    ophthalmology: "Ophthalmology",
+    gynecology: "Gynecology",
+    ourStory: "Our Story",
+    ourMission: "Our Mission",
+    ourVision: "Our Vision",
+    missionVision: "Mission & Vision",
+    ourTeam: "Our Team",
+    ourStoryP1:
+      "Founded in 2026, HealthBridge was born from a simple idea: healthcare should be accessible, transparent, and patient-centered.",
+    ourStoryP2:
+      "Today, we serve thousands of patients, connecting them with top-tier medical professionals.",
+    getInTouch: "Get in Touch",
+    weLoveToHear:
+      "We'd love to hear from you. Send us a message and we'll respond as soon as possible.",
+    firstName: "First Name",
+    lastName: "Last Name",
+    enterFirstName: "Enter your first name",
+    enterLastName: "Enter your last name",
+    phoneNumber: "Phone Number",
+    enterPhone: "Enter your phone number",
+    subject: "Subject",
+    message: "Message",
+    sendMessage: "Send Message",
+    generalInquiry: "General Inquiry",
+    appointmentIssue: "Appointment Issue",
+    technicalSupport: "Technical Support",
+    feedback: "Feedback",
+    visitUs: "Visit Us",
+    callUs: "Call Us",
+    workingHours: "Working Hours",
+    monFri: "Mon - Fri",
+    saturday: "Saturday",
+    sunday: "Sunday",
+    emergencyOnly: "Emergency Only",
+    twentyFourSeven: "24/7",
+    hospitalAddress: "123 Healthcare Avenue, Medical District, City 12345",
+    welcomeBack: "Welcome Back",
+    signInToAccess: "Sign in to access your health dashboard",
+    emailPhone: "Email / Phone",
+    enterEmail: "Enter your email or phone",
+    password: "Password",
+    enterPassword: "Enter your password",
+    rememberMe: "Remember me",
+    forgotPassword: "Forgot Password?",
+    signIn: "Sign In",
+    fullName: "Full Name",
+    enterFullName: "Enter your full name",
+    userType: "User Type",
+    patient: "Patient",
+    doctor: "Doctor",
+    confirmPassword: "Confirm Password",
+    confirmYourPassword: "Confirm your password",
+    createAccount: "Create Account",
+    orContinueWith: "Or continue with",
+    google: "Google",
+    selectDepartment: "Select Department",
+    selectDoctor: "Select Doctor",
+    preferredDate: "Preferred Date",
+    preferredTime: "Preferred Time",
+    patientName: "Patient Name",
+    additionalNotes: "Additional Notes (Optional)",
+    confirmBooking: "Confirm Booking",
+    appointmentHistory: "Appointment History",
+    noAppointmentsFound: "No appointments found",
+    status: "Status",
+    actions: "Actions",
+    departments: "Departments",
+    allRecords: "All Records",
+    labResults: "Lab Results",
+    prescriptions: "Prescriptions",
+    diagnoses: "Diagnoses",
+    imaging: "Imaging",
+    filter: "Filter",
+    exportAll: "Export All",
+    view: "View",
+    download: "Download PDF",
+    normal: "Normal",
+    active: "Active",
+    completed: "Completed",
+    backToHome: "Back to Home",
+    nearestHospital: "Nearest Hospital",
+    ambulance: "Ambulance",
+    poisonControl: "Poison Control",
+    firstAid: "First Aid Instructions",
+    cpr: "CPR",
+    burns: "Burns",
+    bleeding: "Bleeding",
+    choking: "Choking",
+    call911: "CALL 911",
+    getDirections: "Get Directions",
+    callAmbulance: "Call Ambulance",
+    callNow: "Call Now",
+    hospitalName: "City General Hospital",
+    distance: "0.5 miles away",
+    emergencyLine: "Emergency Line",
+    avgResponse: "Avg response",
+    poisonHotline: "24/7 Hotline",
+    forPoisoning: "For poisoning emergencies",
+    whatToDoEmergency:
+      "If you are experiencing a life-threatening emergency, call immediately",
+    checkResponsiveness: "1. Check responsiveness",
+    call911First: "2. Call 911",
+    pushHard: "3. Push hard and fast in center of chest",
+    useAed: "4. Use AED if available",
+    coolWater: "1. Cool with running water",
+    coverDressing: "2. Cover with sterile dressing",
+    noIce: "3. Do not apply ice",
+    seekAttention: "4. Seek medical attention",
+    applyPressure: "1. Apply direct pressure",
+    elevate: "2. Elevate the wound",
+    cleanCloth: "3. Use clean cloth/bandage",
+    callIfSevere: "4. Call 911 if severe",
+    encourageCough: "1. Encourage coughing",
+    heimlich: "2. Perform Heimlich maneuver",
+    callUnable: "3. Call 911 if unable to breathe",
+    continueHelp: "4. Continue until help arrives",
+    faq: "Frequently Asked Questions",
+    howToBook: "How do I book an appointment?",
+    bookAppointmentAnswer:
+      "You can book an appointment by visiting the Appointments page, selecting your preferred department and doctor.",
+    accessRecords: "Can I access my medical records online?",
+    accessRecordsAnswer:
+      "Yes! All your medical records are available in the Medical Records section.",
+    dataSecure: "Is my data secure?",
+    dataSecureAnswer:
+      "Absolutely. We use industry-standard encryption to protect your personal health information.",
+    emergencyAnswer:
+      "For emergencies, please use the Emergency button or call 911 immediately.",
+    liveChat: "Live Chat Support",
+    healthbridgeSupport: "HealthBridge Support",
+    helloHowCanHelp: "Hello! How can I help you today?",
+    typeMessage: "Type your message...",
+    send: "Send",
+    contactInfo: "Contact Information",
+    profile: "Profile",
+    accountSecurity: "Account & Security",
+    notifications: "Notifications",
+    privacy: "Privacy",
+    appearance: "Appearance",
+    languageRegion: "Language & Region",
+    dataStorage: "Data & Storage",
+    connectedDevices: "Connected Devices",
+    activityLog: "Activity Log",
+    profileSettings: "Profile Settings",
+    displayName: "Display Name",
+    dateOfBirth: "Date of Birth",
+    bio: "Bio",
+    emergencyContact: "Emergency Contact",
+    saveChanges: "Save Changes",
+    changePassword: "Change Password",
+    passwordLastChanged: "Last changed 3 months ago",
+    change: "Change",
+    twoFactorAuth: "Two-Factor Authentication",
+    twoFactorDesc: "Add an extra layer of security to your account",
+    loginSecurity: "Login Security",
+    emailVerification: "Email Verification",
+    emailVerified: "Your email is verified",
+    phoneVerification: "Phone Verification",
+    phoneNotVerified: "Your phone is not verified",
+    verify: "Verify",
+    loginAlerts: "Login Alerts",
+    loginAlertsDesc: "Get notified of new logins",
+    dangerZone: "Danger Zone",
+    deactivateAccount: "Deactivate Account",
+    deactivateDesc: "Temporarily disable your account",
+    deactivate: "Deactivate",
+    deleteAccount: "Delete Account",
+    deleteAccountDesc: "Permanently delete your account and all data",
+    delete: "Delete",
+    verified: "Verified",
+    notificationPreferences: "Notification Preferences",
+    emailNotifications: "Email Notifications",
+    emailNotificationsDesc: "Receive updates via email",
+    smsNotifications: "SMS Notifications",
+    smsNotificationsDesc: "Receive text messages for important updates",
+    pushNotifications: "Push Notifications",
+    pushNotificationsDesc: "Browser push notifications",
+    notificationTypes: "Notification Types",
+    appointmentReminders: "Appointment Reminders",
+    appointmentRemindersDesc: "Get reminded before your appointments",
+    testResults: "Test Results",
+    testResultsDesc: "Notify when new test results are available",
+    prescriptionAlerts: "Prescription Alerts",
+    prescriptionAlertsDesc: "Reminders for prescription refills",
+    healthTips: "Health Tips & News",
+    healthTipsDesc: "Weekly health tips and news updates",
+    marketingEmails: "Marketing Emails",
+    marketingEmailsDesc: "Promotional offers and updates",
+    privacySettings: "Privacy Settings",
+    profileVisibility: "Profile Visibility",
+    profileVisibilityDesc: "Who can see your profile information",
+    everyone: "Everyone",
+    doctorsOnly: "Doctors Only",
+    onlyMe: "Only Me",
+    shareMedicalRecords: "Share Medical Records",
+    shareMedicalRecordsDesc: "Allow doctors to access your records",
+    dataAnalytics: "Data Analytics",
+    dataAnalyticsDesc: "Help us improve by sharing usage data",
+    thirdPartySharing: "Third-Party Sharing",
+    thirdPartySharingDesc: "Share data with trusted partners",
+    dataManagement: "Data Management",
+    downloadData: "Download Your Data",
+    downloadDataDesc: "Get a copy of all your personal data",
+    download: "Download",
+    clearHistory: "Clear Search History",
+    clearHistoryDesc: "Remove all your search history",
+    clear: "Clear",
+    appearanceSettings: "Appearance Settings",
+    theme: "Theme",
+    light: "Light",
+    dark: "Dark",
+    auto: "Auto",
+    compactMode: "Compact Mode",
+    compactModeDesc: "Reduce spacing for more content",
+    animations: "Animations",
+    animationsDesc: "Enable smooth transitions and animations",
+    highContrast: "High Contrast",
+    highContrastDesc: "Increase contrast for better visibility",
+    reducedMotion: "Reduced Motion",
+    reducedMotionDesc: "Minimize animations for accessibility",
+    languageRegionSettings: "Language & Region Settings",
+    language: "Language",
+    region: "Region",
+    timezone: "Timezone",
+    dateFormat: "Date Format",
+    timeFormat: "Time Format",
+    currency: "Currency",
+    dataStorageSettings: "Data & Storage Settings",
+    storageUsed: "Storage Used",
+    storageUsedDesc: "2.4 GB of 5 GB used",
+    manage: "Manage",
+    cacheData: "Cache & Data",
+    clearCache: "Clear Cache",
+    cacheSize: "Cache size: 124 MB",
+    offlineMode: "Offline Mode",
+    offlineModeDesc: "Download data for offline access",
+    autoSync: "Auto Sync",
+    autoSyncDesc: "Automatically sync data across devices",
+    syncFrequency: "Sync Frequency",
+    syncFrequencyDesc: "How often to sync your data",
+    realtime: "Real-time",
+    hourly: "Every hour",
+    daily: "Daily",
+    manualOnly: "Manual only",
+    currentDevice: "Current Device",
+    disconnect: "Disconnect",
+    disconnectAllDevices: "Disconnect All Devices",
+    successfulLogin: "Successful login",
+    appointmentBooked: "Appointment booked",
+    passwordChanged: "Password changed",
+    profileUpdated: "Profile updated",
+    newDevice: "New device connected",
+    downloadFullLog: "Download Full Activity Log",
+    cancel: "Cancel",
+    edit: "Edit",
+    twoFactorAuthDisabled: "Two-factor authentication disabled",
+    loading: "Loading...",
+    expertDoctors: "Expert Doctors",
+    patientsServed: "Patients Served",
+    emergencyCare24_7: "Emergency Care 24/7",
+    ourMissionP:
+      "Our mission is to empower patients with easy access to healthcare services and information.",
+    ourVisionP:
+      "Our vision is to create a world where everyone has access to quality healthcare.",
+    supportDescription:
+      "We're here to help. Find answers or chat with our support team.",
   },
   ar: {
-    home: "الرئيسية", doctors: "الأطباء", appointments: "المواعيد", records: "السجلات الطبية",
-    support: "الدعم", aboutUs: "من نحن", contactUs: "اتصل بنا", login: "تسجيل الدخول",
-    signUp: "إنشاء حساب", logout: "تسجيل الخروج", settings: "الإعدادات", welcome: "مرحباً بك في HealthBridge",
-    subtitle: "صحتك، أولويتنا. احجز مواعيدك واطلع على سجلاتك الطبية بسهولة.", searchPlaceholder: "ابحث عن طبيب أو قسم...",
-    searchDoctors: "ابحث عن أطباء...", emergency: "طوارئ", services: "خدماتنا", servicesSubtitle: "حلول رعاية صحية شاملة مصممة لراحتك",
-    onlineBooking: "الحجز الإلكتروني", onlineBookingDesc: "احجز مواعيد مع أفضل الأطباء فوراً.",
-    medicalRecords: "السجلات الطبية", medicalRecordsDesc: "اطلع على تاريخك الطبي الكامل في أي وقت.",
-    twentyFourSevenSupport: "دعم 24/7", supportDesc: "احصل على المساعدة في أي وقت مع فريق الدعم المخصص.",
-    emergencyCare: "رعاية الطوارئ", emergencyCareDesc: "وصول سريع إلى خدمات الطوارئ.",
-    whatPatientsSay: "ماذا يقول المرضى", testimonialsSubtitle: "استمع إلى مرضانا الراضين عن تجربتهم",
-    testimonial1: '"جعلتني HealthBridge أحجز موعدي بسهولة. الواجهة نظيفة وبديهية!"',
-    testimonial2: '"أحب أن أستطيع الوصول إلى سجلاتي الطبية فوراً. أفضل تطبيق رعاية صحية استخدمته."',
-    testimonial3: '"منحني ميزة الطوارئ راحة البال. أنصح به بشدة للجميع."', readyToStart: "هل أنت مستعد للتحكم في صحتك؟",
-    joinThousands: "انضم إلى آلاف المرضى الذين يثقون بـ HealthBridge", getStartedToday: "ابدأ اليوم",
-    quickLinks: "روابط سريعة", findDoctor: "ابحث عن طبيب", bookAppointment: "حجز موعد",
-    connectingPatients: "ربط المرضى بخدمات الرعاية الصحية عالية الجودة.", phone: "الهاتف", email: "البريد الإلكتروني",
-    address: "العنوان", copyright: "© 2026 HealthBridge. جميع الحقوق محفوظة.", dashboard: "لوحة التحكم",
-    dashboardOverview: "نظرة عامة على لوحة التحكم", totalAppointments: "إجمالي المواعيد",
-    pendingRecords: "السجلات المعلقة", yourRating: "تقييمك", upcoming: "المواعيد القادمة",
-    noAppointments: "لا توجد مواعيد قادمة", viewAll: "عرض الكل", needToSeeDoctor: "تحتاج لزيارة طبيب؟",
-    bookWithSpecialists: "احجز موعداً مع أفضل المتخصصين لدينا اليوم.", bookNow: "احجز الآن",
-    allSpecialties: "جميع التخصصات", availability: "التوفر", availableNow: "متاح الآن", today: "اليوم",
-    thisWeek: "هذا الأسبوع", chooseDepartment: "اختر القسم", chooseDoctor: "اختر الطبيب",
-    yearsExp: "سنوات خبرة", available: "متاح", notAvailable: "غير متاح", rateDoctor: "قيّم الطبيب",
-    submitRating: "إرسال التقييم", cancelRating: "إلغاء", yourRatingLabel: "تقييمك",
-    reviewPlaceholder: "اكتب رأيك (اختياري)...", ratingSubmitted: "شكراً! تم إرسال تقييمك.",
-    ratingUpdated: "تم تحديث تقييمك.", loginToRate: "يرجى تسجيل الدخول لتقييم الأطباء.", ratingsCount: "تقييم",
-    sortBy: "ترتيب حسب", sortDefault: "الافتراضي", sortRatingHigh: "الأعلى تقييماً", sortRatingLow: "الأقل تقييماً",
-    sortExp: "الأكثر خبرة", alreadyRated: "لقد قيّمت هذا الطبيب من قبل. تم تحديث التقييم.",
-    cardiology: "قلب", dermatology: "طب الجلد", neurology: "مخ وأعصاب", pediatrics: "طب الأطفال",
-    orthopedics: "طب الجراحة العظمية", dentistry: "طب الأسنان", ophthalmology: "طب العيون", gynecology: "نساء وتوليد",
-    ourStory: "قصتنا", ourMission: "رسالتنا", ourVision: "رؤيتنا", missionVision: "الرسالة والرؤية", ourTeam: "فريقنا",
-    ourStoryP1: "تأسست HealthBridge عام 2026، وولدت من فكرة بسيطة: أن تكون الرعاية الصحية متاحة وشفافة.",
-    ourStoryP2: "اليوم، نخدم آلاف المرضى، ونربطهم بأفضل المتخصصين الطبيين.", getInTouch: "تواصل معنا",
-    weLoveToHear: "نحن نحب أن نسمع منك. أرسل لنا رسالة وسنرد عليك في أقرب وقت.", firstName: "الاسم الأول",
-    lastName: "الاسم الأخير", enterFirstName: "أدخل اسمك الأول", enterLastName: "أدخل اسمك الأخير",
-    phoneNumber: "رقم الهاتف", enterPhone: "أدخل رقم هاتفك", subject: "الموضوع", message: "الرسالة",
-    sendMessage: "إرسال رسالة", generalInquiry: "استفسار عام", appointmentIssue: "مشكلة في الموعد",
-    technicalSupport: "دعم تقني", feedback: "ملاحظات", visitUs: "زورنا", callUs: "اتصل بنا",
-    workingHours: "ساعات العمل", monFri: "الإثنين - الجمعة", saturday: "السبت", sunday: "الأحد",
-    emergencyOnly: "طوارئ فقط", twentyFourSeven: "24/7", hospitalAddress: "123 شارع الرعاية الصحية، حي طبي، المدينة 12345",
-    welcomeBack: "مرحباً بعودتك", signInToAccess: "سجل الدخول للوصول إلى لوحة التحكم الصحية",
-    emailPhone: "البريد الإلكتروني / الهاتف", enterEmail: "أدخل بريدك الإلكتروني أو هاتفك", password: "كلمة المرور",
-    enterPassword: "أدخل كلمة المرور", rememberMe: "تذكرني", forgotPassword: "نسيت كلمة المرور؟",
-    signIn: "تسجيل الدخول", fullName: "الاسم الكامل", enterFullName: "أدخل اسمك الكامل", userType: "نوع المستخدم",
-    patient: "مريض", doctor: "طبيب", confirmPassword: "تأكيد كلمة المرور", confirmYourPassword: "أكد كلمة المرور",
-    createAccount: "إنشاء حساب", orContinueWith: "أو استمر مع", google: "جوجل", selectDepartment: "اختر القسم",
-    selectDoctor: "اختر الطبيب", preferredDate: "التاريخ المفضل", preferredTime: "الوقت المفضل",
-    patientName: "اسم المريض", additionalNotes: "ملاحظات إضافية (اختياري)", confirmBooking: "تأكيد الحجز",
-    appointmentHistory: "تاريخ المواعيد", noAppointmentsFound: "لم يتم العثور على مواعيد", status: "الحالة",
-    actions: "الإجراءات", departments: "الأقسام", allRecords: "جميع السجلات", labResults: "نتائج المختبر",
-    prescriptions: "الوصفات الطبية", diagnoses: "التشخيصات", imaging: "الأشعة", filter: "تصفية",
-    exportAll: "تصدير الكل", view: "عرض", download: "تحميل PDF", normal: "طبيعي", active: "نشط", completed: "مكتمل",
-    backToHome: "العودة للرئيسية", nearestHospital: "أقرب مستشفى", ambulance: "سيارة إسعاف",
-    poisonControl: "مركز السموم", firstAid: "إسعافات أولية", cpr: "إنعاش قلبي رئوي", burns: "الحروق",
-    bleeding: "النزيف", choking: "الاختناق", call911: "اتصل بـ 911", getDirections: "الحصول على الاتجاهات",
-    callAmbulance: "استدعاء إسعاف", callNow: "اتصل الآن", hospitalName: "مستشفى المدينة العام",
-    distance: "0.5 ميل", emergencyLine: "خط الطوارئ", avgResponse: "متوسط الاستجابة",
-    poisonHotline: "خط المساعدة 24/7", forPoisoning: "لحالات التسمم الطارئة",
-    whatToDoEmergency: "إذا كنت تواجه حالة طوارئ تهدد الحياة، اتصل فوراً", checkResponsiveness: "1. تحقق من الاستجابة",
-    call911First: "2. اتصل بـ 911", pushHard: "3. اضغط بقوة وسرعة على وسط الصدر", useAed: "4. استخدم جهاز إزالة الرجفان",
-    coolWater: "1. برد بالماء الجاري", coverDressing: "2. غطِ بضمادة معقمة", noIce: "3. لا تضع ثلجاً",
-    seekAttention: "4. اطلب الرعاية الطبية", applyPressure: "1. اضغط مباشرة", elevate: "2. ارفع الجرح",
-    cleanCloth: "3. استخدم قطعة قماش/ضمادة نظيفة", callIfSevere: "4. اتصل بـ 911 إذا كان حاداً",
-    encourageCough: "1. شجع على السعال", heimlich: "2. قم بمناورة هايمليك", callUnable: "3. اتصل بـ 911 إذا كان غير قادر على التنفس",
-    continueHelp: "4. استمر حتى وصول المساعدة", faq: "الأسئلة الشائعة", howToBook: "كيف أحجز موعداً؟",
-    bookAppointmentAnswer: "يمكنك حجز موعد بزيارة صفحة المواعيد، واختيار القسم والطبيب المفضل.",
-    accessRecords: "هل يمكنني الوصول إلى سجلاتي الطبية عبر الإنترنت؟", accessRecordsAnswer: "نعم! جميع سجلاتك الطبية متاحة.",
-    dataSecure: "هل بياناتي آمنة؟", dataSecureAnswer: "بالتأكيد. نحن نستخدم تشفيراً لحماية معلوماتك.",
-    emergencyAnswer: "للحالات الطارئة، يرجى استخدام زر الطوارئ أو الاتصال بـ 911 فوراً.", liveChat: "الدردشة المباشرة",
-    healthbridgeSupport: "دعم HealthBridge", helloHowCanHelp: "مرحباً! كيف يمكنني مساعدتك اليوم؟",
-    typeMessage: "اكتب رسالتك...", send: "إرسال", contactInfo: "معلومات الاتصال", profile: "الملف الشخصي",
-    accountSecurity: "الحساب والأمان", notifications: "الإشعارات", privacy: "الخصوصية", appearance: "المظهر",
-    languageRegion: "اللغة والمنطقة", dataStorage: "البيانات والتخزين", connectedDevices: "الأجهزة المتصلة",
-    activityLog: "سجل النشاط", profileSettings: "إعدادات الملف الشخصي", displayName: "اسم العرض",
-    dateOfBirth: "تاريخ الميلاد", bio: "نبذة", emergencyContact: "جهة اتصال الطوارئ", saveChanges: "حفظ التغييرات",
-    changePassword: "تغيير كلمة المرور", passwordLastChanged: "آخر تغيير قبل 3 أشهر", change: "تغيير",
-    twoFactorAuth: "المصادقة الثنائية", twoFactorDesc: "أضف طبقة أمان إضافية لحسابك", loginSecurity: "أمان تسجيل الدخول",
-    emailVerification: "التحقق من البريد الإلكتروني", emailVerified: "بريدك الإلكتروني مُحقق",
-    phoneVerification: "التحقق من الهاتف", phoneNotVerified: "هاتفك غير مُحقق", verify: "تحقق",
-    loginAlerts: "تنبيهات تسجيل الدخول", loginAlertsDesc: "احصل على إشعارات عند تسجيل دخول جديد", dangerZone: "منطقة الخطر",
-    deactivateAccount: "تعطيل الحساب", deactivateDesc: "تعطيل حسابك مؤقتاً", deactivate: "تعطيل",
-    deleteAccount: "حذف الحساب", deleteAccountDesc: "حذف حسابك وبياناتك نهائياً", delete: "حذف", verified: "مُحقق",
-    notificationPreferences: "تفضيلات الإشعارات", emailNotifications: "إشعارات البريد الإلكتروني",
-    emailNotificationsDesc: "استلام التحديثات عبر البريد", smsNotifications: "إشعارات الرسائل القصيرة",
-    smsNotificationsDesc: "استلام رسائل نصية للتحديثات المهمة", pushNotifications: "إشعارات الدفع",
-    pushNotificationsDesc: "إشعارات المتصفح", notificationTypes: "أنواع الإشعارات",
-    appointmentReminders: "تذكيرات المواعيد", appointmentRemindersDesc: "تذكير قبل مواعيدك",
-    testResults: "نتائج الفحوصات", testResultsDesc: "إشعار عند توفر نتائج جديدة", prescriptionAlerts: "تنبيهات الوصفات",
-    prescriptionAlertsDesc: "تذكيرات لإعادة تعبئة الوصفات", healthTips: "نصائح وأخبار صحية",
-    healthTipsDesc: "نصائح صحية وتحديثات أسبوعية", marketingEmails: "رسائل تسويقية", marketingEmailsDesc: "عروض ترويجية وتحديثات",
-    privacySettings: "إعدادات الخصوصية", profileVisibility: "رؤية الملف الشخصي", profileVisibilityDesc: "من يمكنه رؤية معلومات ملفك",
-    everyone: "الجميع", doctorsOnly: "الأطباء فقط", onlyMe: "أنا فقط", shareMedicalRecords: "مشاركة السجلات الطبية",
-    shareMedicalRecordsDesc: "السماح للأطباء بالوصول لسجلاتك", dataAnalytics: "تحليلات البيانات",
-    dataAnalyticsDesc: "ساعدنا في التحسين بمشاركة بيانات الاستخدام", thirdPartySharing: "المشاركة مع طرف ثالث",
-    thirdPartySharingDesc: "مشاركة البيانات مع شركاء موثوقين", dataManagement: "إدارة البيانات",
-    downloadData: "تحميل بياناتك", downloadDataDesc: "احصل على نسخة من جميع بياناتك الشخصية", download: "تحميل",
-    clearHistory: "مسح سجل البحث", clearHistoryDesc: "إزالة جميع سجل البحث", clear: "مسح",
-    appearanceSettings: "إعدادات المظهر", theme: "السمة", light: "فاتح", dark: "داكن", auto: "تلقائي",
-    compactMode: "الوضع المدمج", compactModeDesc: "تقليل المسافات لمحتوى أكثر", animations: "الرسوم المتحركة",
-    animationsDesc: "تفعيل الانتقالات السلسة والرسوم المتحركة", highContrast: "تباين عالي",
-    highContrastDesc: "زيادة التباين لرؤية أفضل", reducedMotion: "حركة مخفضة", reducedMotionDesc: "تقليل الرسوم المتحركة",
-    languageRegionSettings: "إعدادات اللغة والمنطقة", language: "اللغة", region: "المنطقة", timezone: "المنطقة الزمنية",
-    dateFormat: "تنسيق التاريخ", timeFormat: "تنسيق الوقت", currency: "العملة", dataStorageSettings: "إعدادات البيانات والتخزين",
-    storageUsed: "التخزين المستخدم", storageUsedDesc: "2.4 جيجابايت من 5 جيجابايت", manage: "إدارة",
-    cacheData: "ذاكرة التخزين المؤقت والبيانات", clearCache: "مسح ذاكرة التخزين", cacheSize: "حجم الذاكرة: 124 ميجابايت",
-    offlineMode: "وضع عدم الاتصال", offlineModeDesc: "تحميل البيانات للوصول بدون إنترنت", autoSync: "المزامنة التلقائية",
-    autoSyncDesc: "مزامنة البيانات تلقائياً عبر الأجهزة", syncFrequency: "تكرار المزامنة", syncFrequencyDesc: "كم مرة تتم مزامنة بياناتك",
-    realtime: "في الوقت الفعلي", hourly: "كل ساعة", daily: "يومياً", manualOnly: "يدوي فقط", currentDevice: "الجهاز الحالي",
-    disconnect: "فصل", disconnectAllDevices: "فصل جميع الأجهزة", successfulLogin: "تسجيل دخول ناجح",
-    appointmentBooked: "تم حجز موعد", passwordChanged: "تم تغيير كلمة المرور", profileUpdated: "تم تحديث الملف الشخصي",
-    newDevice: "جهاز جديد متصل", downloadFullLog: "تحميل سجل النشاط الكامل", cancel: "إلغاء", edit: "تعديل",
-    twoFactorAuthDisabled: "تم تعطيل المصادقة الثنائية", loading: "جاري التحميل...", expertDoctors: "أطباء خبراء",
-    patientsServed: "مرضى تم خدمتهم", emergencyCare24_7: "رعاية طوارئ 24/7",
-    ourMissionP: "مهمتنا هي تمكين المرضى من الوصول السهل إلى خدمات الرعاية الصحية.",
-    ourVisionP: "رؤيتنا هي خلق عالم يتمتع فيه الجميع بإمكانية الوصول إلى رعاية صحية عالية الجودة.",
-    supportDescription: "نحن هنا للمساعدة. ابحث عن إجابات أو تحدث مع فريق الدعم.",
+    home: "الرئيسية",
+    doctors: "الأطباء",
+    appointments: "المواعيد",
+    records: "السجلات الطبية",
+    support: "الدعم",
+    aboutUs: "من نحن",
+    contactUs: "اتصل بنا",
+    login: "تسجيل الدخول",
+    signUp: "إنشاء حساب",
+    logout: "تسجيل الخروج",
+    settings: "الإعدادات",
+    welcome: "مرحباً بك في HealthBridge",
+    subtitle: "صحتك، أولويتنا. احجز مواعيدك واطلع على سجلاتك الطبية بسهولة.",
+    searchPlaceholder: "ابحث عن طبيب أو قسم...",
+    searchDoctors: "ابحث عن أطباء...",
+    emergency: "طوارئ",
+    services: "خدماتنا",
+    servicesSubtitle: "حلول رعاية صحية شاملة مصممة لراحتك",
+    onlineBooking: "الحجز الإلكتروني",
+    onlineBookingDesc: "احجز مواعيد مع أفضل الأطباء فوراً.",
+    medicalRecords: "السجلات الطبية",
+    medicalRecordsDesc: "اطلع على تاريخك الطبي الكامل في أي وقت.",
+    twentyFourSevenSupport: "دعم 24/7",
+    supportDesc: "احصل على المساعدة في أي وقت مع فريق الدعم المخصص.",
+    emergencyCare: "رعاية الطوارئ",
+    emergencyCareDesc: "وصول سريع إلى خدمات الطوارئ.",
+    whatPatientsSay: "ماذا يقول المرضى",
+    testimonialsSubtitle: "استمع إلى مرضانا الراضين عن تجربتهم",
+    testimonial1:
+      '"جعلتني HealthBridge أحجز موعدي بسهولة. الواجهة نظيفة وبديهية!"',
+    testimonial2:
+      '"أحب أن أستطيع الوصول إلى سجلاتي الطبية فوراً. أفضل تطبيق رعاية صحية استخدمته."',
+    testimonial3: '"منحني ميزة الطوارئ راحة البال. أنصح به بشدة للجميع."',
+    readyToStart: "هل أنت مستعد للتحكم في صحتك؟",
+    joinThousands: "انضم إلى آلاف المرضى الذين يثقون بـ HealthBridge",
+    getStartedToday: "ابدأ اليوم",
+    quickLinks: "روابط سريعة",
+    findDoctor: "ابحث عن طبيب",
+    bookAppointment: "حجز موعد",
+    connectingPatients: "ربط المرضى بخدمات الرعاية الصحية عالية الجودة.",
+    phone: "الهاتف",
+    email: "البريد الإلكتروني",
+    address: "العنوان",
+    copyright: "© 2026 HealthBridge. جميع الحقوق محفوظة.",
+    dashboard: "لوحة التحكم",
+    dashboardOverview: "نظرة عامة على لوحة التحكم",
+    totalAppointments: "إجمالي المواعيد",
+    pendingRecords: "السجلات المعلقة",
+    yourRating: "تقييمك",
+    upcoming: "المواعيد القادمة",
+    noAppointments: "لا توجد مواعيد قادمة",
+    viewAll: "عرض الكل",
+    needToSeeDoctor: "تحتاج لزيارة طبيب؟",
+    bookWithSpecialists: "احجز موعداً مع أفضل المتخصصين لدينا اليوم.",
+    bookNow: "احجز الآن",
+    allSpecialties: "جميع التخصصات",
+    availability: "التوفر",
+    availableNow: "متاح الآن",
+    today: "اليوم",
+    thisWeek: "هذا الأسبوع",
+    chooseDepartment: "اختر القسم",
+    chooseDoctor: "اختر الطبيب",
+    yearsExp: "سنوات خبرة",
+    available: "متاح",
+    notAvailable: "غير متاح",
+    rateDoctor: "قيّم الطبيب",
+    submitRating: "إرسال التقييم",
+    cancelRating: "إلغاء",
+    yourRatingLabel: "تقييمك",
+    reviewPlaceholder: "اكتب رأيك (اختياري)...",
+    ratingSubmitted: "شكراً! تم إرسال تقييمك.",
+    ratingUpdated: "تم تحديث تقييمك.",
+    loginToRate: "يرجى تسجيل الدخول لتقييم الأطباء.",
+    ratingsCount: "تقييم",
+    sortBy: "ترتيب حسب",
+    sortDefault: "الافتراضي",
+    sortRatingHigh: "الأعلى تقييماً",
+    sortRatingLow: "الأقل تقييماً",
+    sortExp: "الأكثر خبرة",
+    alreadyRated: "لقد قيّمت هذا الطبيب من قبل. تم تحديث التقييم.",
+    cardiology: "قلب",
+    dermatology: "طب الجلد",
+    neurology: "مخ وأعصاب",
+    pediatrics: "طب الأطفال",
+    orthopedics: "طب الجراحة العظمية",
+    dentistry: "طب الأسنان",
+    ophthalmology: "طب العيون",
+    gynecology: "نساء وتوليد",
+    ourStory: "قصتنا",
+    ourMission: "رسالتنا",
+    ourVision: "رؤيتنا",
+    missionVision: "الرسالة والرؤية",
+    ourTeam: "فريقنا",
+    ourStoryP1:
+      "تأسست HealthBridge عام 2026، وولدت من فكرة بسيطة: أن تكون الرعاية الصحية متاحة وشفافة.",
+    ourStoryP2: "اليوم، نخدم آلاف المرضى، ونربطهم بأفضل المتخصصين الطبيين.",
+    getInTouch: "تواصل معنا",
+    weLoveToHear: "نحن نحب أن نسمع منك. أرسل لنا رسالة وسنرد عليك في أقرب وقت.",
+    firstName: "الاسم الأول",
+    lastName: "الاسم الأخير",
+    enterFirstName: "أدخل اسمك الأول",
+    enterLastName: "أدخل اسمك الأخير",
+    phoneNumber: "رقم الهاتف",
+    enterPhone: "أدخل رقم هاتفك",
+    subject: "الموضوع",
+    message: "الرسالة",
+    sendMessage: "إرسال رسالة",
+    generalInquiry: "استفسار عام",
+    appointmentIssue: "مشكلة في الموعد",
+    technicalSupport: "دعم تقني",
+    feedback: "ملاحظات",
+    visitUs: "زورنا",
+    callUs: "اتصل بنا",
+    workingHours: "ساعات العمل",
+    monFri: "الإثنين - الجمعة",
+    saturday: "السبت",
+    sunday: "الأحد",
+    emergencyOnly: "طوارئ فقط",
+    twentyFourSeven: "24/7",
+    hospitalAddress: "123 شارع الرعاية الصحية، حي طبي، المدينة 12345",
+    welcomeBack: "مرحباً بعودتك",
+    signInToAccess: "سجل الدخول للوصول إلى لوحة التحكم الصحية",
+    emailPhone: "البريد الإلكتروني / الهاتف",
+    enterEmail: "أدخل بريدك الإلكتروني أو هاتفك",
+    password: "كلمة المرور",
+    enterPassword: "أدخل كلمة المرور",
+    rememberMe: "تذكرني",
+    forgotPassword: "نسيت كلمة المرور؟",
+    signIn: "تسجيل الدخول",
+    fullName: "الاسم الكامل",
+    enterFullName: "أدخل اسمك الكامل",
+    userType: "نوع المستخدم",
+    patient: "مريض",
+    doctor: "طبيب",
+    confirmPassword: "تأكيد كلمة المرور",
+    confirmYourPassword: "أكد كلمة المرور",
+    createAccount: "إنشاء حساب",
+    orContinueWith: "أو استمر مع",
+    google: "جوجل",
+    selectDepartment: "اختر القسم",
+    selectDoctor: "اختر الطبيب",
+    preferredDate: "التاريخ المفضل",
+    preferredTime: "الوقت المفضل",
+    patientName: "اسم المريض",
+    additionalNotes: "ملاحظات إضافية (اختياري)",
+    confirmBooking: "تأكيد الحجز",
+    appointmentHistory: "تاريخ المواعيد",
+    noAppointmentsFound: "لم يتم العثور على مواعيد",
+    status: "الحالة",
+    actions: "الإجراءات",
+    departments: "الأقسام",
+    allRecords: "جميع السجلات",
+    labResults: "نتائج المختبر",
+    prescriptions: "الوصفات الطبية",
+    diagnoses: "التشخيصات",
+    imaging: "الأشعة",
+    filter: "تصفية",
+    exportAll: "تصدير الكل",
+    view: "عرض",
+    download: "تحميل PDF",
+    normal: "طبيعي",
+    active: "نشط",
+    completed: "مكتمل",
+    backToHome: "العودة للرئيسية",
+    nearestHospital: "أقرب مستشفى",
+    ambulance: "سيارة إسعاف",
+    poisonControl: "مركز السموم",
+    firstAid: "إسعافات أولية",
+    cpr: "إنعاش قلبي رئوي",
+    burns: "الحروق",
+    bleeding: "النزيف",
+    choking: "الاختناق",
+    call911: "اتصل بـ 911",
+    getDirections: "الحصول على الاتجاهات",
+    callAmbulance: "استدعاء إسعاف",
+    callNow: "اتصل الآن",
+    hospitalName: "مستشفى المدينة العام",
+    distance: "0.5 ميل",
+    emergencyLine: "خط الطوارئ",
+    avgResponse: "متوسط الاستجابة",
+    poisonHotline: "خط المساعدة 24/7",
+    forPoisoning: "لحالات التسمم الطارئة",
+    whatToDoEmergency: "إذا كنت تواجه حالة طوارئ تهدد الحياة، اتصل فوراً",
+    checkResponsiveness: "1. تحقق من الاستجابة",
+    call911First: "2. اتصل بـ 911",
+    pushHard: "3. اضغط بقوة وسرعة على وسط الصدر",
+    useAed: "4. استخدم جهاز إزالة الرجفان",
+    coolWater: "1. برد بالماء الجاري",
+    coverDressing: "2. غطِ بضمادة معقمة",
+    noIce: "3. لا تضع ثلجاً",
+    seekAttention: "4. اطلب الرعاية الطبية",
+    applyPressure: "1. اضغط مباشرة",
+    elevate: "2. ارفع الجرح",
+    cleanCloth: "3. استخدم قطعة قماش/ضمادة نظيفة",
+    callIfSevere: "4. اتصل بـ 911 إذا كان حاداً",
+    encourageCough: "1. شجع على السعال",
+    heimlich: "2. قم بمناورة هايمليك",
+    callUnable: "3. اتصل بـ 911 إذا كان غير قادر على التنفس",
+    continueHelp: "4. استمر حتى وصول المساعدة",
+    faq: "الأسئلة الشائعة",
+    howToBook: "كيف أحجز موعداً؟",
+    bookAppointmentAnswer:
+      "يمكنك حجز موعد بزيارة صفحة المواعيد، واختيار القسم والطبيب المفضل.",
+    accessRecords: "هل يمكنني الوصول إلى سجلاتي الطبية عبر الإنترنت؟",
+    accessRecordsAnswer: "نعم! جميع سجلاتك الطبية متاحة.",
+    dataSecure: "هل بياناتي آمنة؟",
+    dataSecureAnswer: "بالتأكيد. نحن نستخدم تشفيراً لحماية معلوماتك.",
+    emergencyAnswer:
+      "للحالات الطارئة، يرجى استخدام زر الطوارئ أو الاتصال بـ 911 فوراً.",
+    liveChat: "الدردشة المباشرة",
+    healthbridgeSupport: "دعم HealthBridge",
+    helloHowCanHelp: "مرحباً! كيف يمكنني مساعدتك اليوم؟",
+    typeMessage: "اكتب رسالتك...",
+    send: "إرسال",
+    contactInfo: "معلومات الاتصال",
+    profile: "الملف الشخصي",
+    accountSecurity: "الحساب والأمان",
+    notifications: "الإشعارات",
+    privacy: "الخصوصية",
+    appearance: "المظهر",
+    languageRegion: "اللغة والمنطقة",
+    dataStorage: "البيانات والتخزين",
+    connectedDevices: "الأجهزة المتصلة",
+    activityLog: "سجل النشاط",
+    profileSettings: "إعدادات الملف الشخصي",
+    displayName: "اسم العرض",
+    dateOfBirth: "تاريخ الميلاد",
+    bio: "نبذة",
+    emergencyContact: "جهة اتصال الطوارئ",
+    saveChanges: "حفظ التغييرات",
+    changePassword: "تغيير كلمة المرور",
+    passwordLastChanged: "آخر تغيير قبل 3 أشهر",
+    change: "تغيير",
+    twoFactorAuth: "المصادقة الثنائية",
+    twoFactorDesc: "أضف طبقة أمان إضافية لحسابك",
+    loginSecurity: "أمان تسجيل الدخول",
+    emailVerification: "التحقق من البريد الإلكتروني",
+    emailVerified: "بريدك الإلكتروني مُحقق",
+    phoneVerification: "التحقق من الهاتف",
+    phoneNotVerified: "هاتفك غير مُحقق",
+    verify: "تحقق",
+    loginAlerts: "تنبيهات تسجيل الدخول",
+    loginAlertsDesc: "احصل على إشعارات عند تسجيل دخول جديد",
+    dangerZone: "منطقة الخطر",
+    deactivateAccount: "تعطيل الحساب",
+    deactivateDesc: "تعطيل حسابك مؤقتاً",
+    deactivate: "تعطيل",
+    deleteAccount: "حذف الحساب",
+    deleteAccountDesc: "حذف حسابك وبياناتك نهائياً",
+    delete: "حذف",
+    verified: "مُحقق",
+    notificationPreferences: "تفضيلات الإشعارات",
+    emailNotifications: "إشعارات البريد الإلكتروني",
+    emailNotificationsDesc: "استلام التحديثات عبر البريد",
+    smsNotifications: "إشعارات الرسائل القصيرة",
+    smsNotificationsDesc: "استلام رسائل نصية للتحديثات المهمة",
+    pushNotifications: "إشعارات الدفع",
+    pushNotificationsDesc: "إشعارات المتصفح",
+    notificationTypes: "أنواع الإشعارات",
+    appointmentReminders: "تذكيرات المواعيد",
+    appointmentRemindersDesc: "تذكير قبل مواعيدك",
+    testResults: "نتائج الفحوصات",
+    testResultsDesc: "إشعار عند توفر نتائج جديدة",
+    prescriptionAlerts: "تنبيهات الوصفات",
+    prescriptionAlertsDesc: "تذكيرات لإعادة تعبئة الوصفات",
+    healthTips: "نصائح وأخبار صحية",
+    healthTipsDesc: "نصائح صحية وتحديثات أسبوعية",
+    marketingEmails: "رسائل تسويقية",
+    marketingEmailsDesc: "عروض ترويجية وتحديثات",
+    privacySettings: "إعدادات الخصوصية",
+    profileVisibility: "رؤية الملف الشخصي",
+    profileVisibilityDesc: "من يمكنه رؤية معلومات ملفك",
+    everyone: "الجميع",
+    doctorsOnly: "الأطباء فقط",
+    onlyMe: "أنا فقط",
+    shareMedicalRecords: "مشاركة السجلات الطبية",
+    shareMedicalRecordsDesc: "السماح للأطباء بالوصول لسجلاتك",
+    dataAnalytics: "تحليلات البيانات",
+    dataAnalyticsDesc: "ساعدنا في التحسين بمشاركة بيانات الاستخدام",
+    thirdPartySharing: "المشاركة مع طرف ثالث",
+    thirdPartySharingDesc: "مشاركة البيانات مع شركاء موثوقين",
+    dataManagement: "إدارة البيانات",
+    downloadData: "تحميل بياناتك",
+    downloadDataDesc: "احصل على نسخة من جميع بياناتك الشخصية",
+    download: "تحميل",
+    clearHistory: "مسح سجل البحث",
+    clearHistoryDesc: "إزالة جميع سجل البحث",
+    clear: "مسح",
+    appearanceSettings: "إعدادات المظهر",
+    theme: "السمة",
+    light: "فاتح",
+    dark: "داكن",
+    auto: "تلقائي",
+    compactMode: "الوضع المدمج",
+    compactModeDesc: "تقليل المسافات لمحتوى أكثر",
+    animations: "الرسوم المتحركة",
+    animationsDesc: "تفعيل الانتقالات السلسة والرسوم المتحركة",
+    highContrast: "تباين عالي",
+    highContrastDesc: "زيادة التباين لرؤية أفضل",
+    reducedMotion: "حركة مخفضة",
+    reducedMotionDesc: "تقليل الرسوم المتحركة",
+    languageRegionSettings: "إعدادات اللغة والمنطقة",
+    language: "اللغة",
+    region: "المنطقة",
+    timezone: "المنطقة الزمنية",
+    dateFormat: "تنسيق التاريخ",
+    timeFormat: "تنسيق الوقت",
+    currency: "العملة",
+    dataStorageSettings: "إعدادات البيانات والتخزين",
+    storageUsed: "التخزين المستخدم",
+    storageUsedDesc: "2.4 جيجابايت من 5 جيجابايت",
+    manage: "إدارة",
+    cacheData: "ذاكرة التخزين المؤقت والبيانات",
+    clearCache: "مسح ذاكرة التخزين",
+    cacheSize: "حجم الذاكرة: 124 ميجابايت",
+    offlineMode: "وضع عدم الاتصال",
+    offlineModeDesc: "تحميل البيانات للوصول بدون إنترنت",
+    autoSync: "المزامنة التلقائية",
+    autoSyncDesc: "مزامنة البيانات تلقائياً عبر الأجهزة",
+    syncFrequency: "تكرار المزامنة",
+    syncFrequencyDesc: "كم مرة تتم مزامنة بياناتك",
+    realtime: "في الوقت الفعلي",
+    hourly: "كل ساعة",
+    daily: "يومياً",
+    manualOnly: "يدوي فقط",
+    currentDevice: "الجهاز الحالي",
+    disconnect: "فصل",
+    disconnectAllDevices: "فصل جميع الأجهزة",
+    successfulLogin: "تسجيل دخول ناجح",
+    appointmentBooked: "تم حجز موعد",
+    passwordChanged: "تم تغيير كلمة المرور",
+    profileUpdated: "تم تحديث الملف الشخصي",
+    newDevice: "جهاز جديد متصل",
+    downloadFullLog: "تحميل سجل النشاط الكامل",
+    cancel: "إلغاء",
+    edit: "تعديل",
+    twoFactorAuthDisabled: "تم تعطيل المصادقة الثنائية",
+    loading: "جاري التحميل...",
+    expertDoctors: "أطباء خبراء",
+    patientsServed: "مرضى تم خدمتهم",
+    emergencyCare24_7: "رعاية طوارئ 24/7",
+    ourMissionP:
+      "مهمتنا هي تمكين المرضى من الوصول السهل إلى خدمات الرعاية الصحية.",
+    ourVisionP:
+      "رؤيتنا هي خلق عالم يتمتع فيه الجميع بإمكانية الوصول إلى رعاية صحية عالية الجودة.",
+    supportDescription:
+      "نحن هنا للمساعدة. ابحث عن إجابات أو تحدث مع فريق الدعم.",
   },
 };
 
@@ -345,12 +852,16 @@ function initState() {
   try {
     state.currentUser = JSON.parse(localStorage.getItem("currentUser")) || null;
     state.language = localStorage.getItem("language") || "en";
-    state.doctors = JSON.parse(localStorage.getItem("doctors")) || generateMockDoctors();
+    state.doctors =
+      JSON.parse(localStorage.getItem("doctors")) || generateMockDoctors();
     state.appointments = JSON.parse(localStorage.getItem("appointments")) || [];
-    state.records = JSON.parse(localStorage.getItem("records")) || generateMockRecords();
+    state.records =
+      JSON.parse(localStorage.getItem("records")) || generateMockRecords();
     state.profile = JSON.parse(localStorage.getItem("profile")) || {};
-    state.notificationPrefs = JSON.parse(localStorage.getItem("notificationPrefs")) || {};
-    state.notificationTypePrefs = JSON.parse(localStorage.getItem("notificationTypePrefs")) || {};
+    state.notificationPrefs =
+      JSON.parse(localStorage.getItem("notificationPrefs")) || {};
+    state.notificationTypePrefs =
+      JSON.parse(localStorage.getItem("notificationTypePrefs")) || {};
     state.privacyPrefs = JSON.parse(localStorage.getItem("privacyPrefs")) || {};
 
     if (!localStorage.getItem("doctors")) {
@@ -406,7 +917,10 @@ function translateStaticContent() {
 // ========================
 function checkAuth() {
   const protectedPages = ["dashboard", "appointments", "records", "settings"];
-  const currentPage = window.location.pathname.split("/").pop().replace(".html", "");
+  const currentPage = window.location.pathname
+    .split("/")
+    .pop()
+    .replace(".html", "");
 
   if (protectedPages.includes(currentPage) && !state.currentUser) {
     sessionStorage.setItem("redirectAfterLogin", window.location.href);
@@ -458,7 +972,9 @@ function login(email, password) {
 
   const redirectUrl = sessionStorage.getItem("redirectAfterLogin");
   sessionStorage.removeItem("redirectAfterLogin");
-  setTimeout(() => { window.location.href = redirectUrl || "dashboard.html"; }, 1000);
+  setTimeout(() => {
+    window.location.href = redirectUrl || "dashboard.html";
+  }, 1000);
 }
 
 function signup(userData) {
@@ -472,7 +988,11 @@ function signup(userData) {
     return;
   }
 
-  showToast(state.language === "ar" ? "تم إنشاء الحساب بنجاح!" : "Account created successfully!");
+  showToast(
+    state.language === "ar"
+      ? "تم إنشاء الحساب بنجاح!"
+      : "Account created successfully!",
+  );
   setTimeout(() => (window.location.href = "login.html"), 1000);
 }
 
@@ -508,7 +1028,11 @@ function setupNavigation() {
     });
 
     document.addEventListener("click", (e) => {
-      if (!navMenu.contains(e.target) && !mobileMenuBtn.contains(e.target) && navMenu.classList.contains("active")) {
+      if (
+        !navMenu.contains(e.target) &&
+        !mobileMenuBtn.contains(e.target) &&
+        navMenu.classList.contains("active")
+      ) {
         navMenu.classList.remove("active");
         mobileMenuBtn.innerHTML = "&#9776;";
         mobileMenuBtn.setAttribute("aria-expanded", "false");
@@ -544,18 +1068,23 @@ function setupNavigation() {
 // SCROLL EFFECTS
 // ========================
 function setupScrollEffects() {
-  const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const prefersReducedMotion = window.matchMedia(
+    "(prefers-reduced-motion: reduce)",
+  ).matches;
   if (prefersReducedMotion) return;
 
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.style.opacity = "1";
-        entry.target.style.transform = "translateY(0)";
-        observer.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.1, rootMargin: "0px 0px -50px 0px" });
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = "1";
+          entry.target.style.transform = "translateY(0)";
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.1, rootMargin: "0px 0px -50px 0px" },
+  );
 
   document.querySelectorAll(".card").forEach((card) => {
     card.style.opacity = "0";
@@ -578,7 +1107,9 @@ function applySavedTheme() {
   if (savedTheme === "dark") {
     document.documentElement.classList.add("dark-theme");
   } else if (savedTheme === "auto") {
-    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+    const prefersDark = window.matchMedia(
+      "(prefers-color-scheme: dark)",
+    ).matches;
     document.documentElement.classList.toggle("dark-theme", prefersDark);
   } else {
     document.documentElement.classList.remove("dark-theme");
@@ -635,25 +1166,32 @@ function loadDoctorsPage() {
   if (!document.getElementById("doctors-list")) return;
   renderDoctors(state.doctors);
   ["specialty-filter", "sort-filter"].forEach((id) =>
-    document.getElementById(id)?.addEventListener("change", applyDoctorFilters)
+    document.getElementById(id)?.addEventListener("change", applyDoctorFilters),
   );
-  document.getElementById("search-input")?.addEventListener("input", debounce(applyDoctorFilters, 200));
+  document
+    .getElementById("search-input")
+    ?.addEventListener("input", debounce(applyDoctorFilters, 200));
 }
 
 function getDoctorRating(doctor) {
   const r = doctor.reviews;
-  return r?.length ? r.reduce((s, x) => s + x.rating, 0) / r.length : parseFloat(doctor.rating);
+  return r?.length
+    ? r.reduce((s, x) => s + x.rating, 0) / r.length
+    : parseFloat(doctor.rating);
 }
 
 function applyDoctorFilters() {
   const specialty = document.getElementById("specialty-filter")?.value || "all";
   const sort = document.getElementById("sort-filter")?.value || "default";
-  const search = document.getElementById("search-input")?.value?.toLowerCase() || "";
+  const search =
+    document.getElementById("search-input")?.value?.toLowerCase() || "";
 
   let list = state.doctors.filter(
     (d) =>
       (specialty === "all" || d.specialty === specialty) &&
-      (!search || d.name.toLowerCase().includes(search) || d.specialty.toLowerCase().includes(search))
+      (!search ||
+        d.name.toLowerCase().includes(search) ||
+        d.specialty.toLowerCase().includes(search)),
   );
 
   const sorters = {
@@ -667,10 +1205,12 @@ function applyDoctorFilters() {
 }
 
 function starsHtml(rating) {
-  const full = Math.floor(rating), half = rating - full >= 0.5;
+  const full = Math.floor(rating),
+    half = rating - full >= 0.5;
   return Array.from(
     { length: 5 },
-    (_, i) => `<span class="star ${i < full ? "full" : i === full && half ? "half" : "empty"}">★</span>`
+    (_, i) =>
+      `<span class="star ${i < full ? "full" : i === full && half ? "half" : "empty"}">★</span>`,
   ).join("");
 }
 
@@ -684,21 +1224,37 @@ function renderDoctors(doctors) {
   }
 
   const uid = state.currentUser?.email;
-  container.innerHTML = doctors.map((doc) => {
-    const reviews = doc.reviews || [];
-    const avg = getDoctorRating(doc);
-    const userReview = uid ? reviews.find((r) => r.userId === uid) : null;
-    const badge = userReview ? `<span class="user-badge">✓ ${t("yourRatingLabel")}: ${"★".repeat(userReview.rating)}</span>` : "";
-    const latest = reviews.slice(-2).reverse().map((r) => `
+  container.innerHTML = doctors
+    .map((doc) => {
+      const reviews = doc.reviews || [];
+      const avg = getDoctorRating(doc);
+      const userReview = uid ? reviews.find((r) => r.userId === uid) : null;
+      const badge = userReview
+        ? `<span class="user-badge">✓ ${t("yourRatingLabel")}: ${"★".repeat(userReview.rating)}</span>`
+        : "";
+      const latest = reviews
+        .slice(-2)
+        .reverse()
+        .map(
+          (r) => `
       <div class="review-row">
         <span class="rev-stars">${"★".repeat(r.rating)}${"☆".repeat(5 - r.rating)}</span>
         <span class="rev-name">${escapeHtml(r.userName)}</span>
         ${r.comment ? `<span class="rev-comment">— ${escapeHtml(r.comment)}</span>` : ""}
-      </div>`).join("");
+      </div>`,
+        )
+        .join("");
 
-    return `
+      return `
       <div class="doctor-card">
-        <div class="doc-avatar">${doc.name.split(" ").slice(1).map((n) => n[0]).join("").slice(0, 2) || "DR"}</div>
+        <div class="doc-avatar">${
+          doc.name
+            .split(" ")
+            .slice(1)
+            .map((n) => n[0])
+            .join("")
+            .slice(0, 2) || "DR"
+        }</div>
         <div class="doctor-info">
           <div class="doc-header">
             <div>
@@ -721,7 +1277,8 @@ function renderDoctors(doctors) {
           </div>
         </div>
       </div>`;
-  }).join("");
+    })
+    .join("");
 }
 
 function loadDashboard() {
@@ -731,7 +1288,10 @@ function loadDashboard() {
   const emailEl = document.getElementById("dashboard-user-email");
 
   if (nameEl) {
-    nameEl.textContent = state.language === "ar" ? "مرحباً، " + escapeHtml(state.currentUser.name) : "Welcome, " + escapeHtml(state.currentUser.name);
+    nameEl.textContent =
+      state.language === "ar"
+        ? "مرحباً، " + escapeHtml(state.currentUser.name)
+        : "Welcome, " + escapeHtml(state.currentUser.name);
   }
   if (emailEl) emailEl.textContent = escapeHtml(state.currentUser.email);
 
@@ -744,11 +1304,15 @@ function loadDashboard() {
 
   const upcomingContainer = document.getElementById("upcoming-appointments");
   if (upcomingContainer) {
-    const upcoming = state.appointments.filter((a) => new Date(a.date) > new Date());
+    const upcoming = state.appointments.filter(
+      (a) => new Date(a.date) > new Date(),
+    );
     if (upcoming.length === 0) {
       upcomingContainer.innerHTML = `<p class="text-center" style="color: var(--text-muted); padding: 2rem;">${t("noAppointments")}</p>`;
     } else {
-      upcomingContainer.innerHTML = upcoming.map((appt) => `
+      upcomingContainer.innerHTML = upcoming
+        .map(
+          (appt) => `
         <div class="card" style="margin-bottom: 1rem;">
           <div style="display: flex; justify-content: space-between; align-items: center;">
             <div>
@@ -757,16 +1321,29 @@ function loadDashboard() {
             </div>
             <span class="btn btn-secondary" style="padding: 0.25rem 0.75rem; font-size: 0.875rem;">${appt.time}</span>
           </div>
-        </div>`).join("");
+        </div>`,
+        )
+        .join("");
     }
   }
 
-  document.getElementById("upcoming-header") && (document.getElementById("upcoming-header").textContent = t("upcoming"));
-  document.getElementById("recent-records-header") && (document.getElementById("recent-records-header").textContent = t("medicalRecords"));
-  document.querySelectorAll(".view-all-btn").forEach((btn) => (btn.textContent = t("viewAll")));
-  document.getElementById("need-doctor-text") && (document.getElementById("need-doctor-text").textContent = t("needToSeeDoctor"));
-  document.getElementById("book-specialists-text") && (document.getElementById("book-specialists-text").textContent = t("bookWithSpecialists"));
-  document.getElementById("book-now-btn") && (document.getElementById("book-now-btn").textContent = t("bookNow"));
+  document.getElementById("upcoming-header") &&
+    (document.getElementById("upcoming-header").textContent = t("upcoming"));
+  document.getElementById("recent-records-header") &&
+    (document.getElementById("recent-records-header").textContent =
+      t("medicalRecords"));
+  document
+    .querySelectorAll(".view-all-btn")
+    .forEach((btn) => (btn.textContent = t("viewAll")));
+  document.getElementById("need-doctor-text") &&
+    (document.getElementById("need-doctor-text").textContent =
+      t("needToSeeDoctor"));
+  document.getElementById("book-specialists-text") &&
+    (document.getElementById("book-specialists-text").textContent = t(
+      "bookWithSpecialists",
+    ));
+  document.getElementById("book-now-btn") &&
+    (document.getElementById("book-now-btn").textContent = t("bookNow"));
 }
 
 function loadAppointments() {
@@ -774,8 +1351,14 @@ function loadAppointments() {
   if (form) {
     const doctorSelect = document.getElementById("doctor-select");
     if (doctorSelect) {
-      doctorSelect.innerHTML = `<option value="">${t("chooseDoctor")}</option>` +
-        state.doctors.map((d) => `<option value="${d.id}">${escapeHtml(d.name)} - ${escapeHtml(t(d.specialty.toLowerCase()) || d.specialty)}</option>`).join("");
+      doctorSelect.innerHTML =
+        `<option value="">${t("chooseDoctor")}</option>` +
+        state.doctors
+          .map(
+            (d) =>
+              `<option value="${d.id}">${escapeHtml(d.name)} - ${escapeHtml(t(d.specialty.toLowerCase()) || d.specialty)}</option>`,
+          )
+          .join("");
     }
 
     form.addEventListener("submit", (e) => {
@@ -802,7 +1385,11 @@ function loadAppointments() {
 
       state.appointments.push(appointment);
       localStorage.setItem("appointments", JSON.stringify(state.appointments));
-      showToast(state.language === "ar" ? "تم حجز الموعد بنجاح!" : "Appointment booked successfully!");
+      showToast(
+        state.language === "ar"
+          ? "تم حجز الموعد بنجاح!"
+          : "Appointment booked successfully!",
+      );
       form.reset();
       loadAppointments();
     });
@@ -816,7 +1403,9 @@ function loadAppointments() {
     if (state.appointments.length === 0) {
       historyContainer.innerHTML = `<tr><td colspan="6" style="text-align: center; padding: 2rem; color: var(--text-muted);">${t("noAppointmentsFound")}</td></tr>`;
     } else {
-      historyContainer.innerHTML = state.appointments.map((appt) => `
+      historyContainer.innerHTML = state.appointments
+        .map(
+          (appt) => `
         <tr>
           <td>${escapeHtml(appt.doctorName)}</td>
           <td>${escapeHtml(appt.department)}</td>
@@ -824,7 +1413,9 @@ function loadAppointments() {
           <td>${appt.time}</td>
           <td><span class="btn btn-secondary" style="padding: 0.25rem 0.5rem; font-size: 0.8rem;">${appt.status}</span></td>
           <td><button class="btn btn-danger" style="padding: 0.25rem 0.5rem; font-size: 0.8rem;" onclick="cancelAppointment(${appt.id})">${t("cancel")}</button></td>
-        </tr>`).join("");
+        </tr>`,
+        )
+        .join("");
     }
   }
 
@@ -857,11 +1448,21 @@ function loadRecords() {
   const filterBtn = document.getElementById("filter-btn");
   if (filterBtn) filterBtn.textContent = t("filter");
 
-  container.innerHTML = state.records.map((record) => {
-    const typeKey = { "Lab Results": "labResults", Prescription: "prescriptions", Diagnosis: "diagnoses", Imaging: "imaging" }[record.type] || "";
-    const statusKey = { Normal: "normal", Active: "active", Completed: "completed" }[record.status] || "";
+  container.innerHTML = state.records
+    .map((record) => {
+      const typeKey =
+        {
+          "Lab Results": "labResults",
+          Prescription: "prescriptions",
+          Diagnosis: "diagnoses",
+          Imaging: "imaging",
+        }[record.type] || "";
+      const statusKey =
+        { Normal: "normal", Active: "active", Completed: "completed" }[
+          record.status
+        ] || "";
 
-    return `
+      return `
       <div class="card">
         <div style="display: flex; justify-content: space-between; align-items: flex-start;">
           <div>
@@ -876,12 +1477,15 @@ function loadRecords() {
           <button class="btn btn-secondary" style="padding: 0.375rem 0.75rem; font-size: 0.875rem;" onclick="downloadRecord(${record.id})">${t("download")}</button>
         </div>
       </div>`;
-  }).join("");
+    })
+    .join("");
 }
 
 function loadSettings() {
   if (state.currentUser) {
-    const nameParts = state.currentUser.name ? state.currentUser.name.split(" ") : ["", ""];
+    const nameParts = state.currentUser.name
+      ? state.currentUser.name.split(" ")
+      : ["", ""];
     const fields = {
       "profile-firstname": nameParts[0] || "",
       "profile-lastname": nameParts.slice(1).join(" ") || "",
@@ -914,7 +1518,9 @@ function openRatingModal(doctorId) {
   if (!doc) return;
 
   document.getElementById("rating-modal")?.remove();
-  const prev = (doc.reviews || []).find((r) => r.userId === state.currentUser.email);
+  const prev = (doc.reviews || []).find(
+    (r) => r.userId === state.currentUser.email,
+  );
   const sel = prev?.rating || 0;
   const ar = state.language === "ar";
 
@@ -948,15 +1554,21 @@ function openRatingModal(doctorId) {
       </div>`,
   });
 
-  modal.addEventListener("click", (e) => e.target === modal && closeRatingModal());
+  modal.addEventListener(
+    "click",
+    (e) => e.target === modal && closeRatingModal(),
+  );
   document.body.appendChild(modal);
   requestAnimationFrame(() => modal.classList.add("open"));
 }
 
 function selectStar(n) {
   document.getElementById("sel-rating").value = n;
-  document.querySelectorAll(".sp-star").forEach((s) => s.classList.toggle("lit", +s.dataset.v <= n));
-  document.getElementById("star-hint").textContent = ["", "Terrible", "Poor", "Okay", "Good", "Excellent"][n] || "";
+  document
+    .querySelectorAll(".sp-star")
+    .forEach((s) => s.classList.toggle("lit", +s.dataset.v <= n));
+  document.getElementById("star-hint").textContent =
+    ["", "Terrible", "Poor", "Okay", "Good", "Excellent"][n] || "";
 }
 
 function closeRatingModal() {
@@ -968,7 +1580,11 @@ function closeRatingModal() {
 
 function submitRating(doctorId) {
   const n = +document.getElementById("sel-rating").value;
-  if (!n) return showToast(state.language === "ar" ? "اختر عدد النجوم" : "Please pick a star rating", "error");
+  if (!n)
+    return showToast(
+      state.language === "ar" ? "اختر عدد النجوم" : "Please pick a star rating",
+      "error",
+    );
 
   const doc = state.doctors.find((d) => d.id === doctorId);
   if (!doc) return;
@@ -984,7 +1600,9 @@ function submitRating(doctorId) {
 
   const idx = doc.reviews.findIndex((r) => r.userId === review.userId);
   idx >= 0 ? doc.reviews.splice(idx, 1, review) : doc.reviews.push(review);
-  doc.rating = (doc.reviews.reduce((s, r) => s + r.rating, 0) / doc.reviews.length).toFixed(1);
+  doc.rating = (
+    doc.reviews.reduce((s, r) => s + r.rating, 0) / doc.reviews.length
+  ).toFixed(1);
 
   localStorage.setItem("doctors", JSON.stringify(state.doctors));
   closeRatingModal();
@@ -1005,11 +1623,19 @@ function bookDoctor(doctorId) {
 }
 
 function cancelAppointment(id) {
-  if (confirm(state.language === "ar" ? "هل أنت متأكد من إلغاء هذا الموعد؟" : "Are you sure you want to cancel this appointment?")) {
+  if (
+    confirm(
+      state.language === "ar"
+        ? "هل أنت متأكد من إلغاء هذا الموعد؟"
+        : "Are you sure you want to cancel this appointment?",
+    )
+  ) {
     state.appointments = state.appointments.filter((a) => a.id !== id);
     localStorage.setItem("appointments", JSON.stringify(state.appointments));
     loadAppointments();
-    showToast(state.language === "ar" ? "تم إلغاء الموعد" : "Appointment cancelled");
+    showToast(
+      state.language === "ar" ? "تم إلغاء الموعد" : "Appointment cancelled",
+    );
   }
 }
 
@@ -1029,8 +1655,16 @@ function viewRecord(id) {
 }
 
 function downloadRecord(id) {
-  showToast(state.language === "ar" ? "جاري تحميل PDF..." : "Downloading PDF...");
-  setTimeout(() => showToast(state.language === "ar" ? "اكتمل التحميل!" : "Download complete!"), 1500);
+  showToast(
+    state.language === "ar" ? "جاري تحميل PDF..." : "Downloading PDF...",
+  );
+  setTimeout(
+    () =>
+      showToast(
+        state.language === "ar" ? "اكتمل التحميل!" : "Download complete!",
+      ),
+    1500,
+  );
 }
 
 // ========================
@@ -1041,7 +1675,10 @@ function setupEventListeners() {
   if (loginForm) {
     loginForm.addEventListener("submit", (e) => {
       e.preventDefault();
-      login(document.getElementById("email")?.value?.trim(), document.getElementById("password")?.value);
+      login(
+        document.getElementById("email")?.value?.trim(),
+        document.getElementById("password")?.value,
+      );
     });
   }
 
@@ -1054,7 +1691,9 @@ function setupEventListeners() {
         email: document.getElementById("signup-email")?.value?.trim(),
         phone: document.getElementById("signup-phone")?.value?.trim(),
         password: document.getElementById("signup-password")?.value,
-        confirmPassword: signupForm.querySelector('input[type="password"]:nth-of-type(2)')?.value,
+        confirmPassword: signupForm.querySelectorAll(
+          'input[type="password"]'
+        )[1]?.value,
         type: document.getElementById("user-type")?.value || "patient",
       });
     });
@@ -1063,14 +1702,21 @@ function setupEventListeners() {
   document.querySelectorAll(".tab-btn").forEach((btn) => {
     btn.addEventListener("click", () => {
       const tab = btn.getAttribute("data-tab");
-      document.querySelectorAll(".tab-btn").forEach((b) => b.classList.remove("active"));
+      document
+        .querySelectorAll(".tab-btn")
+        .forEach((b) => b.classList.remove("active"));
       btn.classList.add("active");
-      document.querySelectorAll(".auth-form").forEach((f) => f.classList.add("hidden"));
+      document
+        .querySelectorAll(".auth-form")
+        .forEach((f) => f.classList.add("hidden"));
       document.getElementById(`${tab}-form`)?.classList.remove("hidden");
     });
   });
 
-  if (window.location.pathname.includes("login.html") && window.location.hash === "#signup") {
+  if (
+    window.location.pathname.includes("login.html") &&
+    window.location.hash === "#signup"
+  ) {
     document.querySelector('[data-tab="signup"]')?.click();
   }
 
@@ -1083,7 +1729,15 @@ function setupEventListeners() {
       if (message) {
         addChatMessage(message, "sent");
         input.value = "";
-        setTimeout(() => addChatMessage(t("helloHowCanHelp"), "received", "HealthBridge Support"), 1000);
+        setTimeout(
+          () =>
+            addChatMessage(
+              t("helloHowCanHelp"),
+              "received",
+              "HealthBridge Support",
+            ),
+          1000,
+        );
       }
     });
   }
@@ -1091,7 +1745,13 @@ function setupEventListeners() {
   const emergencyBtn = document.getElementById("emergency-call");
   if (emergencyBtn) {
     emergencyBtn.addEventListener("click", () => {
-      if (confirm(state.language === "ar" ? "الاتصال بخط الطوارئ: 911؟" : "Call Emergency Hotline: 911?")) {
+      if (
+        confirm(
+          state.language === "ar"
+            ? "الاتصال بخط الطوارئ: 911؟"
+            : "Call Emergency Hotline: 911?",
+        )
+      ) {
         window.location.href = "tel:911";
       }
     });
@@ -1101,7 +1761,11 @@ function setupEventListeners() {
   if (contactForm) {
     contactForm.addEventListener("submit", (e) => {
       e.preventDefault();
-      showToast(state.language === "ar" ? "تم إرسال رسالتك بنجاح!" : "Your message has been sent successfully!");
+      showToast(
+        state.language === "ar"
+          ? "تم إرسال رسالتك بنجاح!"
+          : "Your message has been sent successfully!",
+      );
       contactForm.reset();
     });
   }
@@ -1113,7 +1777,10 @@ function addChatMessage(text, type, sender = "") {
 
   const msgDiv = document.createElement("div");
   msgDiv.className = `message ${type}`;
-  msgDiv.innerHTML = sender && type === "received" ? `<strong>${escapeHtml(sender)}</strong><br>${escapeHtml(text)}` : escapeHtml(text);
+  msgDiv.innerHTML =
+    sender && type === "received"
+      ? `<strong>${escapeHtml(sender)}</strong><br>${escapeHtml(text)}`
+      : escapeHtml(text);
   container.appendChild(msgDiv);
   container.scrollTop = container.scrollHeight;
 }
@@ -1172,7 +1839,9 @@ function showModal(content) {
   `;
   document.body.appendChild(modal);
 
-  modal.addEventListener("click", (e) => { if (e.target === modal) modal.remove(); });
+  modal.addEventListener("click", (e) => {
+    if (e.target === modal) modal.remove();
+  });
 
   const closeOnEscape = (e) => {
     if (e.key === "Escape") {
@@ -1193,14 +1862,22 @@ function initMap() {
   try {
     const map = L.map("map").setView([29.312139, 30.856225], 15);
     L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+      attribution:
+        '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
     }).addTo(map);
 
-    const popupContent = state.language === "ar" ? "<b>مركز HealthBridge الطبي</b><br>١٢٣ شارع الرعاية الصحية" : "<b>HealthBridge Medical Center</b><br>123 Healthcare Avenue";
-    L.marker([29.312139, 30.856225]).addTo(map).bindPopup(popupContent).openPopup();
+    const popupContent =
+      state.language === "ar"
+        ? "<b>مركز HealthBridge الطبي</b><br>١٢٣ شارع الرعاية الصحية"
+        : "<b>HealthBridge Medical Center</b><br>123 Healthcare Avenue";
+    L.marker([29.312139, 30.856225])
+      .addTo(map)
+      .bindPopup(popupContent)
+      .openPopup();
   } catch (e) {
     console.error("Map initialization error:", e);
-    mapContainer.innerHTML = '<p style="text-align: center; padding: 2rem;">Map loading...</p>';
+    mapContainer.innerHTML =
+      '<p style="text-align: center; padding: 2rem;">Map loading...</p>';
   }
 }
 
@@ -1208,10 +1885,16 @@ function initMap() {
 // SETTINGS PAGE FUNCTIONS
 // ========================
 function showSettingsSection(sectionId) {
-  document.querySelectorAll(".settings-section").forEach((s) => s.classList.remove("active"));
+  document
+    .querySelectorAll(".settings-section")
+    .forEach((s) => s.classList.remove("active"));
   document.getElementById(sectionId + "-section")?.classList.add("active");
-  document.querySelectorAll(".settings-nav a").forEach((l) => l.classList.remove("active"));
-  document.querySelector(`[data-section="${sectionId}"]`)?.classList.add("active");
+  document
+    .querySelectorAll(".settings-nav a")
+    .forEach((l) => l.classList.remove("active"));
+  document
+    .querySelector(`[data-section="${sectionId}"]`)
+    ?.classList.add("active");
   localStorage.setItem("lastSettingsSection", sectionId);
 }
 
@@ -1229,7 +1912,9 @@ function saveNotificationPref(type, enabled) {
   const prefs = JSON.parse(localStorage.getItem("notificationPrefs")) || {};
   prefs[type] = enabled;
   localStorage.setItem("notificationPrefs", JSON.stringify(prefs));
-  showToast(`${type.charAt(0).toUpperCase() + type.slice(1)} notifications ${enabled ? "enabled" : "disabled"}`);
+  showToast(
+    `${type.charAt(0).toUpperCase() + type.slice(1)} notifications ${enabled ? "enabled" : "disabled"}`,
+  );
 }
 
 function loadNotificationPrefs() {
@@ -1241,7 +1926,9 @@ function loadNotificationPrefs() {
 }
 
 function setTheme(theme, element, silent = false) {
-  document.querySelectorAll(".theme-option").forEach((opt) => opt.classList.remove("active"));
+  document
+    .querySelectorAll(".theme-option")
+    .forEach((opt) => opt.classList.remove("active"));
   element.classList.add("active");
   localStorage.setItem("theme", theme);
 
@@ -1250,7 +1937,10 @@ function setTheme(theme, element, silent = false) {
   } else if (theme === "light") {
     document.documentElement.classList.remove("dark-theme");
   } else {
-    document.documentElement.classList.toggle("dark-theme", window.matchMedia("(prefers-color-scheme: dark)").matches);
+    document.documentElement.classList.toggle(
+      "dark-theme",
+      window.matchMedia("(prefers-color-scheme: dark)").matches,
+    );
   }
 
   if (!silent) showToast(`Theme set to ${theme}`);
@@ -1274,20 +1964,29 @@ function savePrivacyPref(type, value) {
   const prefs = JSON.parse(localStorage.getItem("privacyPrefs")) || {};
   prefs[type] = value;
   localStorage.setItem("privacyPrefs", JSON.stringify(prefs));
-  if (typeof value === "boolean") showToast(`${type} ${value ? "enabled" : "disabled"}`);
+  if (typeof value === "boolean")
+    showToast(`${type} ${value ? "enabled" : "disabled"}`);
 }
 
 function saveLanguageRegionPref(type, value) {
-  state.languageRegionPrefs = JSON.parse(localStorage.getItem("languageRegionPrefs")) || {};
+  state.languageRegionPrefs =
+    JSON.parse(localStorage.getItem("languageRegionPrefs")) || {};
   state.languageRegionPrefs[type] = value;
-  localStorage.setItem("languageRegionPrefs", JSON.stringify(state.languageRegionPrefs));
+  localStorage.setItem(
+    "languageRegionPrefs",
+    JSON.stringify(state.languageRegionPrefs),
+  );
   showToast(`${t(type)} updated`);
 }
 
 function saveDataStoragePref(type, value) {
-  state.dataStoragePrefs = JSON.parse(localStorage.getItem("dataStoragePrefs")) || {};
+  state.dataStoragePrefs =
+    JSON.parse(localStorage.getItem("dataStoragePrefs")) || {};
   state.dataStoragePrefs[type] = value;
-  localStorage.setItem("dataStoragePrefs", JSON.stringify(state.dataStoragePrefs));
+  localStorage.setItem(
+    "dataStoragePrefs",
+    JSON.stringify(state.dataStoragePrefs),
+  );
   showToast(`${t(type)} updated`);
 }
 
@@ -1326,15 +2025,23 @@ function loadPrivacyPrefs() {
   }
   ["shareRecords", "dataAnalytics", "thirdParty"].forEach((key) => {
     if (prefs[key] !== undefined) {
-      const el = document.getElementById(`toggle-${key === "shareRecords" ? "share-records" : key === "thirdParty" ? "third-party" : "data-analytics"}`);
+      const el = document.getElementById(
+        `toggle-${key === "shareRecords" ? "share-records" : key === "thirdParty" ? "third-party" : "data-analytics"}`,
+      );
       if (el) el.checked = prefs[key];
     }
   });
 }
 
 function loadLanguageRegionPrefs() {
-  state.languageRegionPrefs = JSON.parse(localStorage.getItem("languageRegionPrefs")) || {
-    region: "us", timezone: "est", dateFormat: "mdy", timeFormat: "12h", currency: "usd",
+  state.languageRegionPrefs = JSON.parse(
+    localStorage.getItem("languageRegionPrefs"),
+  ) || {
+    region: "us",
+    timezone: "est",
+    dateFormat: "mdy",
+    timeFormat: "12h",
+    currency: "usd",
   };
   const fields = {
     "region-select": state.languageRegionPrefs.region,
@@ -1369,13 +2076,19 @@ function loadAppearancePrefs() {
 
 function loadThemePreference() {
   const savedTheme = localStorage.getItem("theme") || "light";
-  const themeOption = document.querySelector(`.theme-option:nth-child(${savedTheme === "light" ? 1 : savedTheme === "dark" ? 2 : 3})`);
+  const themeOption = document.querySelector(
+    `.theme-option:nth-child(${savedTheme === "light" ? 1 : savedTheme === "dark" ? 2 : 3})`,
+  );
   if (themeOption) setTheme(savedTheme, themeOption, true);
 }
 
 function loadDataStoragePrefs() {
-  state.dataStoragePrefs = JSON.parse(localStorage.getItem("dataStoragePrefs")) || {
-    offlineMode: false, autoSync: true, syncFrequency: "realtime",
+  state.dataStoragePrefs = JSON.parse(
+    localStorage.getItem("dataStoragePrefs"),
+  ) || {
+    offlineMode: false,
+    autoSync: true,
+    syncFrequency: "realtime",
   };
   const fields = {
     "toggle-offline-mode": state.dataStoragePrefs.offlineMode,
@@ -1419,7 +2132,11 @@ function deactivateAccount() {
 }
 
 function deleteAccount() {
-  if (confirm("Are you sure you want to delete your account? This cannot be undone.")) {
+  if (
+    confirm(
+      "Are you sure you want to delete your account? This cannot be undone.",
+    )
+  ) {
     if (confirm("Please confirm again to permanently delete your account.")) {
       localStorage.clear();
       showToast("Account deleted");
@@ -1524,26 +2241,34 @@ function loadSettingsPageSpecificJs() {
   loadThemePreference();
   loadDataStoragePrefs();
 
-  document.getElementById("profile-form")?.addEventListener("submit", function (e) {
-    e.preventDefault();
-    const userData = {
-      name: document.getElementById("profile-display")?.value || (document.getElementById("profile-firstname").value + " " + document.getElementById("profile-lastname").value).trim(),
-      email: document.getElementById("profile-email-input").value,
-    };
-    const profileData = {
-      email: document.getElementById("profile-email-input").value,
-      phone: document.getElementById("profile-phone").value,
-      displayName: document.getElementById("profile-display").value,
-      dob: document.getElementById("profile-dob").value,
-      bio: document.getElementById("profile-bio").value,
-      emergencyContact: document.getElementById("profile-emergency").value,
-    };
-    Object.assign(state.currentUser, userData);
-    Object.assign(state.profile, profileData);
-    localStorage.setItem("currentUser", JSON.stringify(state.currentUser));
-    localStorage.setItem("profile", JSON.stringify(state.profile));
-    showToast("Profile updated successfully!");
-  });
+  document
+    .getElementById("profile-form")
+    ?.addEventListener("submit", function (e) {
+      e.preventDefault();
+      const userData = {
+        name:
+          document.getElementById("profile-display")?.value ||
+          (
+            document.getElementById("profile-firstname").value +
+            " " +
+            document.getElementById("profile-lastname").value
+          ).trim(),
+        email: document.getElementById("profile-email-input").value,
+      };
+      const profileData = {
+        email: document.getElementById("profile-email-input").value,
+        phone: document.getElementById("profile-phone").value,
+        displayName: document.getElementById("profile-display").value,
+        dob: document.getElementById("profile-dob").value,
+        bio: document.getElementById("profile-bio").value,
+        emergencyContact: document.getElementById("profile-emergency").value,
+      };
+      Object.assign(state.currentUser, userData);
+      Object.assign(state.profile, profileData);
+      localStorage.setItem("currentUser", JSON.stringify(state.currentUser));
+      localStorage.setItem("profile", JSON.stringify(state.profile));
+      showToast("Profile updated successfully!");
+    });
 }
 
 // ========================
