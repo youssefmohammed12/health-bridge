@@ -3,36 +3,60 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Your HealthBridge dashboard - manage appointments and medical records."
+    />
     <title>Dashboard - HealthBridge</title>
     <link rel="stylesheet" href="css/style.css" />
+    <link rel="icon" type="image/svg+xml" href="pics/favicon.svg" />
   </head>
   <body>
-    <nav class="navbar">
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
       <div class="nav-container">
         <a href="index.html" class="logo">
           <div class="logo-icon">🏥</div>
           <span>HealthBridge</span>
         </a>
-
-        <ul class="nav-links">
-          <li>
-            <a href="dashboard.html" class="active" data-translate="dashboard"
-              >Dashboard</a
-            >
-          </li>
-          <li>
-            <a href="appointments.html" data-translate="appointments"
-              >Appointments</a
-            >
-          </li>
-          <li><a href="doctors.html" data-translate="doctors">Doctors</a></li>
-          <li><a href="records.html" data-translate="records">Records</a></li>
-        </ul>
-
-        <div class="nav-actions">
-          <button class="lang-toggle" onclick="toggleLanguage()">AR/EN</button>
-          <div id="auth-links"></div>
+        <div class="nav-menu" id="nav-menu">
+          <ul class="nav-links">
+            <li><a href="index.html" data-translate="home">Home</a></li>
+            <li><a href="doctors.html" data-translate="doctors">Doctors</a></li>
+            <li><a href="about.html" data-translate="aboutUs">About Us</a></li>
+            <li>
+              <a href="contact.html" data-translate="contactUs">Contact Us</a>
+            </li>
+            <li><a href="support.html" data-translate="support">Support</a></li>
+          </ul>
+          <div class="nav-actions">
+            <button class="lang-toggle" onclick="toggleLanguage()">
+              AR/EN
+            </button>
+            <div id="auth-links">
+              <a
+                href="login.html"
+                class="btn btn-outline"
+                data-translate="login"
+                >Login</a
+              >
+              <a
+                href="login.html#signup"
+                class="btn btn-primary"
+                data-translate="signUp"
+                >Sign Up</a
+              >
+            </div>
+          </div>
         </div>
+        <button
+          id="mobile-menu-btn"
+          class="mobile-menu"
+          aria-label="Toggle menu"
+          aria-expanded="false"
+        >
+          &#9776;
+        </button>
       </div>
     </nav>
 
@@ -40,56 +64,47 @@
       <!-- Sidebar -->
       <aside class="sidebar">
         <div style="text-align: center; margin-bottom: 2rem">
-          <div
-            style="
-              width: 80px;
-              height: 80px;
-              background: var(--secondary);
-              border-radius: 50%;
-              margin: 0 auto 1rem;
-              display: flex;
-              align-items: center;
-              justify-content: center;
-              font-size: 2.5rem;
-            "
-          >
-            👤
-          </div>
-          <div id="user-info">
-            <h3 data-translate="loading">Loading...</h3>
-          </div>
+          <div class="sidebar-avatar-container">👤</div>
+          <h3 id="dashboard-user-name"></h3>
+          <p id="dashboard-user-email" style="color: var(--text-muted)"></p>
         </div>
 
         <ul class="sidebar-menu">
+          <li
+            style="
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+              margin-bottom: 1rem;
+              padding: 0 var(--space-4);
+            "
+          ></li>
           <li>
-            <a href="dashboard.html" class="active"
-              >📊 <span data-translate="dashboard">Dashboard</span></a
-            >
+            <a href="dashboard.html" class="active">
+              <span>📊</span> <span data-translate="dashboard">Dashboard</span>
+            </a>
           </li>
           <li>
-            <a href="appointments.html"
-              >📅 <span data-translate="appointments">Appointments</span></a
-            >
+            <a href="appointments.html">
+              <span>📅</span>
+              <span data-translate="appointments">Appointments</span>
+            </a>
           </li>
           <li>
-            <a href="records.html"
-              >📋
-              <span data-translate="medicalRecords">Medical Records</span></a
-            >
+            <a href="records.html">
+              <span>📋</span>
+              <span data-translate="medicalRecords">Medical Records</span>
+            </a>
           </li>
           <li>
-            <a href="support.html"
-              >💬 <span data-translate="support">Support</span></a
-            >
+            <a href="support.html">
+              <span>💬</span> <span data-translate="support">Support</span>
+            </a>
           </li>
           <li>
-            <a
-              href="#"
-              onclick="
-                showModal('<h2>Settings</h2><p>Settings page coming soon!</p>')
-              "
-              >⚙️ <span data-translate="settings">Settings</span></a
-            >
+            <a href="settings.html">
+              <span>⚙️</span> <span data-translate="settings">Settings</span>
+            </a>
           </li>
         </ul>
       </aside>
@@ -98,14 +113,33 @@
       <main class="main-content">
         <h2 data-translate="dashboardOverview">Dashboard Overview</h2>
 
+        <!-- Stats Grid -->
         <div class="stats-grid" style="margin-top: 2rem">
-          <div class="stat-card" style="background: var(--primary)">
+          <div
+            class="stat-card"
+            style="
+              background: linear-gradient(
+                135deg,
+                var(--primary) 0%,
+                var(--primary-dark) 100%
+              );
+            "
+          >
             <h4 id="total-appointments">0</h4>
             <p class="stat-label" data-translate="totalAppointments">
               Total Appointments
             </p>
           </div>
-          <div class="stat-card" style="background: var(--highlight)">
+          <div
+            class="stat-card"
+            style="
+              background: linear-gradient(
+                135deg,
+                var(--secondary) 0%,
+                #0284c7 100%
+              );
+            "
+          >
             <h4 id="pending-records">3</h4>
             <p class="stat-label" data-translate="pendingRecords">
               Pending Records
@@ -113,13 +147,21 @@
           </div>
           <div
             class="stat-card"
-            style="background: var(--secondary); color: var(--text-dark)"
+            style="
+              background: linear-gradient(
+                135deg,
+                var(--accent) 0%,
+                #d97706 100%
+              );
+              color: white;
+            "
           >
             <h4>⭐ 4.8</h4>
             <p class="stat-label" data-translate="yourRating">Your Rating</p>
           </div>
         </div>
 
+        <!-- Upcoming Appointments -->
         <section style="margin-top: 3rem">
           <div
             style="
@@ -146,6 +188,7 @@
           </div>
         </section>
 
+        <!-- Recent Records -->
         <section style="margin-top: 3rem">
           <div
             style="
@@ -167,47 +210,66 @@
           </div>
           <div
             class="card-grid"
-            style="grid-template-columns: repeat(auto-fit, minmax(250px, 1fr))"
+            style="grid-template-columns: repeat(auto-fit, minmax(280px, 1fr))"
           >
             <div class="card">
               <span
                 class="btn btn-secondary"
-                style="padding: 0.25rem 0.5rem; font-size: 0.875rem"
+                style="
+                  padding: 0.25rem 0.75rem;
+                  font-size: 0.875rem;
+                  display: inline-block;
+                  margin-bottom: 0.75rem;
+                "
                 data-translate="labResults"
                 >Lab Results</span
               >
-              <h4 class="mt-1">Blood Test</h4>
-              <p class="text-gray-600">Dr. Ahmed Hassan • 2024-03-15</p>
-              <span style="color: var(--primary)" data-translate="normal"
+              <h4 style="margin-bottom: 0.5rem">Blood Test</h4>
+              <p style="color: var(--text-muted); font-size: 0.9rem">
+                Dr. Ahmed Hassan • 2024-03-15
+              </p>
+              <span
+                style="color: var(--success); font-weight: 600"
+                data-translate="normal"
                 >Normal</span
               >
             </div>
             <div class="card">
               <span
                 class="btn btn-secondary"
-                style="padding: 0.25rem 0.5rem; font-size: 0.875rem"
+                style="
+                  padding: 0.25rem 0.75rem;
+                  font-size: 0.875rem;
+                  display: inline-block;
+                  margin-bottom: 0.75rem;
+                "
                 data-translate="prescriptions"
                 >Prescription</span
               >
-              <h4 class="mt-1">Antibiotics</h4>
-              <p class="text-gray-600">Dr. Sarah Johnson • 2024-03-10</p>
-              <span style="color: var(--highlight)" data-translate="active"
+              <h4 style="margin-bottom: 0.5rem">Antibiotics</h4>
+              <p style="color: var(--text-muted); font-size: 0.9rem">
+                Dr. Sarah Johnson • 2024-03-10
+              </p>
+              <span
+                style="color: var(--secondary); font-weight: 600"
+                data-translate="active"
                 >Active</span
               >
             </div>
           </div>
         </section>
 
+        <!-- CTA Banner -->
         <section
           style="
             margin-top: 3rem;
             background: linear-gradient(
               135deg,
-              var(--secondary) 0%,
-              var(--white) 100%
+              var(--primary-subtle) 0%,
+              var(--secondary-subtle) 100%
             );
             padding: 2rem;
-            border-radius: var(--radius);
+            border-radius: var(--radius-lg);
           "
         >
           <div
@@ -226,6 +288,7 @@
               <p
                 id="book-specialists-text"
                 data-translate="bookWithSpecialists"
+                style="color: var(--text-secondary)"
               >
                 Book an appointment with our top specialists today.
               </p>
